@@ -5,15 +5,15 @@
 </p>
 
 <p align="center">
-  <a href="#-leetcode-solutions">LeetCode</a> •
-  <a href="#-low-level-design-lld">LLD</a> •
-  <a href="#-high-level-design-hld">HLD</a> •
-  <a href="#-resources">Resources</a>
+  <a href="#leetcode-solutions">LeetCode</a> •
+  <a href="#low-level-design-lld">LLD</a> •
+  <a href="#high-level-design-hld">HLD</a> •
+  <a href="#resources">Resources</a>
 </p>
 
 ---
 
-## 🎯 What's Inside
+## What's Inside
 
 | Section | Description | Status |
 |---------|-------------|--------|
@@ -25,7 +25,7 @@
 
 ---
 
-## 💻 LeetCode Solutions
+## LeetCode Solutions
 
 > Each problem includes: **Question**, **Solution Code**, and **Detailed Explanation**
 
