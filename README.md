@@ -48,6 +48,7 @@
 | 3 | [Longest Substring Without Repeating Characters](./LeetCode/src/main/java/org/example/Q0003_LongestSubstringWithoutRepeatingCharacters) | Medium | Sliding Window |
 | 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | Easy | String Comparison |
 | 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | Medium | Subsequence Check |
+| 524 | [Longest Word in Dictionary through Deleting](./LeetCode/src/main/java/org/example/Q0524_LongestWordInDictionary) | Medium | Two Pointers, Subsequence |
 
 </details>
 
@@ -65,6 +66,7 @@
 
 | # | Problem | Difficulty | Key Concept |
 |---|---------|------------|-------------|
+| 10 | [Regular Expression Matching](./LeetCode/src/main/java/org/example/Q0010_RegularExpressionMatching) | Hard | DP, Recursion |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | Hard | DP + BFS |
 
 </details>
@@ -74,6 +76,7 @@
 
 | # | Problem | Difficulty | Key Concept |
 |---|---------|------------|-------------|
+| 992 | [Subarrays with K Different Integers](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | Hard | Sliding Window, HashMap |
 | 1423 | [Maximum Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | Medium | Fixed Window |
 
 </details>
@@ -85,9 +88,12 @@
 | 1 | [Two Sum](./LeetCode/src/main/java/org/example/Q0001_TwoSum) | 🟢 Easy | Array, HashMap |
 | 3 | [Longest Substring Without Repeating Characters](./LeetCode/src/main/java/org/example/Q0003_LongestSubstringWithoutRepeatingCharacters) | 🟡 Medium | String, Sliding Window |
 | 4 | [Median of Two Sorted Arrays](./LeetCode/src/main/java/org/example/Q0004_MedianOfTwoSortedArray) | 🔴 Hard | Binary Search |
+| 10 | [Regular Expression Matching](./LeetCode/src/main/java/org/example/Q0010_RegularExpressionMatching) | 🔴 Hard | DP, Recursion |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | 🔴 Hard | DP, BFS |
 | 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | 🟢 Easy | String |
 | 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | 🟡 Medium | String, Sorting |
+| 524 | [Longest Word in Dictionary through Deleting](./LeetCode/src/main/java/org/example/Q0524_LongestWordInDictionary) | 🟡 Medium | Two Pointers, Subsequence |
+| 992 | [Subarrays with K Different Integers](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | 🔴 Hard | Sliding Window, HashMap |
 | 1423 | [Maximum Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Sliding Window |
 
 ### Explanation Structure
@@ -306,9 +312,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 2 solved
-- [x] Medium: 3 solved
-- [x] Hard: 2 solved
-- **Total**: 7 problems
+- [x] Medium: 4 solved
+- [x] Hard: 4 solved
+- **Total**: 10 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
