@@ -1,46 +1,19 @@
 # Two Sum - Explanation
 
 ## Problem in Simple Words
-You have a bag of numbers. You need to find **two numbers** that when added together give you a **target sum**. Return the positions (indices) of those two numbers.
+You have a bag of numbers. Find **two numbers** that add up to a **target sum**. Return their positions (indices).
 
-Think of it like this: You have money in different pockets, and you need to find which two pockets together make exactly the amount you need.
-
----
-
-## The Smart Solution (HashMap Approach)
-
-### The Core Idea 💡
-Instead of checking every pair of numbers (which is slow), we use a **HashMap** like a cheat sheet.
-
-**Analogy**: Imagine you're looking for your friend in a crowd. Instead of asking everyone "Are you my friend?", you have a photo of your friend. You just look at the photo and scan the crowd once!
-
-### Step-by-Step Walkthrough
-
-Let's say `nums = [2, 7, 11, 15]` and `target = 9`
-
-1. **Create an empty HashMap** (our cheat sheet)
-   
-2. **Go through each number one by one:**
-   
-   - **i=0, num=2**: 
-     - What do we need to reach 9? We need `9 - 2 = 7`
-     - Is 7 in our HashMap? NO (it's empty)
-     - Add 2 to HashMap: `{2: 0}` (number 2 is at index 0)
-   
-   - **i=1, num=7**:
-     - What do we need to reach 9? We need `9 - 7 = 2`
-     - Is 2 in our HashMap? YES! It's at index 0
-     - **FOUND IT!** Return `[0, 1]`
-
-### Why This Works
-We're basically asking: "For each number, have I already seen a number that completes the pair?"
+**Example**: `nums = [2, 7, 11, 15]`, `target = 9`
+- 2 + 7 = 9 ✅
+- Answer: `[0, 1]`
 
 ---
 
-## Why Brute Force Doesn't Cut It ❌
+## Solution 1: Brute Force ❌ (Works but Slow)
 
-### Brute Force Approach
+### Approach
 Check every possible pair of numbers:
+
 ```java
 for (int i = 0; i < nums.length; i++) {
     for (int j = i + 1; j < nums.length; j++) {
@@ -52,47 +25,131 @@ for (int i = 0; i < nums.length; i++) {
 ```
 
 ### Why It's Bad
-- **Two nested loops** = For each element, we check ALL other elements
-- If you have 10,000 numbers, you're doing 10,000 × 10,000 = **100 million operations**!
-- That's like asking everyone in a stadium to shake hands with everyone else
+- **Two nested loops** = Check ALL pairs
+- 10,000 numbers → 10,000 × 10,000 = **100 million operations!**
+- Like asking everyone in a stadium to shake hands with everyone else
 
 ---
 
-## Why Sorting Doesn't Work Here ❌
+## Solution 2: Sorting + Two Pointers ❌ (Wrong for This Problem)
 
-You might think: "Why not sort and use two pointers?"
+### Approach
+"Sort the array, then use two pointers from both ends!"
 
-**Problem**: Sorting **changes the indices**! The question asks for the **original positions**, not the sorted positions.
+```java
+Arrays.sort(nums);  // Sort first
+int left = 0, right = nums.length - 1;
+while (left < right) {
+    int sum = nums[left] + nums[right];
+    if (sum == target) return [left, right];  // WRONG!
+    else if (sum < target) left++;
+    else right--;
+}
+```
 
-You could sort and then search for original indices, but that adds unnecessary complexity.
+### Example Where It WORKS ✅
+
+```
+nums = [3, 2, 4], target = 6
+
+After sorting: [2, 3, 4]
+
+left=0, right=2: 2 + 4 = 6 ✅ Found!
+
+Return [0, 2]... but wait!
+```
+
+### Example Where It FAILS ❌
+
+```
+Original: [3, 2, 4], target = 6
+Indices:   0  1  2
+
+After sorting: [2, 3, 4]
+New indices:    0  1  2   ← INDICES CHANGED!
+
+We find 2 + 4 = 6 at sorted positions [0, 2]
+But in ORIGINAL array:
+  - 2 was at index 1
+  - 4 was at index 2
+
+Correct answer: [1, 2]
+Our answer: [0, 2] ← WRONG!
+```
+
+### Why It Fails 🤯
+**Sorting changes the indices!** The problem asks for ORIGINAL positions, not sorted positions.
+
+You could track original indices, but that adds unnecessary complexity.
+
+---
+
+## Solution 3: HashMap ✅ (Optimal)
+
+### What is it?
+Instead of searching for pairs, use a **HashMap as a cheat sheet**.
+
+For each number, ask: "Have I already seen the number that completes my pair?"
+
+### Why It Solves the Problem
+```
+Brute Force:           HashMap:
+   ↓                      ↓
+"Check ALL pairs"    "Check my cheat sheet"
+O(n²) comparisons    O(1) lookup per number
+```
+
+### Step-by-Step Walkthrough
+
+**nums = [2, 7, 11, 15], target = 9**
+
+```
+HashMap (our cheat sheet): {}
+
+═══════════════════════════════════════════
+STEP 1: Look at nums[0] = 2
+═══════════════════════════════════════════
+What do I need? target - 2 = 7
+Is 7 in my HashMap? NO (it's empty)
+Add 2 to HashMap: {2: 0}
+
+═══════════════════════════════════════════
+STEP 2: Look at nums[1] = 7
+═══════════════════════════════════════════
+What do I need? target - 7 = 2
+Is 2 in my HashMap? YES! At index 0!
+
+FOUND! Return [0, 1]
+```
+
+### Visual Diagram
+
+```
+Array:    [2,    7,    11,    15]
+Index:     0     1      2      3
+           ↓
+           └── "I need 7 to make 9"
+               HashMap: {2: 0}
+                  ↓
+                  └── "Someone already needs ME (2)!"
+                      Return [0, 1]
+```
 
 ---
 
 ## Complexity Analysis
 
-### Optimal Solution (HashMap)
-| Metric | Complexity | Explanation |
-|--------|------------|-------------|
-| **Time** | O(n) | We traverse the array once. HashMap lookup is O(1) |
-| **Space** | O(n) | In worst case, we store all n elements in HashMap |
-
-### Brute Force (Two Loops)
-| Metric | Complexity | Explanation |
-|--------|------------|-------------|
-| **Time** | O(n²) | Two nested loops checking every pair |
-| **Space** | O(1) | No extra space used |
-
-### Sorting + Two Pointers (if we didn't need indices)
-| Metric | Complexity | Explanation |
-|--------|------------|-------------|
-| **Time** | O(n log n) | Sorting dominates the complexity |
-| **Space** | O(1) or O(n) | Depends on sorting algorithm |
+| Solution | Time | Space | Correct? |
+|----------|------|-------|----------|
+| Brute Force | O(n²) | O(1) | ✅ But slow |
+| Sorting + Two Pointers | O(n log n) | O(1) | ❌ Loses indices |
+| **HashMap** | O(n) | O(n) | ✅ Optimal |
 
 ---
 
 ## Key Takeaways
 
-1. **HashMap** is your best friend for "find a pair" problems
-2. When you need to find a **complement** (target - current), think HashMap
-3. Trading **space for time** (using HashMap) is usually worth it
-4. Always consider: "Have I seen this before?" → HashMap!
+1. **HashMap = O(1) lookup** → Perfect for "find complement" problems
+2. **Sorting loses information** (original indices)
+3. Trade **space for time** → O(n) space gives O(n) time
+4. Pattern: "Have I seen X before?" → HashMap!
