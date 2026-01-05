@@ -34,67 +34,81 @@
 <details>
 <summary><b>Arrays & Hashing</b></summary>
 
-| # | Problem | Difficulty | Key Concept |
-|---|---------|------------|-------------|
-| 1 | [Two Sum](./LeetCode/src/main/java/org/example/Q0001_TwoSum) | Easy | HashMap lookup |
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 1 | [Two Sum](./LeetCode/src/main/java/org/example/Q0001_TwoSum) | Find 2 nums that add to target | Store num→idx in map, check if complement exists |
+| 15 | [3Sum](./LeetCode/src/main/java/org/example/Q0015_ThreeSum) | Find triplets summing to 0 | Sort + fix one, two-pointer for rest, skip dupes |
 
 </details>
 
 <details>
 <summary><b>Strings & Substrings</b></summary>
 
-| # | Problem | Difficulty | Key Concept |
-|---|---------|------------|-------------|
-| 3 | [Longest Substring Without Repeating Characters](./LeetCode/src/main/java/org/example/Q0003_LongestSubstringWithoutRepeatingCharacters) | Medium | Sliding Window |
-| 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | Easy | String Comparison |
-| 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | Medium | Subsequence Check |
-| 524 | [Longest Word in Dictionary through Deleting](./LeetCode/src/main/java/org/example/Q0524_LongestWordInDictionary) | Medium | Two Pointers, Subsequence |
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 3 | [Longest Substring Without Repeating](./LeetCode/src/main/java/org/example/Q0003_LongestSubstringWithoutRepeatingCharacters) | Max substring with unique chars | Sliding window + set, shrink on duplicate |
+| 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | Longest seq not in both strings | If strings differ → longer one wins |
+| 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | Longest seq not subseq of others | Sort by len, check if subseq of any other |
+| 524 | [Longest Word in Dictionary](./LeetCode/src/main/java/org/example/Q0524_LongestWordInDictionary) | Longest dict word from deleting chars | Two-pointer subseq check, pick longest/smallest |
 
 </details>
 
 <details>
 <summary><b>Binary Search</b></summary>
 
-| # | Problem | Difficulty | Key Concept |
-|---|---------|------------|-------------|
-| 4 | [Median of Two Sorted Arrays](./LeetCode/src/main/java/org/example/Q0004_MedianOfTwoSortedArray) | Hard | Binary Search on Answer |
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 4 | [Median of Two Sorted Arrays](./LeetCode/src/main/java/org/example/Q0004_MedianOfTwoSortedArray) | Find median of 2 sorted arrays | Binary search on smaller array, partition both |
 
 </details>
 
 <details>
 <summary><b>Dynamic Programming</b></summary>
 
-| # | Problem | Difficulty | Key Concept |
-|---|---------|------------|-------------|
-| 10 | [Regular Expression Matching](./LeetCode/src/main/java/org/example/Q0010_RegularExpressionMatching) | Hard | DP, Recursion |
-| 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | Hard | DP + BFS |
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 10 | [Regular Expression Matching](./LeetCode/src/main/java/org/example/Q0010_RegularExpressionMatching) | Match string with `.` and `*` | 2D DP: `*` = zero or more of prev char |
+| 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | Min rotations to spell word on ring | DP on (ring pos, key idx), try all char positions |
 
 </details>
 
 <details>
 <summary><b>Sliding Window</b></summary>
 
-| # | Problem | Difficulty | Key Concept |
-|---|---------|------------|-------------|
-| 992 | [Subarrays with K Different Integers](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | Hard | Sliding Window, HashMap |
-| 1423 | [Maximum Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | Medium | Fixed Window |
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 992 | [Subarrays with K Distinct](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | Count subarrays with exactly K distinct | atMost(K) - atMost(K-1) trick |
+| 995 | [Min K Bit Flips](./LeetCode/src/main/java/org/example/Q0995_MinKBitFlips) | Min flips to make all 1s | Greedy flip at each 0, track flips with queue |
+| 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | Pick k cards from ends for max sum | Find min window of (n-k), answer = total - min |
+
+</details>
+
+<details>
+<summary><b>Backtracking</b></summary>
+
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 526 | [Beautiful Arrangement](./LeetCode/src/main/java/org/example/Q0526_BeautifulArrangement) | Count permutations where i%perm[i]==0 or vice versa | Backtrack, try each unused num at each pos |
 
 </details>
 
 ### Problems by Number
 
-| # | Problem | Difficulty | Topics |
-|---|---------|------------|--------|
-| 1 | [Two Sum](./LeetCode/src/main/java/org/example/Q0001_TwoSum) | 🟢 Easy | Array, HashMap |
-| 3 | [Longest Substring Without Repeating Characters](./LeetCode/src/main/java/org/example/Q0003_LongestSubstringWithoutRepeatingCharacters) | 🟡 Medium | String, Sliding Window |
-| 4 | [Median of Two Sorted Arrays](./LeetCode/src/main/java/org/example/Q0004_MedianOfTwoSortedArray) | 🔴 Hard | Binary Search |
-| 10 | [Regular Expression Matching](./LeetCode/src/main/java/org/example/Q0010_RegularExpressionMatching) | 🔴 Hard | DP, Recursion |
-| 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | 🔴 Hard | DP, BFS |
-| 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | 🟢 Easy | String |
-| 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | 🟡 Medium | String, Sorting |
-| 524 | [Longest Word in Dictionary through Deleting](./LeetCode/src/main/java/org/example/Q0524_LongestWordInDictionary) | 🟡 Medium | Two Pointers, Subsequence |
-| 992 | [Subarrays with K Different Integers](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | 🔴 Hard | Sliding Window, HashMap |
-| 1423 | [Maximum Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Sliding Window |
+| # | Problem | Difficulty | Q-Card 💡 |
+|---|---------|------------|-----------|
+| 1 | [Two Sum](./LeetCode/src/main/java/org/example/Q0001_TwoSum) | 🟢 Easy | Map lookup: `target - num` exists? |
+| 3 | [Longest Substring Without Repeating](./LeetCode/src/main/java/org/example/Q0003_LongestSubstringWithoutRepeatingCharacters) | 🟡 Medium | Slide window + set, shrink on dupe |
+| 4 | [Median of Two Sorted Arrays](./LeetCode/src/main/java/org/example/Q0004_MedianOfTwoSortedArray) | 🔴 Hard | Binary search smaller arr, partition both |
+| 10 | [Regular Expression Matching](./LeetCode/src/main/java/org/example/Q0010_RegularExpressionMatching) | 🔴 Hard | 2D DP, handle `*` = 0 or more prev |
+| 15 | [3Sum](./LeetCode/src/main/java/org/example/Q0015_ThreeSum) | 🟡 Medium | Sort, fix 1, two-ptr rest, skip dupes |
+| 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | 🔴 Hard | DP(pos, idx), try all matching chars |
+| 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | 🟢 Easy | Different strings? Longer wins |
+| 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | 🟡 Medium | Check each if subseq of any other |
+| 524 | [Longest Word in Dictionary](./LeetCode/src/main/java/org/example/Q0524_LongestWordInDictionary) | 🟡 Medium | 2-ptr subseq check, longest/lex-smallest |
+| 526 | [Beautiful Arrangement](./LeetCode/src/main/java/org/example/Q0526_BeautifulArrangement) | 🟡 Medium | Backtrack: try valid nums at each pos |
+| 992 | [Subarrays with K Distinct](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | 🔴 Hard | `atMost(K) - atMost(K-1)` |
+| 995 | [Min K Bit Flips](./LeetCode/src/main/java/org/example/Q0995_MinKBitFlips) | 🔴 Hard | Greedy flip 0s, track with queue/diff |
+| 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Total - min window of (n-k) |
 
 ### Explanation Structure
 
@@ -312,9 +326,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 2 solved
-- [x] Medium: 4 solved
-- [x] Hard: 4 solved
-- **Total**: 10 problems
+- [x] Medium: 6 solved
+- [x] Hard: 5 solved
+- **Total**: 13 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
