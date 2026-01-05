@@ -80,6 +80,7 @@
 | 992 | [Subarrays with K Distinct](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | Count subarrays with exactly K distinct | atMost(K) - atMost(K-1) trick |
 | 995 | [Min K Bit Flips](./LeetCode/src/main/java/org/example/Q0995_MinKBitFlips) | Min flips to make all 1s | Greedy flip at each 0, track flips with queue |
 | 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | Pick k cards from ends for max sum | Find min window of (n-k), answer = total - min |
+| 1438 | [Longest Subarray With Limit](./LeetCode/src/main/java/org/example/Q1438_LongestSubarrayWithLimit) | Longest subarray where max-min ≤ limit | 2 monotonic deques: maxq (dec), minq (inc) |
 
 </details>
 
@@ -88,6 +89,7 @@
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
+| 17 | [Letter Combinations](./LeetCode/src/main/java/org/example/Q0017_LetterCombinations) | All letter combos from phone digits | Backtrack: choose→explore→unchoose for each digit |
 | 526 | [Beautiful Arrangement](./LeetCode/src/main/java/org/example/Q0526_BeautifulArrangement) | Count permutations where i%perm[i]==0 or vice versa | Backtrack, try each unused num at each pos |
 
 </details>
@@ -101,6 +103,7 @@
 | 4 | [Median of Two Sorted Arrays](./LeetCode/src/main/java/org/example/Q0004_MedianOfTwoSortedArray) | 🔴 Hard | Binary search smaller arr, partition both |
 | 10 | [Regular Expression Matching](./LeetCode/src/main/java/org/example/Q0010_RegularExpressionMatching) | 🔴 Hard | 2D DP, handle `*` = 0 or more prev |
 | 15 | [3Sum](./LeetCode/src/main/java/org/example/Q0015_ThreeSum) | 🟡 Medium | Sort, fix 1, two-ptr rest, skip dupes |
+| 17 | [Letter Combinations](./LeetCode/src/main/java/org/example/Q0017_LetterCombinations) | 🟡 Medium | Backtrack: choose→explore→unchoose |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | 🔴 Hard | DP(pos, idx), try all matching chars |
 | 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | 🟢 Easy | Different strings? Longer wins |
 | 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | 🟡 Medium | Check each if subseq of any other |
@@ -109,6 +112,7 @@
 | 992 | [Subarrays with K Distinct](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | 🔴 Hard | `atMost(K) - atMost(K-1)` |
 | 995 | [Min K Bit Flips](./LeetCode/src/main/java/org/example/Q0995_MinKBitFlips) | 🔴 Hard | Greedy flip 0s, track with queue/diff |
 | 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Total - min window of (n-k) |
+| 1438 | [Longest Subarray With Limit](./LeetCode/src/main/java/org/example/Q1438_LongestSubarrayWithLimit) | 🟡 Medium | Monotonic deques for max/min in window |
 
 ### Explanation Structure
 
@@ -326,9 +330,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 2 solved
-- [x] Medium: 6 solved
+- [x] Medium: 8 solved
 - [x] Hard: 5 solved
-- **Total**: 13 problems
+- **Total**: 15 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
