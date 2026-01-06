@@ -6,6 +6,7 @@
 
 <p align="center">
   <a href="#leetcode-solutions">LeetCode</a> •
+  <a href="#dsa-visualizer">Visualizer</a> •
   <a href="#low-level-design-lld">LLD</a> •
   <a href="#high-level-design-hld">HLD</a> •
   <a href="#resources">Resources</a>
@@ -18,6 +19,7 @@
 | Section | Description | Status |
 |---------|-------------|--------|
 | **LeetCode** | Curated problem solutions with detailed explanations | ✅ Active |
+| **Visualizer** | Interactive step-by-step algorithm visualization | ✅ **NEW** |
 | **LLD (Java)** | Object-Oriented Programming with Java examples | ✅ Active |
 | **LLD (Node.js)** | OOP concepts implemented in JavaScript | ✅ Active |
 | **LLD (Python)** | OOP patterns in Python | ✅ Active |
@@ -125,6 +127,53 @@ Every problem follows a standardized explanation format:
 6. **Key Takeaways** - Pattern recognition & what to remember
 
 ---
+
+## DSA Visualizer
+
+> **Interactive step-by-step algorithm visualization** - Reads directly from your LeetCode folder!
+
+### Single Source of Truth Architecture
+
+```
+LeetCode/               ← Your solutions (Question.md, Explanation.md, .java)
+    ↓ API reads from
+VisualizerBackend/      ← Express server (localhost:3001)
+    ↓ Serves to
+Visualizer/             ← React frontend (localhost:5173)
+```
+
+**No duplicate content** - Add questions to LeetCode folder, visualizer auto-detects them!
+
+### Features
+
+| Feature | Description |
+|---------|-------------|
+| 🔗 **Auto-Sync** | Reads Question.md, Explanation.md, and Java code from LeetCode folder |
+| 🎬 **Step Animation** | Navigate through algorithm execution step-by-step |
+| 📊 **Array Visualization** | Sliding window, pointers, deques |
+| ✏️ **Monaco Editor** | Full code editor with syntax highlighting |
+| ⌨️ **Keyboard Shortcuts** | `←` Prev | `→` Next | `Space` Play/Pause |
+
+### Run the Visualizer
+
+```bash
+# Terminal 1: Backend
+cd VisualizerBackend && npm install && npm run dev
+
+# Terminal 2: Frontend
+cd Visualizer && npm install && npm run dev
+```
+
+Then open **http://localhost:5173/**
+
+### Tech Stack
+
+- **Frontend**: React 18 + Vite + Tailwind CSS 4 + Monaco Editor
+- **Backend**: Express.js (reads LeetCode folder)
+- **Pattern Detection**: Auto-detects sliding-window, two-pointer, etc.
+
+---
+
 
 ## Low-Level Design (LLD)
 
@@ -294,25 +343,22 @@ Notes/
 │       │   └── Explanation.md      # Detailed explanation
 │       └── ...
 │
+├── 📂 VisualizerBackend/           # Backend API (reads LeetCode folder)
+│   └── server.js                   # Express server
+│
+├── 📂 Visualizer/                  # Frontend (React)
+│   └── src/
+│       ├── components/             # UI components
+│       ├── engine/                 # Algorithm execution
+│       └── hooks/                  # React hooks
+│
 ├── 📂 LLD/                         # Low-Level Design (Java)
-│   └── src/main/java/org/example/
-│       └── p1_oops/
-│           ├── c0_introduction/
-│           ├── c1_accessmodifiers/
-│           └── ...
-│
 ├── 📂 LLD NodeJs/                  # Low-Level Design (JavaScript)
-│   └── p1_oops/
-│       ├── c0_introduction/
-│       └── ...
-│
 ├── 📂 LLD Python/                  # Low-Level Design (Python)
-│   └── p1_oops/
-│       ├── c0_introduction/
-│       └── ...
 │
 └── 📄 README.md                    # You are here!
 ```
+
 
 ---
 

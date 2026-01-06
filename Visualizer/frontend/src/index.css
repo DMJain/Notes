@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --egg-white: #F5F5DC;
+    --cream: #FFFEF5;
+    --border-dark: #1A1A1A;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--egg-white);
+    color: var(--border-dark);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* Card styling */
+.card {
+    @apply bg-cream border border-border-dark rounded-lg shadow-panel;
+}
+
+.card-header {
+    @apply px-4 py-3 border-b border-border-light font-semibold text-sm uppercase tracking-wide;
+}
+
+.card-body {
+    @apply p-4;
+}
+
+/* Ghost button styling */
+.btn-ghost {
+    @apply px-3 py-1.5 border border-border-dark rounded-md text-sm font-medium bg-transparent hover:bg-black hover:text-white transition-colors duration-150;
+}
+
+.btn-ghost:disabled {
+    @apply opacity-40 cursor-not-allowed hover:bg-transparent hover:text-border-dark;
+}
+
+/* Code styling */
+.code-panel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.code-line-highlight {
+    @apply bg-yellow-200 border-l-4 border-yellow-500;
+}
+
+/* Markdown styling */
+.markdown-content h1 {
+    @apply text-2xl font-bold mb-4;
+}
+
+.markdown-content h2 {
+    @apply text-xl font-semibold mb-3 mt-6;
+}
+
+.markdown-content h3 {
+    @apply text-lg font-medium mb-2 mt-4;
+}
+
+.markdown-content p {
+    @apply mb-4 leading-relaxed;
+}
+
+.markdown-content ul {
+    @apply list-disc list-inside mb-4 space-y-1;
+}
+
+.markdown-content ol {
+    @apply list-decimal list-inside mb-4 space-y-1;
+}
+
+.markdown-content code {
+    @apply bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono;
+}
+
+.markdown-content pre {
+    @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4;
+}
+
+.markdown-content pre code {
+    @apply bg-transparent p-0;
+}
+
+.markdown-content strong {
+    @apply font-semibold;
+}
+
+.markdown-content em {
+    @apply italic;
+}
