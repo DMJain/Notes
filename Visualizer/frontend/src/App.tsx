@@ -1,28 +1,72 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TopBar } from './components/layout/TopBar';
 import { LeftPanel } from './components/layout/LeftPanel';
 import { RightPanel } from './components/layout/RightPanel';
 import { QuestionCard } from './components/cards/QuestionCard';
 import { ExplanationCard } from './components/cards/ExplanationCard';
 import { CodePanel } from './components/code/CodePanel';
-import { VisualizerPlaceholder } from './components/visualizers/VisualizerPlaceholder';
+import { StepVisualizer } from './components/visualizers/StepVisualizer';
 import { useQuestions, useQuestionDetail } from './hooks/useQuestions';
+import { useStepPlayer } from './hooks/useStepPlayer';
+import { executeDemo } from './services/execution';
+import { Step } from './types/visualization';
 
 function App() {
     const [category, setCategory] = useState<string>('LEETCODE');
     const [selectedQuestionId, setSelectedQuestionId] = useState<string | null>(null);
+    const [steps, setSteps] = useState<Step[]>([]);
+    const [executionLoading, setExecutionLoading] = useState(false);
+    const [executionError, setExecutionError] = useState<string | null>(null);
 
     const { questions, loading: questionsLoading } = useQuestions(category);
     const { detail, loading: detailLoading } = useQuestionDetail(selectedQuestionId, category);
 
+    const player = useStepPlayer(steps);
+
     const handleCategoryChange = (newCategory: string) => {
         setCategory(newCategory);
         setSelectedQuestionId(null);
+        setSteps([]);
     };
 
     const handleQuestionChange = (questionId: string) => {
         setSelectedQuestionId(questionId);
+        setSteps([]);
+        setExecutionError(null);
     };
+
+    // Load demo visualization when question changes
+    useEffect(() => {
+        if (!selectedQuestionId) return;
+
+        const loadDemo = async () => {
+            setExecutionLoading(true);
+            setExecutionError(null);
+            try {
+                const response = await executeDemo(selectedQuestionId);
+                if (response.success && response.steps) {
+                    setSteps(response.steps);
+                } else if (response.error) {
+                    setExecutionError(response.error.message || 'Visualization not available');
+                    setSteps([]);
+                } else {
+                    setExecutionError('Visualization not yet implemented for this question');
+                    setSteps([]);
+                }
+            } catch (err) {
+                // Demo not available for this question
+                setExecutionError('Visualization not yet implemented for this question');
+                setSteps([]);
+            } finally {
+                setExecutionLoading(false);
+            }
+        };
+
+        loadDemo();
+    }, [selectedQuestionId]);
+
+    // Get current highlighted line from step
+    const currentLineNumber = player.currentStep?.lineNumber;
 
     return (
         <div className="h-screen w-screen flex flex-col overflow-hidden bg-egg-white">
@@ -34,6 +78,7 @@ function App() {
                 selectedQuestionId={selectedQuestionId}
                 onQuestionChange={handleQuestionChange}
                 loading={questionsLoading}
+                player={player}
             />
 
             {/* Main Content */}
@@ -53,16 +98,39 @@ function App() {
                 {/* Right Panel - Visualizer & Code */}
                 <RightPanel
                     visualizer={
-                        <VisualizerPlaceholder
-                            questionId={selectedQuestionId}
-                            questionName={detail?.name}
-                        />
+                        executionLoading ? (
+                            <div className="h-full flex items-center justify-center bg-cream">
+                                <div className="text-gray-500">Loading visualization...</div>
+                            </div>
+                        ) : executionError ? (
+                            <div className="h-full flex items-center justify-center bg-cream">
+                                <div className="text-center">
+                                    <div className="text-4xl mb-4">🔜</div>
+                                    <p className="text-gray-500">{executionError}</p>
+                                </div>
+                            </div>
+                        ) : steps.length > 0 && player.currentStep ? (
+                            <StepVisualizer
+                                step={player.currentStep}
+                                allSteps={steps}
+                                currentIndex={player.currentIndex}
+                            />
+                        ) : (
+                            <div className="h-full flex items-center justify-center bg-cream">
+                                <div className="text-center text-gray-500">
+                                    <div className="text-6xl mb-4">🎯</div>
+                                    <h2 className="text-xl font-semibold mb-2">DSA Visualizer</h2>
+                                    <p className="text-sm">Select a question to visualize its algorithm</p>
+                                </div>
+                            </div>
+                        )
                     }
                     code={
                         <CodePanel
                             code={detail?.solutionCode || ''}
                             filename={detail?.solutionFileName}
                             language="java"
+                            highlightLine={currentLineNumber}
                         />
                     }
                 />

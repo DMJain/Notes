@@ -31,6 +31,7 @@ export interface Step {
     lineNumber: number;
     targets: StepTarget[];
     timestamp?: number;
+    data?: Record<string, unknown>;
 }
 
 export interface VisualizationResponse {

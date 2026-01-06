@@ -1,4 +1,6 @@
 import { QuestionSummary } from '../../types/question';
+import { PlaybackControls } from '../controls/PlaybackControls';
+import { StepPlayerState, StepPlayerControls } from '../../hooks/useStepPlayer';
 
 interface TopBarProps {
     category: string;
@@ -7,6 +9,7 @@ interface TopBarProps {
     selectedQuestionId: string | null;
     onQuestionChange: (id: string) => void;
     loading: boolean;
+    player: StepPlayerState & StepPlayerControls;
 }
 
 export function TopBar({
@@ -16,6 +19,7 @@ export function TopBar({
     selectedQuestionId,
     onQuestionChange,
     loading,
+    player,
 }: TopBarProps) {
     return (
         <header className="h-14 border-b border-border-dark bg-cream flex items-center px-4 gap-4 shrink-0">
@@ -68,18 +72,21 @@ export function TopBar({
             {/* Spacer */}
             <div className="flex-1" />
 
-            {/* Play Controls (placeholder for Phase 3) */}
-            <div className="flex gap-2">
-                <button className="btn-ghost" disabled title="Coming in Phase 3">
-                    ⏮
-                </button>
-                <button className="btn-ghost" disabled title="Coming in Phase 3">
-                    ▶
-                </button>
-                <button className="btn-ghost" disabled title="Coming in Phase 3">
-                    ⏭
-                </button>
-            </div>
+            {/* Play Controls */}
+            <PlaybackControls
+                state={player.state}
+                currentIndex={player.currentIndex}
+                totalSteps={player.totalSteps}
+                speed={player.speed}
+                hasNext={player.hasNext}
+                hasPrev={player.hasPrev}
+                onPlay={player.play}
+                onPause={player.pause}
+                onStop={player.stop}
+                onStepForward={player.stepForward}
+                onStepBack={player.stepBack}
+                onSpeedChange={player.setSpeed}
+            />
         </header>
     );
 }
