@@ -8,9 +8,11 @@ interface StepVisualizerProps {
     step: Step;
     allSteps: Step[];
     currentIndex: number;
+    apiInput?: Record<string, unknown>;   // Function arguments from API response
+    apiOutput?: unknown;                   // Return value from API response
 }
 
-export function StepVisualizer({ step, allSteps, currentIndex }: StepVisualizerProps) {
+export function StepVisualizer({ step, allSteps, currentIndex, apiInput, apiOutput }: StepVisualizerProps) {
     const accumulatedState = buildAccumulatedState(allSteps, currentIndex);
 
     // Categorize data structures
@@ -51,6 +53,7 @@ export function StepVisualizer({ step, allSteps, currentIndex }: StepVisualizerP
                         📥 Input
                     </div>
                     <div className="flex flex-wrap gap-3 items-start">
+                        {/* Display inputs from step data (arrays) */}
                         {inputs.map(([name, state]) => (
                             <div key={name} className="shrink-0">
                                 {state.isCharArray ? (
@@ -82,6 +85,7 @@ export function StepVisualizer({ step, allSteps, currentIndex }: StepVisualizerP
                                 )}
                             </div>
                         ))}
+                        {/* Display inputs from step data (variables like 'target') */}
                         {inputVars.map(([name, { value }]) => (
                             <div key={name} className="px-3 py-2 bg-white border border-blue-300 rounded-md shrink-0">
                                 <span className="font-mono text-sm text-gray-600">{name}</span>
@@ -89,6 +93,22 @@ export function StepVisualizer({ step, allSteps, currentIndex }: StepVisualizerP
                                 <span className="font-mono text-sm font-bold">{String(value)}</span>
                             </div>
                         ))}
+                        {/* FALLBACK: Display API input values not already shown */}
+                        {apiInput && Object.entries(apiInput).map(([name, value]) => {
+                            // Skip if already shown from step data
+                            const alreadyShown = inputs.some(([n]) => n === name) ||
+                                inputVars.some(([n]) => n === name);
+                            if (alreadyShown) return null;
+                            return (
+                                <div key={name} className="px-3 py-2 bg-white border border-blue-300 rounded-md shrink-0">
+                                    <span className="font-mono text-sm text-gray-600">{name}</span>
+                                    <span className="mx-1">=</span>
+                                    <span className="font-mono text-sm font-bold">
+                                        {Array.isArray(value) ? `[${value.join(', ')}]` : String(value)}
+                                    </span>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
 

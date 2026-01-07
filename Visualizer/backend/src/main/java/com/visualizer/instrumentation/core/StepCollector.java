@@ -4,69 +4,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Thread-local collector for visualization steps.
- * All TrackedDataStructure instances emit steps to this collector.
+ * Singleton that collects visualization steps during execution.
+ * Thread-local to support concurrent executions.
  */
 public class StepCollector {
 
-    private static final ThreadLocal<StepCollector> INSTANCE = ThreadLocal.withInitial(StepCollector::new);
+    private static final ThreadLocal<StepCollector> instance = ThreadLocal.withInitial(StepCollector::new);
 
-    private List<Step> steps;
-    private int stepCounter;
-    private boolean recording;
+    private final List<Step> steps = new ArrayList<>();
+    private boolean recording = false;
+    private int currentLineNumber = -1; // Track current source line for auto-instrumentation
 
-    public StepCollector() {
-        this.steps = new ArrayList<>();
-        this.stepCounter = 0;
-        this.recording = false;
+    private StepCollector() {
     }
 
     public static StepCollector getInstance() {
-        return INSTANCE.get();
+        return instance.get();
     }
 
     public static void reset() {
-        INSTANCE.remove();
+        instance.remove();
     }
 
     public void startRecording() {
-        this.steps.clear();
-        this.stepCounter = 0;
-        this.recording = true;
+        steps.clear();
+        recording = true;
+        currentLineNumber = -1;
     }
 
     public void stopRecording() {
-        this.recording = false;
+        recording = false;
     }
 
-    public boolean isRecording() {
-        return recording;
+    public void setCurrentLine(int lineNumber) {
+        this.currentLineNumber = lineNumber;
     }
 
-    public void emit(StepAction action, String description) {
-        if (!recording)
-            return;
-        Step step = new Step(++stepCounter, action, description);
-        steps.add(step);
-    }
-
-    public Step emit(Step step) {
-        if (!recording)
-            return step;
-        step.setStepId(++stepCounter);
-        steps.add(step);
-        return step;
-    }
-
-    public Step createStep(StepAction action, String description) {
-        return new Step(0, action, description); // stepId assigned on emit
+    public void emit(Step step) {
+        if (recording) {
+            // Auto-set line number if not already set and we have a current line
+            if (step.getLineNumber() <= 0 && currentLineNumber > 0) {
+                step = step.withLineNumber(currentLineNumber);
+            }
+            steps.add(step);
+        }
     }
 
     public List<Step> getSteps() {
         return new ArrayList<>(steps);
     }
 
-    public int getStepCount() {
-        return steps.size();
+    public boolean isRecording() {
+        return recording;
     }
 }

@@ -1,6 +1,8 @@
 package com.visualizer.instrumentation.core;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -90,6 +92,47 @@ public class Step {
 
     public Map<String, Object> getData() {
         return data;
+    }
+
+    /**
+     * Returns targets in the format expected by frontend:
+     * [{type, name, state, index, indices, value, highlight}]
+     */
+    public List<Map<String, Object>> getTargets() {
+        List<Map<String, Object>> targets = new ArrayList<>();
+        if (data.containsKey("target") || data.containsKey("state")) {
+            Map<String, Object> target = new HashMap<>();
+            // Derive type from action
+            target.put("type", getTargetTypeFromAction());
+            target.put("name", data.getOrDefault("target", "unknown"));
+            if (data.containsKey("state"))
+                target.put("state", data.get("state"));
+            if (data.containsKey("index"))
+                target.put("index", data.get("index"));
+            if (data.containsKey("indices"))
+                target.put("indices", data.get("indices"));
+            if (data.containsKey("value"))
+                target.put("value", data.get("value"));
+            if (data.containsKey("key"))
+                target.put("key", data.get("key"));
+            if (data.containsKey("highlight"))
+                target.put("highlight", data.get("highlight"));
+            targets.add(target);
+        }
+        return targets;
+    }
+
+    private String getTargetTypeFromAction() {
+        if (action == null)
+            return "VARIABLE";
+        return switch (action) {
+            case ARRAY_INIT, ARRAY_GET, ARRAY_SET, ARRAY_SWAP, ARRAY_HIGHLIGHT -> "ARRAY";
+            case MAP_INIT, MAP_PUT, MAP_GET, MAP_REMOVE, MAP_CONTAINS -> "MAP";
+            case SET_ADD, SET_REMOVE, SET_CONTAINS -> "SET";
+            case VAR_INIT, VAR_UPDATE -> "VARIABLE";
+            case POINTER_MOVE -> "POINTER";
+            default -> "VARIABLE";
+        };
     }
 
     // Setters

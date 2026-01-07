@@ -15,6 +15,8 @@ public class ExecutionResponse {
     private int totalSteps;
     private long executionTimeMs;
     private Object result;
+    private Map<String, Object> input; // Function arguments
+    private Object output; // Return value
     private ErrorInfo error;
 
     public ExecutionResponse() {
@@ -30,7 +32,16 @@ public class ExecutionResponse {
         response.steps = steps;
         response.totalSteps = steps.size();
         response.result = result;
+        response.output = result; // Also set output for frontend
         response.executionTimeMs = executionTimeMs;
+        return response;
+    }
+
+    // Success response with input
+    public static ExecutionResponse success(String questionId, String questionName,
+            List<Step> steps, Object result, long executionTimeMs, Map<String, Object> input) {
+        ExecutionResponse response = success(questionId, questionName, steps, result, executionTimeMs);
+        response.input = input;
         return response;
     }
 
@@ -99,6 +110,22 @@ public class ExecutionResponse {
 
     public void setResult(Object result) {
         this.result = result;
+    }
+
+    public Map<String, Object> getInput() {
+        return input;
+    }
+
+    public void setInput(Map<String, Object> input) {
+        this.input = input;
+    }
+
+    public Object getOutput() {
+        return output;
+    }
+
+    public void setOutput(Object output) {
+        this.output = output;
     }
 
     public ErrorInfo getError() {

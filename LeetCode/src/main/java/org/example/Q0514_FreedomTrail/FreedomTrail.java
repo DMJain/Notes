@@ -3,15 +3,15 @@ package org.example.Q0514_FreedomTrail;
 import java.util.ArrayList;
 import java.util.List;
 
-// DP + Memoization: For each key char, find min rotation (clockwise or anticlockwise) from all matching ring positions
+// DP + Memoization: For each key char, find min rotation from all matching ring positions
 public class FreedomTrail {
 
-    public int findRotateSteps(String ring, String key) {
+    public int findRotateSteps(String ring, String key) { // @viz:input
         char[] r = ring.toCharArray();
-        List<Integer>[] positions = new List[26]; // positions[i] = list of indices where char 'a'+i appears
+        List<Integer>[] positions = new List[26]; // @viz:var(positions) // positions[i] = indices of char 'a'+i
 
         // Precompute positions of each character in the ring
-        for (int i = 0; i < r.length; i++) {
+        for (int i = 0; i < r.length; i++) { // @viz:loop(i,ring)
             int c = r[i] - 'a';
             if (positions[c] == null)
                 positions[c] = new ArrayList<>();
@@ -21,7 +21,7 @@ public class FreedomTrail {
         // dp[i][j] = min steps to spell key[i:] when ring position is j
         int[][] dp = new int[key.length()][r.length];
 
-        return helper(0, 0, positions, key.toCharArray(), r, dp);
+        return helper(0, 0, positions, key.toCharArray(), r, dp); // @viz:result(Min rotation steps)
     }
 
     // Returns min steps to spell key[index:] starting from ring position 'pos'
@@ -33,7 +33,7 @@ public class FreedomTrail {
             return dp[index][pos]; // Return cached result
 
         char target = key[index];
-        List<Integer> possiblePositions = positions[target - 'a']; // All positions where target char exists
+        List<Integer> possiblePositions = positions[target - 'a'];
 
         int minSteps = Integer.MAX_VALUE;
 
@@ -54,6 +54,5 @@ public class FreedomTrail {
         FreedomTrail solution = new FreedomTrail();
 
         System.out.println(solution.findRotateSteps("godding", "gd")); // Output: 4
-        System.out.println(solution.findRotateSteps("abccbaxbe", "abx")); // Output: 6
     }
 }

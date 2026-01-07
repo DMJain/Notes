@@ -3,12 +3,12 @@ package org.example.Q0522_LongestUncommonSubsequenceII;
 // For each string, check if it's a subsequence of any other string. If not, it's uncommon!
 public class LongestUncommonSubsequenceII {
 
-    public int findLUSlength(String[] strs) {
-        int maxLen = -1;
+    public int findLUSlength(String[] strs) { // @viz:input
+        int maxLen = -1; // @viz:var(maxLen)
         // Check each string to see if it qualifies as an uncommon subsequence
-        for (int i = 0; i < strs.length; i++) {
-            boolean isSubseq = false; // Flag: is strs[i] a subsequence of any other string?
-            int currLen = strs[i].length();
+        for (int i = 0; i < strs.length; i++) { // @viz:loop(i,strs)
+            boolean isSubseq = false; // @viz:var(isSubseq) // Flag: is strs[i] a subsequence of any other?
+            int currLen = strs[i].length(); // @viz:var(currLen)
 
             for (int j = 0; j < strs.length; j++) {
                 // Skip self-comparison, check if strs[i] is subsequence of strs[j]
@@ -22,7 +22,7 @@ public class LongestUncommonSubsequenceII {
                 maxLen = Math.max(maxLen, currLen);
             }
         }
-        return maxLen;
+        return maxLen; // @viz:result(Longest uncommon subsequence)
     }
 
     // Returns true if str1 is a subsequence of str2
@@ -37,18 +37,13 @@ public class LongestUncommonSubsequenceII {
             }
             B--; // Always move forward in str2
         }
-        return A == 0; // True if all chars of str1 were matched (it's a subsequence)
+        return A == 0; // True if all chars of str1 were matched
     }
 
     public static void main(String[] args) {
         LongestUncommonSubsequenceII solution = new LongestUncommonSubsequenceII();
 
-        // Example 1
         String[] strs1 = { "aba", "cdc", "eae" };
-        System.out.println("Example 1: " + solution.findLUSlength(strs1)); // Output: 3
-
-        // Example 2
-        String[] strs2 = { "aaa", "aaa", "aa" };
-        System.out.println("Example 2: " + solution.findLUSlength(strs2)); // Output: -1
+        System.out.println(solution.findLUSlength(strs1)); // Output: 3
     }
 }

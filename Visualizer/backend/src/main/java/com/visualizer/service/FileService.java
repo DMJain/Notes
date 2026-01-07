@@ -80,6 +80,21 @@ public class FileService {
                 .build();
     }
 
+    /**
+     * Get raw Java solution code for a question (for auto-instrumentation)
+     */
+    public String getSolutionCode(String questionId) {
+        Path basePath = pathConfig.getLeetcodeAbsolutePath();
+        Path questionDir = basePath.resolve(questionId);
+
+        if (!Files.exists(questionDir) || !Files.isDirectory(questionDir)) {
+            log.warn("Question directory not found: {}", questionDir);
+            return null;
+        }
+
+        return readJavaFile(questionDir);
+    }
+
     private List<QuestionSummary> listQuestions(Path basePath, String category) {
         log.debug("Listing questions from: {}", basePath);
 

@@ -3,13 +3,13 @@ package org.example.Q0995_MinKBitFlips;
 // Greedy + Sliding Window: Track flip state with XOR, flip greedily when current bit is 0
 public class MinKBitFlips {
 
-    public int minKBitFlips(int[] nums, int k) {
+    public int minKBitFlips(int[] nums, int k) { // @viz:input
         int n = nums.length;
-        int flipped = 0; // Current flip state (0 = even flips, 1 = odd flips)
-        int res = 0;
-        int[] isFlipped = new int[n]; // isFlipped[i] = 1 if we started a flip at index i
+        int flipped = 0; // @viz:var(flipped) // Current flip state (0 = even, 1 = odd)
+        int res = 0; // @viz:var(res)
+        int[] isFlipped = new int[n]; // @viz:array(isFlipped) // isFlipped[i] = 1 if flip started at i
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) { // @viz:loop(i,nums)
             // Remove the effect of flip that started k positions ago (slides out of window)
             if (i >= k) {
                 flipped ^= isFlipped[i - k];
@@ -20,22 +20,21 @@ public class MinKBitFlips {
             if (flipped == nums[i]) {
                 // Can't flip if window would exceed array
                 if (i + k > n) {
-                    return -1;
+                    return -1; // @viz:result(Impossible)
                 }
                 // Start a flip at position i
                 isFlipped[i] = 1;
+                // @viz:highlight(nums,i)
                 flipped ^= 1;
                 res++;
             }
         }
-        return res;
+        return res; // @viz:result(Min flips)
     }
 
     public static void main(String[] args) {
         MinKBitFlips solution = new MinKBitFlips();
 
         System.out.println(solution.minKBitFlips(new int[] { 0, 1, 0 }, 1)); // Output: 2
-        System.out.println(solution.minKBitFlips(new int[] { 1, 1, 0 }, 2)); // Output: -1
-        System.out.println(solution.minKBitFlips(new int[] { 0, 0, 0, 1, 0, 1, 1, 0 }, 3)); // Output: 3
     }
 }

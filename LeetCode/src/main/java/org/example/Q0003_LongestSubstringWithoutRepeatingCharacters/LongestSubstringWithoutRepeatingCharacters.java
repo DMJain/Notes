@@ -4,14 +4,14 @@ import java.util.HashSet;
 
 // Sliding Window: Expand window when unique, shrink from left when duplicate found
 public class LongestSubstringWithoutRepeatingCharacters {
-    public static int lengthOfLongestSubstring(String s) {
+    public static int lengthOfLongestSubstring(String s) { // @viz:input
         HashSet<Character> set = new HashSet<>(); // Tracks unique chars in current window
-        int ans = 0; // Stores maximum length found
-        int p1 = 0; // Window length counter (not really needed, kept for reference)
-        int p2 = 0; // Left pointer of sliding window
+        int ans = 0; // @viz:var(ans) // Stores maximum length found
+        int p1 = 0; // @viz:var(p1) // Window length counter
+        int p2 = 0; // @viz:var(p2) // Left pointer of sliding window
 
-        for (int i = 0; i < s.length(); i++) { // i = right pointer of window
-            char ch = s.charAt(i);
+        for (int i = 0; i < s.length(); i++) { // @viz:loop(i,s) // i = right pointer of window
+            char ch = s.charAt(i); // @viz:var(ch)
             if (!set.contains(ch)) {
                 // Unique char found: expand window
                 p1++;
@@ -31,7 +31,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
             }
         }
 
-        return ans;
+        return ans; // @viz:result(Longest substring length)
     }
 
     public static void main(String[] args) {

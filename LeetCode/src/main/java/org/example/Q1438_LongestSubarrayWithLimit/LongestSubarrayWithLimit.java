@@ -6,14 +6,15 @@ import java.util.Deque;
 // Sliding Window + Monotonic Deques: Track min/max in window, shrink when diff > limit
 public class LongestSubarrayWithLimit {
 
-    public int longestSubarray(int[] nums, int limit) {
+    public int longestSubarray(int[] nums, int limit) { // @viz:input
         Deque<Integer> maxq = new ArrayDeque<>(); // Monotonic decreasing: front = max
         Deque<Integer> minq = new ArrayDeque<>(); // Monotonic increasing: front = min
         int n = nums.length;
-        int j = 0; // Left pointer
-        int ans = 0;
+        int j = 0; // @viz:var(j) // Left pointer
+        int ans = 0; // @viz:var(ans)
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) { // @viz:loop(i,nums)
+            // @viz:highlight(nums,i)
             // Maintain maxq: remove smaller elements from back
             while (!maxq.isEmpty() && nums[i] > maxq.peekLast()) {
                 maxq.pollLast();
@@ -37,14 +38,12 @@ public class LongestSubarrayWithLimit {
 
             ans = Math.max(ans, i - j + 1);
         }
-        return ans;
+        return ans; // @viz:result(Longest subarray length)
     }
 
     public static void main(String[] args) {
         LongestSubarrayWithLimit solution = new LongestSubarrayWithLimit();
 
         System.out.println(solution.longestSubarray(new int[] { 8, 2, 4, 7 }, 4)); // Output: 2
-        System.out.println(solution.longestSubarray(new int[] { 10, 1, 2, 4, 7, 2 }, 5)); // Output: 4
-        System.out.println(solution.longestSubarray(new int[] { 4, 2, 2, 2, 4, 4, 2, 2 }, 0)); // Output: 3
     }
 }

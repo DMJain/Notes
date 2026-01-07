@@ -15,6 +15,8 @@ function App() {
     const [category, setCategory] = useState<string>('LEETCODE');
     const [selectedQuestionId, setSelectedQuestionId] = useState<string | null>(null);
     const [steps, setSteps] = useState<Step[]>([]);
+    const [responseInput, setResponseInput] = useState<Record<string, unknown>>({});
+    const [responseOutput, setResponseOutput] = useState<unknown>(null);
     const [executionLoading, setExecutionLoading] = useState(false);
     const [executionError, setExecutionError] = useState<string | null>(null);
 
@@ -46,6 +48,8 @@ function App() {
                 const response = await executeDemo(selectedQuestionId);
                 if (response.success && response.steps) {
                     setSteps(response.steps);
+                    setResponseInput(response.input || {});
+                    setResponseOutput(response.output || response.result);
                 } else if (response.error) {
                     setExecutionError(response.error.message || 'Visualization not available');
                     setSteps([]);
@@ -114,6 +118,8 @@ function App() {
                                 step={player.currentStep}
                                 allSteps={steps}
                                 currentIndex={player.currentIndex}
+                                apiInput={responseInput}
+                                apiOutput={responseOutput}
                             />
                         ) : (
                             <div className="h-full flex items-center justify-center bg-cream">

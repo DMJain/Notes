@@ -7,9 +7,9 @@ import java.util.List;
 // Backtracking: For each digit, try all its letters, recurse for remaining digits
 public class LetterCombinations {
 
-    HashMap<Character, char[]> map = new HashMap<>();
+    HashMap<Character, char[]> map = new HashMap<>(); // @viz:map(map)
 
-    public List<String> letterCombinations(String digits) {
+    public List<String> letterCombinations(String digits) { // @viz:input
         ArrayList<String> answer = new ArrayList<>();
         if (digits.equals(""))
             return answer;
@@ -17,7 +17,7 @@ public class LetterCombinations {
         StringBuilder temp = new StringBuilder();
         putMap(map);
         helper(0, digits, answer, temp);
-        return answer;
+        return answer; // @viz:result(All combinations)
     }
 
     // Build digit → letters mapping
@@ -40,7 +40,7 @@ public class LetterCombinations {
             return;
         }
 
-        char digit = digits.charAt(i);
+        char digit = digits.charAt(i); // @viz:var(digit)
         char[] letters = map.get(digit);
 
         // Try each letter for current digit
@@ -56,11 +56,5 @@ public class LetterCombinations {
 
         System.out.println(solution.letterCombinations("23"));
         // Output: [ad, ae, af, bd, be, bf, cd, ce, cf]
-
-        System.out.println(new LetterCombinations().letterCombinations("2"));
-        // Output: [a, b, c]
-
-        System.out.println(new LetterCombinations().letterCombinations(""));
-        // Output: []
     }
 }

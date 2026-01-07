@@ -37,16 +37,17 @@ export interface Step {
 export interface VisualizationResponse {
     questionId: string;
     questionName: string;
-    category: 'LEETCODE' | 'LLD' | 'HLD';
-    input: UserInput;
-    output: unknown;
+    category?: 'LEETCODE' | 'LLD' | 'HLD';
+    input?: Record<string, unknown>;  // Function arguments
+    output?: unknown;                  // Return value
+    result?: unknown;                  // Also return value (alias)
     steps: Step[];
-    codeContent: string;
+    codeContent?: string;
     totalSteps: number;
     executionTimeMs: number;
     success: boolean;
     error?: {
-        type: 'RUNTIME' | 'TIMEOUT' | 'COMPILE' | 'UNKNOWN';
+        type: 'RUNTIME' | 'TIMEOUT' | 'COMPILE' | 'UNKNOWN' | string;
         message: string;
         lineNumber?: number;
     };

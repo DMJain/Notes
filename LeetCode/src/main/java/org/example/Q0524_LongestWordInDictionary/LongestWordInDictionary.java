@@ -6,8 +6,8 @@ import java.util.List;
 // Two pointers: For each dictionary word, check if it's a subsequence of s
 public class LongestWordInDictionary {
 
-    public String findLongestWord(String s, List<String> dictionary) {
-        String ans = "";
+    public String findLongestWord(String s, List<String> dictionary) { // @viz:input
+        String ans = ""; // @viz:var(ans)
 
         for (String word : dictionary) {
             int a = word.length(), b = ans.length();
@@ -21,12 +21,12 @@ public class LongestWordInDictionary {
                 ans = word;
             }
         }
-        return ans;
+        return ans; // @viz:result(Longest word)
     }
 
     // Two-pointer check: is 'word' a subsequence of 's'?
     private boolean isSubsequence(String word, String s) {
-        int i = 0, j = 0;
+        int i = 0, j = 0; // @viz:var(i) @viz:var(j)
         while (i < word.length() && j < s.length()) {
             if (word.charAt(i) == s.charAt(j)) {
                 i++; // Matched! Move to next char in word
@@ -41,8 +41,5 @@ public class LongestWordInDictionary {
 
         System.out.println(solution.findLongestWord("abpcplea",
                 Arrays.asList("ale", "apple", "monkey", "plea"))); // Output: "apple"
-
-        System.out.println(solution.findLongestWord("abpcplea",
-                Arrays.asList("a", "b", "c"))); // Output: "a"
     }
 }
