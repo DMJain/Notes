@@ -61,5 +61,16 @@ export interface UserInput {
     };
 }
 
+export interface ParameterInfo {
+    name: string;
+    type: string;
+}
+
+export interface MethodSignature {
+    methodName: string;
+    returnType: string;
+    parameters: ParameterInfo[];
+}
+
 // Playback state
 export type PlaybackState = 'STOPPED' | 'PLAYING' | 'PAUSED';

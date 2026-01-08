@@ -3,13 +3,19 @@ import { ReactNode } from 'react';
 interface RightPanelProps {
     visualizer: ReactNode;
     code: ReactNode;
+    topRightAction?: ReactNode;
 }
 
-export function RightPanel({ visualizer, code }: RightPanelProps) {
+export function RightPanel({ visualizer, code, topRightAction }: RightPanelProps) {
     return (
         <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
             {/* Visualizer Section */}
-            <section className="flex-1 min-h-[200px] border-b border-border-dark overflow-auto p-4">
+            <section className="flex-1 min-h-[200px] border-b border-border-dark overflow-auto p-4 relative">
+                {topRightAction && (
+                    <div className="absolute top-4 right-4 z-10">
+                        {topRightAction}
+                    </div>
+                )}
                 {visualizer}
             </section>
 

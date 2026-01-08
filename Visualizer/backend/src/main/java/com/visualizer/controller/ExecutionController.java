@@ -2,6 +2,7 @@ package com.visualizer.controller;
 
 import com.visualizer.dto.ExecutionRequest;
 import com.visualizer.dto.ExecutionResponse;
+import com.visualizer.dto.MethodSignature;
 import com.visualizer.service.AutoInstrumentationService;
 import com.visualizer.service.ExecutionService;
 import org.springframework.http.ResponseEntity;
@@ -90,6 +91,16 @@ public class ExecutionController {
         // Use the auto-instrumentation service with dynamic method detection
         ExecutionResponse response = autoInstrumentationService.executeDemoWithAutoInstrumentation(questionId);
         return ResponseEntity.ok(response);
+    }
+
+    /**
+     * GET /api/execute/auto/signature/{questionId}
+     * Get method signature for building frontend input forms.
+     */
+    @GetMapping("/auto/signature/{questionId}")
+    public ResponseEntity<MethodSignature> getSignature(@PathVariable String questionId) {
+        MethodSignature signature = autoInstrumentationService.getMethodSignature(questionId);
+        return ResponseEntity.ok(signature);
     }
 
     @SuppressWarnings("unchecked")

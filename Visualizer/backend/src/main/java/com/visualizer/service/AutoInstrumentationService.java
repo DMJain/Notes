@@ -9,6 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+import com.visualizer.dto.MethodSignature;
+import com.visualizer.dto.ParameterInfo;
 
 /**
  * Service that orchestrates automatic instrumentation and execution.
@@ -109,6 +113,28 @@ public class AutoInstrumentationService {
     }
 
     /**
+     * Get the method signature for a question to build the frontend form.
+     */
+    public MethodSignature getMethodSignature(String questionId) {
+        String sourceCode = fileService.getSolutionCode(questionId);
+        if (sourceCode == null || sourceCode.isEmpty()) {
+            throw new RuntimeException("Solution code not found for: " + questionId);
+        }
+
+        String methodName = extractSolutionMethodName(sourceCode);
+        if (methodName == null) {
+            throw new RuntimeException("Could not find solution method for: " + questionId);
+        }
+
+        List<ParameterInfo> parameters = extractParameters(sourceCode, methodName);
+        // Return type is not strictly needed for input form, but good to have.
+        // For now, we'll extract it or default to "void" if regex is too complex.
+        String returnType = extractReturnType(sourceCode, methodName);
+
+        return new MethodSignature(methodName, returnType, parameters);
+    }
+
+    /**
      * Execute demo with auto-instrumentation - automatically detects method name
      * and generates default inputs based on method signature.
      */
@@ -170,31 +196,58 @@ public class AutoInstrumentationService {
      */
     private Map<String, Object> generateDefaultInputs(String sourceCode, String methodName) {
         Map<String, Object> inputs = new java.util.HashMap<>();
+        List<ParameterInfo> params = extractParameters(sourceCode, methodName);
+
+        for (ParameterInfo param : params) {
+            Object defaultValue = generateDefaultValue(param.getType());
+            inputs.put(param.getName(), defaultValue);
+        }
+
+        return inputs;
+    }
+
+    private List<ParameterInfo> extractParameters(String sourceCode, String methodName) {
+        List<ParameterInfo> parameters = new ArrayList<>();
 
         // Find the method signature
+        // Matches: methodName(paramType paramName, ...)
         java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(
-                methodName + "\\s*\\(([^)]+)\\)");
+                methodName + "\\s*\\(([^)]*)\\)");
         java.util.regex.Matcher matcher = pattern.matcher(sourceCode);
 
         if (matcher.find()) {
-            String params = matcher.group(1);
-            String[] paramList = params.split(",");
+            String paramsStr = matcher.group(1);
+            if (paramsStr.trim().isEmpty()) {
+                return parameters;
+            }
+
+            String[] paramList = paramsStr.split(",");
 
             for (String param : paramList) {
                 param = param.trim();
+                // Split by whitespace to get type and name
+                // e.g. "int[] nums" -> ["int[]", "nums"]
+                // e.g. "List<String> list" -> ["List<String>", "list"]
                 String[] parts = param.split("\\s+");
                 if (parts.length >= 2) {
                     String type = parts[parts.length - 2];
                     String name = parts[parts.length - 1];
-
-                    // Generate default value based on type
-                    Object defaultValue = generateDefaultValue(type);
-                    inputs.put(name, defaultValue);
+                    parameters.add(new ParameterInfo(name, type));
                 }
             }
         }
+        return parameters;
+    }
 
-        return inputs;
+    private String extractReturnType(String sourceCode, String methodName) {
+        // Pattern: public [static] ReturnType methodName(
+        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(
+                "public\\s+(?:static\\s+)?(\\S+(?:<[^>]+>)?(?:\\[\\])?)\\s+" + methodName + "\\s*\\(");
+        java.util.regex.Matcher matcher = pattern.matcher(sourceCode);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return "void";
     }
 
     /**

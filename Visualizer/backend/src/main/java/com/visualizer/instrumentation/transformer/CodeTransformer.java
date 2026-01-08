@@ -42,6 +42,7 @@ public class CodeTransformer {
     private final Set<String> trackedArrays = new HashSet<>();
     private final Set<String> trackedMaps = new HashSet<>();
     private final Set<String> trackedSets = new HashSet<>();
+    private final Set<String> trackedVars = new HashSet<>(); // New: Tracked primitive variables
     private final Set<String> inputParams = new HashSet<>();
     private final Map<String, String> loopVars = new HashMap<>(); // var -> target array
 
@@ -49,14 +50,15 @@ public class CodeTransformer {
         trackedArrays.clear();
         trackedMaps.clear();
         trackedSets.clear();
+        trackedVars.clear();
         inputParams.clear();
         loopVars.clear();
 
         // STEP 1: Parse annotations from source (before AST parsing)
         parseAnnotations(sourceCode, methodName);
 
-        log.info("Annotations: inputs={}, arrays={}, maps={}, loops={}",
-                inputParams, trackedArrays, trackedMaps, loopVars);
+        log.info("Annotations: inputs={}, arrays={}, maps={}, vars={}, loops={}",
+                inputParams, trackedArrays, trackedMaps, trackedVars, loopVars);
 
         // STEP 2: Pre-process source code - inject annotation-driven code
         String preprocessedCode = preprocessAnnotations(sourceCode);
@@ -161,6 +163,20 @@ public class CodeTransformer {
                 }
             }
 
+            // @viz:var(name)
+            if (line.contains("@viz:var")) {
+                Matcher m = Pattern.compile("@viz:var\\(([^)]+)\\)").matcher(line);
+                if (m.find()) {
+                    // Extract variable name from the line
+                    // Pattern: int varName = ...; // @viz:var(name)
+                    // We only support int for now
+                    Matcher varM = Pattern.compile("int\\s+(\\w+)\\s*=").matcher(line);
+                    if (varM.find()) {
+                        trackedVars.add(varM.group(1));
+                    }
+                }
+            }
+
             // @viz:loop(var,array)
             if (line.contains("@viz:loop")) {
                 Matcher loopMatcher = Pattern.compile("@viz:loop\\((\\w+),(\\w+)\\)").matcher(line);
@@ -213,25 +229,12 @@ public class CodeTransformer {
                 }
             }
 
-            // Handle @viz:var(name) - inject TrackedVariable
+            // Handle @viz:var(name) - Just strip annotation, transformation happens in
+            // Visitor
             if (line.contains("@viz:var")) {
-                Matcher m = Pattern.compile("@viz:var\\(([^)]+)\\)").matcher(line);
-                if (m.find()) {
-                    String displayName = m.group(1);
-                    // Extract variable being assigned
-                    Matcher varM = Pattern.compile("(\\w+)\\s*=\\s*(.+?)\\s*;").matcher(line);
-                    if (varM.find()) {
-                        String varName = varM.group(1);
-                        String expr = varM.group(2);
-                        line = line.replaceFirst("//\\s*@viz:var\\([^)]+\\)", "");
-                        result.append(line).append("\n");
-                        result.append("            StepCollector.getInstance().setCurrentLine(")
-                                .append(sourceLineNumber).append(");\n");
-                        result.append("            new TrackedVariable<>(\"").append(displayName)
-                                .append("\", ").append(varName).append(");\n");
-                        continue;
-                    }
-                }
+                line = line.replaceFirst("//\\s*@viz:var\\([^)]+\\)", "");
+                // We don't inject explicit StepCollector calls here anymore because
+                // TrackedVariable handles its own initialization and updates.
             }
 
             // Handle @viz:highlight(array,index)
@@ -501,6 +504,41 @@ public class CodeTransformer {
                 });
             }
 
+            // Transform local int → TrackedVariable
+            if (trackedVars.contains(varName) && n.getType() instanceof PrimitiveType) {
+                PrimitiveType pt = (PrimitiveType) n.getType();
+                if (pt.getType() == PrimitiveType.Primitive.INT) {
+                    n.setType(new ClassOrInterfaceType(null, "TrackedVariable<Integer>"));
+                    n.getInitializer().ifPresent(init -> {
+                        n.setInitializer(new ObjectCreationExpr()
+                                .setType("TrackedVariable<>")
+                                .addArgument(new StringLiteralExpr(varName))
+                                .addArgument(init));
+                    });
+                }
+            }
+
+            return super.visit(n, arg);
+        }
+
+        @Override
+        public Visitable visit(NameExpr n, Void arg) {
+            if (!inTargetMethod)
+                return super.visit(n, arg);
+
+            String name = n.getNameAsString();
+            // If using a tracked variable in an expression (read access), wrap with .get()
+            // But NOT if it's the target of an assignment (handled in visit(AssignExpr))
+            if (trackedVars.contains(name)) {
+                // Check if this NameExpr is the target of an assignment
+                if (n.getParentNode().isPresent() && n.getParentNode().get() instanceof AssignExpr) {
+                    AssignExpr assign = (AssignExpr) n.getParentNode().get();
+                    if (assign.getTarget() == n) {
+                        return super.visit(n, arg); // Don't transform target
+                    }
+                }
+                return new MethodCallExpr(n, "get");
+            }
             return super.visit(n, arg);
         }
 
@@ -572,6 +610,17 @@ public class CodeTransformer {
                     }
                 }
             }
+            if (n.getTarget() instanceof NameExpr) {
+                String varName = ((NameExpr) n.getTarget()).getNameAsString();
+                if (trackedVars.contains(varName)) {
+                    // Manually visit the value to ensure it's transformed (e.g. wrapping vars with
+                    // .get())
+                    Expression value = n.getValue();
+                    Visitable visited = value.accept(this, arg);
+                    return new MethodCallExpr(new NameExpr(varName), "set")
+                            .addArgument((Expression) visited);
+                }
+            }
             return super.visit(n, arg);
         }
 
@@ -588,6 +637,26 @@ public class CodeTransformer {
                     }
                 }
             });
+            return super.visit(n, arg);
+        }
+
+        @Override
+        public Visitable visit(UnaryExpr n, Void arg) {
+            if (!inTargetMethod)
+                return super.visit(n, arg);
+
+            if (n.getExpression() instanceof NameExpr) {
+                String varName = ((NameExpr) n.getExpression()).getNameAsString();
+                if (trackedVars.contains(varName)) {
+                    UnaryExpr.Operator op = n.getOperator();
+                    if (op == UnaryExpr.Operator.POSTFIX_INCREMENT || op == UnaryExpr.Operator.PREFIX_INCREMENT) {
+                        return new MethodCallExpr(new NameExpr(varName), "increment");
+                    } else if (op == UnaryExpr.Operator.POSTFIX_DECREMENT
+                            || op == UnaryExpr.Operator.PREFIX_DECREMENT) {
+                        return new MethodCallExpr(new NameExpr(varName), "decrement");
+                    }
+                }
+            }
             return super.visit(n, arg);
         }
     }
