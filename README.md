@@ -106,6 +106,15 @@
 
 </details>
 
+<details>
+<summary><b>Trees & Graphs</b></summary>
+
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 865 | [Smallest Subtree with Deepest Nodes](./LeetCode/src/main/java/org/example/Q0865_SmallestSubtreeDeepestNodes) | LCA of all deepest nodes | DFS returns (depth, node), if L==R curr is LCA |
+
+</details>
+
 ### Problems by Number
 
 | # | Problem | Difficulty | Q-Card 💡 |
@@ -122,6 +131,8 @@
 | 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | 🟡 Medium | Check each if subseq of any other |
 | 524 | [Longest Word in Dictionary](./LeetCode/src/main/java/org/example/Q0524_LongestWordInDictionary) | 🟡 Medium | 2-ptr subseq check, longest/lex-smallest |
 | 526 | [Beautiful Arrangement](./LeetCode/src/main/java/org/example/Q0526_BeautifulArrangement) | 🟡 Medium | Backtrack: try valid nums at each pos |
+| 712 | [Min ASCII Delete Sum](./LeetCode/src/main/java/org/example/Q0712_MinimumDeleteSum) | 🟡 Medium | LCS variation: Total - 2*LCS_ASCII |
+| 865 | [Smallest Subtree with Deepest Nodes](./LeetCode/src/main/java/org/example/Q0865_SmallestSubtreeDeepestNodes) | 🟡 Medium | DFS return (depth, node), compare L/R depths |
 | 992 | [Subarrays with K Distinct](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | 🔴 Hard | `atMost(K) - atMost(K-1)` |
 | 995 | [Min K Bit Flips](./LeetCode/src/main/java/org/example/Q0995_MinKBitFlips) | 🔴 Hard | Greedy flip 0s, track with queue/diff |
 | 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Total - min window of (n-k) |
@@ -388,9 +399,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 3 solved
-- [x] Medium: 9 solved
+- [x] Medium: 11 solved
 - [x] Hard: 5 solved
-- **Total**: 17 problems
+- **Total**: 19 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
