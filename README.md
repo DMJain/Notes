@@ -44,6 +44,15 @@
 </details>
 
 <details>
+<summary><b>Stack</b></summary>
+
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 20 | [Valid Parentheses](./LeetCode/src/main/java/org/example/Q0020_ValidParentheses) | Check if brackets are valid | Stack: push open, pop matching close |
+
+</details>
+
+<details>
 <summary><b>Strings & Substrings</b></summary>
 
 | # | Problem | Description | Q-Card |
@@ -71,6 +80,7 @@
 |---|---------|-------------|--------|
 | 10 | [Regular Expression Matching](./LeetCode/src/main/java/org/example/Q0010_RegularExpressionMatching) | Match string with `.` and `*` | 2D DP: `*` = zero or more of prev char |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | Min rotations to spell word on ring | DP on (ring pos, key idx), try all char positions |
+| 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | Max points from grid with penalty | DP with left/right pass optimization |
 
 </details>
 
@@ -106,8 +116,8 @@
 | 10 | [Regular Expression Matching](./LeetCode/src/main/java/org/example/Q0010_RegularExpressionMatching) | 🔴 Hard | 2D DP, handle `*` = 0 or more prev |
 | 15 | [3Sum](./LeetCode/src/main/java/org/example/Q0015_ThreeSum) | 🟡 Medium | Sort, fix 1, two-ptr rest, skip dupes |
 | 17 | [Letter Combinations](./LeetCode/src/main/java/org/example/Q0017_LetterCombinations) | 🟡 Medium | Backtrack: choose→explore→unchoose |
+| 20 | [Valid Parentheses](./LeetCode/src/main/java/org/example/Q0020_ValidParentheses) | 🟢 Easy | Stack: push open, pop matching close |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | 🔴 Hard | DP(pos, idx), try all matching chars |
-| 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | 🟡 Medium | DP with left/right pass optimization |
 | 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | 🟢 Easy | Different strings? Longer wins |
 | 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | 🟡 Medium | Check each if subseq of any other |
 | 524 | [Longest Word in Dictionary](./LeetCode/src/main/java/org/example/Q0524_LongestWordInDictionary) | 🟡 Medium | 2-ptr subseq check, longest/lex-smallest |
@@ -377,10 +387,10 @@ This is a personal learning repository. If you find any issues or have suggestio
 ## Progress Tracker
 
 ### LeetCode
-- [x] Easy: 2 solved
+- [x] Easy: 3 solved
 - [x] Medium: 9 solved
 - [x] Hard: 5 solved
-- **Total**: 16 problems
+- **Total**: 17 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
