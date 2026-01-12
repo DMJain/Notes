@@ -116,6 +116,15 @@
 
 </details>
 
+<details>
+<summary><b>Math & Geometry</b></summary>
+
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 1266 | [Min Time Visiting All Points](./LeetCode/src/main/java/org/example/Q1266_MinTimeVisitingAllPoints) | Min time to visit points (Chebyshev) | Max(abs(dx), abs(dy)) as diag = 1 sec |
+
+</details>
+
 ### Problems by Number
 
 | # | Problem | Difficulty | Q-Card 💡 |
@@ -137,6 +146,7 @@
 | 865 | [Smallest Subtree with Deepest Nodes](./LeetCode/src/main/java/org/example/Q0865_SmallestSubtreeDeepestNodes) | 🟡 Medium | DFS return (depth, node), compare L/R depths |
 | 992 | [Subarrays with K Distinct](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | 🔴 Hard | `atMost(K) - atMost(K-1)` |
 | 995 | [Min K Bit Flips](./LeetCode/src/main/java/org/example/Q0995_MinKBitFlips) | 🔴 Hard | Greedy flip 0s, track with queue/diff |
+| 1266 | [Min Time Visiting All Points](./LeetCode/src/main/java/org/example/Q1266_MinTimeVisitingAllPoints) | 🟢 Easy | Max(abs(dx), abs(dy)) |
 | 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Total - min window of (n-k) |
 | 1438 | [Longest Subarray With Limit](./LeetCode/src/main/java/org/example/Q1438_LongestSubarrayWithLimit) | 🟡 Medium | Monotonic deques for max/min in window |
 | 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | 🟡 Medium | DP with left/right pass optimization |
@@ -400,10 +410,10 @@ This is a personal learning repository. If you find any issues or have suggestio
 ## Progress Tracker
 
 ### LeetCode
-- [x] Easy: 3 solved
+- [x] Easy: 4 solved
 - [x] Medium: 11 solved
 - [x] Hard: 6 solved
-- **Total**: 20 problems
+- **Total**: 21 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
