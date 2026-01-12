@@ -32,13 +32,16 @@ for (int i = 0; i < n; i++) {
 - n = 3000 → 27 billion operations!
 - Also need a Set to handle duplicates → messy
 
+> 💭 **Three nested loops is brutal. We've seen Two Sum use a HashMap for O(1) lookup. Can we apply the same trick here — fix one number and find the other two?**
+
 ---
 
 ## Solution 2: HashMap for Third Element ❌ (Works, But Duplicates Are Messy)
 
-### Approach
-For each pair (i, j), look for -(nums[i] + nums[j]) in a HashMap.
+### The Natural Thought
+"For each pair (i, j), the third element we need is `-(nums[i] + nums[j])`. That's just like Two Sum! Use a HashMap to find it in O(1)."
 
+### Approach
 ```java
 for (int i = 0; i < n; i++) {
     Set<Integer> seen = new HashSet<>();
@@ -55,11 +58,20 @@ for (int i = 0; i < n; i++) {
 ### Why It's Not Ideal
 - **O(n²)** time — good!
 - But **handling duplicates is tricky**
-- Need extra logic to avoid duplicate triplets
+- Need extra logic (sorting triplets, using a Set) to avoid `[-1,0,1]` and `[-1,0,1]` appearing twice
+- Gets messy with edge cases
+
+> 💭 **The HashMap approach works but duplicate handling is painful. What if the array was SORTED? Then duplicates would be ADJACENT and easy to skip. Plus, a sorted array lets us use two pointers instead of HashMap...**
 
 ---
 
 ## Solution 3: Sort + Two Pointers ✅ (Optimal)
+
+### The Connection 🔗
+Let's trace our thinking:
+- **Brute Force** was slow because: checking all O(n³) triplets
+- **HashMap** worked but was messy because: duplicates scattered everywhere
+- **What we need**: O(n²) time + easy duplicate handling → **Sort first!**
 
 ### The Key Insight 💡
 1. **Sort the array** first
@@ -272,11 +284,11 @@ while (nums[l] == nums[l-1] && l < r) l++;
 
 ## Complexity Analysis
 
-| Solution | Time | Space | Correct? |
-|----------|------|-------|----------|
-| Brute Force | O(n³) | O(1) | ✅ TLE |
-| HashMap | O(n²) | O(n) | ✅ Messy |
-| **Sort + Two Pointers** | O(n²) | O(1)* | ✅ Optimal |
+| Solution | Time | Space | Correct? | Why? |
+|----------|------|-------|----------|------|
+| Brute Force | O(n³) | O(1) | ✅ TLE | Check all triplets |
+| HashMap | O(n²) | O(n) | ✅ But messy | Duplicate handling is complex |
+| **Sort + Two Pointers** | O(n²) | O(1)* | ✅ **Optimal** | O(n) two-pointer per fixed element |
 
 *Ignoring output space and sort space
 
@@ -289,3 +301,19 @@ while (nums[l] == nums[l-1] && l < r) l++;
 3. **Two pointers** → O(n) for finding pairs in sorted array
 4. **Skip duplicates** → check if nums[i] == nums[i-1]
 5. **Early break** → if nums[i] > 0, stop (no solution possible)
+
+---
+
+## The Journey (TL;DR)
+
+```
+🐢 Brute Force: Three loops → TOO SLOW (O(n³))
+         ↓
+💡 "Two Sum used HashMap! Fix one, find two."
+         ↓
+🗺️ HashMap: Works but duplicate handling is messy → NOT IDEAL
+         ↓
+💡 "What if we sorted? Duplicates become adjacent!"
+         ↓
+✅ Sort + Two Pointers: Easy duplicates + fast → OPTIMAL (O(n²))
+```

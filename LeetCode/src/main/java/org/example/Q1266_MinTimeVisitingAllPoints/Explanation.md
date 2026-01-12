@@ -19,16 +19,23 @@ You need to visit a list of points on a 2D grid in order.
 ### Approach
 Actually simulate the movement.
 - While `currX != targetX` or `currY != targetY`:
-  - Move one step closer diagnally if possible, else horizontally/vertically.
+  - Move one step closer diagonally if possible, else horizontally/vertically.
   - Increment time.
 
 ### Why It's Bad
 - Functional, but unnecessary loop overhead.
 - We can calculate the distance mathematically in O(1).
 
+> 💭 **Why simulate when we can just calculate? The answer is purely mathematical!**
+
 ---
 
 ## Solution 2: Chebyshev Distance (Math) ✅ (Optimal)
+
+### The Connection 🔗
+Let's trace our thinking:
+- **Simulation** works but is overkill because: we're doing O(distance) work per pair
+- **Key insight**: Diagonal moves cover BOTH axes simultaneously, so we want to use them as much as possible!
 
 ### The Key Insight 💡
 Since a diagonal move costs 1 second and covers 1 unit in both X and Y:
@@ -43,6 +50,19 @@ The time to travel between two points is limited by the **axis with the larger d
 - `Time = max(dx, dy)`
 
 This is technically known as the **Chebyshev Distance** on a grid.
+
+### Why This Works
+
+```
+Diagonal uses both:      Horizontal/Vertical uses one:
+    ↗                         →  or  ↑
+ +1 x, +1 y               +1 x     +1 y
+
+If dx=2, dy=3:
+- Use 2 diagonal moves: covers 2x, 2y
+- Use 1 vertical move: covers remaining 1y
+- Total = 3 = max(2, 3)
+```
 
 ### The Algorithm
 
@@ -95,10 +115,10 @@ Which equals max(2, 3).
 
 ## Complexity Analysis
 
-| Solution | Time | Space | Correct? |
-|----------|------|-------|----------|
-| Simulation | O(Sum of distances) | O(1) | ✅ Slow |
-| **Math** | O(N) | O(1) | ✅ Optimal |
+| Solution | Time | Space | Correct? | Why? |
+|----------|------|-------|----------|------|
+| Simulation | O(Sum of distances) | O(1) | ✅ Slow | Simulates each step |
+| **Math (Chebyshev)** | O(N) | O(1) | ✅ **Optimal** | O(1) per pair |
 
 - **Time**: We iterate through the points array once. Each step calculation is O(1).
 - **Space**: No extra space needed.
@@ -107,5 +127,17 @@ Which equals max(2, 3).
 
 ## Key Takeaways
 
-1. **Chebyshev Distance**: In grids with diagonal movement, distance = `max(|dx|, |dy|)`.
+1. **Chebyshev Distance**: In grids with diagonal movement, distance = `max(|dx|, |dy|)`
 2. **Diagonal is Free**: Diagonal moves are "basically free" horizontal moves combined with vertical moves (or vice versa). You always want to use them to reduce the larger dimension's gap.
+
+---
+
+## The Journey (TL;DR)
+
+```
+🐢 Simulation: Step by step → OVERKILL (O(distance per pair))
+         ↓
+💡 "Diagonal covers both axes! Use max(dx, dy)."
+         ↓
+✅ Chebyshev Distance: Just math → OPTIMAL (O(n))
+```

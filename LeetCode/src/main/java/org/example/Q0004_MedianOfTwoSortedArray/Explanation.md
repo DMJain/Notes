@@ -27,13 +27,16 @@ return merged[merged.length / 2];
 - **Space**: O(m + n) to store merged array
 - Problem **demands O(log(m+n))** — this doesn't qualify!
 
+> 💭 **OK we can't actually merge. But do we really need ALL elements? We only care about the MIDDLE. What if we just walked to the middle position?**
+
 ---
 
 ## Solution 2: Two Pointers (Virtual Merge) ❌ (Still Too Slow)
 
-### Approach
-"Don't actually merge! Just use two pointers to track position until we hit the median."
+### The Natural Thought
+"Don't actually merge! Just use two pointers to track position until we hit the median. No extra space needed!"
 
+### Approach
 ```java
 int i = 0, j = 0, count = 0;
 int medianPos = (m + n) / 2;
@@ -80,16 +83,25 @@ Still **O(m + n)** because you're walking through elements one by one.
 
 The problem specifically requires O(log) — that means **binary search**!
 
+> 💭 **Walking is too slow. When you see O(log n), you MUST think binary search. But how do you binary search for a median? You're not searching for a VALUE... you're searching for a POSITION — a partition point!**
+
 ---
 
 ## Solution 3: Binary Search on Partition ✅ (Optimal)
 
-### What is it?
+### The Connection 🔗
+Let's trace our thinking:
+- **Brute Force (Merge)** was slow because: O(m+n) to merge everything
+- **Two Pointers** was still slow because: O(m+n) to walk to median position
+- **What we need**: O(log) means binary search, but on WHAT?
+- **Key insight**: Don't search for a VALUE — search for the **PARTITION POINT**!
+
+### The Key Insight 💡
 Instead of finding the median value, find the **partition point**:
 - Split both arrays so left half ≤ right half
 - Left half has exactly half the total elements
 
-### Why It Solves the Problem
+### Why It Works
 ```
 Two Pointers:              Binary Search:
      ↓                          ↓
@@ -97,7 +109,7 @@ Two Pointers:              Binary Search:
 O(m + n) steps            O(log(min(m,n))) jumps
 ```
 
-### The Core Idea 💡
+### The Core Idea
 
 ```
 We want to find a CUT in both arrays:
@@ -198,11 +210,11 @@ Median = (2 + 3) / 2 = 2.5 ✅
 
 ## Complexity Analysis
 
-| Solution | Time | Space | Correct? |
-|----------|------|-------|----------|
-| Brute Force (Merge) | O(m + n) | O(m + n) | ✅ But too slow |
-| Two Pointers | O(m + n) | O(1) | ✅ But too slow |
-| **Binary Search** | O(log(min(m,n))) | O(1) | ✅ Optimal |
+| Solution | Time | Space | Correct? | Why? |
+|----------|------|-------|----------|------|
+| Brute Force (Merge) | O(m + n) | O(m + n) | ✅ But too slow | Actually merges arrays |
+| Two Pointers | O(m + n) | O(1) | ✅ But too slow | Walks to median position |
+| **Binary Search** | O(log(min(m,n))) | O(1) | ✅ **Optimal** | Binary search on partition |
 
 ---
 
@@ -214,3 +226,19 @@ Median = (2 + 3) / 2 = 2.5 ✅
 4. **Even total**: median = average(maxLeft, minRight)
 5. **Odd total**: median = maxLeft
 6. Key insight: **We don't merge; we find where to split!**
+
+---
+
+## The Journey (TL;DR)
+
+```
+🐢 Brute Force (Merge): Merge then find middle → TOO SLOW (O(m+n))
+         ↓
+💡 "We only need the middle, not all elements!"
+         ↓
+🚶 Two Pointers: Walk to middle → STILL SLOW (O(m+n))
+         ↓
+💡 "O(log) means binary search... but on what?"
+         ↓
+✅ Binary Search on Partition: Find the split point → OPTIMAL (O(log))
+```

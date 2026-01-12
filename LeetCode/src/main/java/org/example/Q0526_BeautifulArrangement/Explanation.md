@@ -30,21 +30,31 @@ Generate all n! permutations, check each one.
 - Most permutations are invalid, but we still generate them all
 - **Massive waste!**
 
+> 💭 **Generating ALL permutations then checking is wasteful. Most are invalid! What if we checked validity AS we build the permutation? Stop early when something can't work.**
+
 ---
 
 ## Solution 2: Greedy (Place Largest/Smallest First) ❌ (Wrong)
 
-### Approach
-"Maybe I should place numbers strategically? Like largest first?"
+### The Natural Thought
+"Maybe I should place numbers strategically? Like largest first, or numbers with most divisibility options first?"
 
 ### Why It Fails
 - There's no greedy strategy that works
 - The validity of placing a number depends on ALL other placements
 - We MUST explore all possibilities
 
+> 💭 **Greedy doesn't work because placing one number affects what positions remain for others. We need to try different placements and BACKTRACK when we hit dead ends.**
+
 ---
 
 ## Solution 3: Backtracking ✅ (Optimal)
+
+### The Connection 🔗
+Let's trace our thinking:
+- **Brute Force** was slow because: generates all n! permutations, most invalid
+- **Greedy** doesn't work because: placements depend on each other
+- **What we need**: build incrementally + prune invalid branches early → **Backtracking!**
 
 ### The Key Insight 💡
 Instead of generating all permutations then checking, we:
@@ -290,11 +300,11 @@ This pruning eliminates most invalid permutations early.
 
 ## Complexity Analysis
 
-| Solution | Time | Space | Correct? |
-|----------|------|-------|----------|
-| Brute Force (all perms) | O(n! × n) | O(n) | ✅ But TLE |
-| Greedy | - | - | ❌ Wrong |
-| **Backtracking** | O(k) where k << n! | O(n) | ✅ Optimal |
+| Solution | Time | Space | Correct? | Why? |
+|----------|------|-------|----------|------|
+| Brute Force (all perms) | O(n! × n) | O(n) | ✅ But TLE | Generate all, check all |
+| Greedy | - | - | ❌ Wrong | Placements interdependent |
+| **Backtracking** | O(k) where k << n! | O(n) | ✅ **Optimal** | Early pruning |
 
 *k = number of valid arrangements (much smaller than n! due to pruning)*
 
@@ -307,3 +317,19 @@ This pruning eliminates most invalid permutations early.
 3. **Small n (≤15)** is a hint for backtracking/bitmask DP
 4. **Divisibility condition** creates sparse valid positions → efficient pruning
 5. **nums[i] = 0** means position i is empty → simple "used" tracking
+
+---
+
+## The Journey (TL;DR)
+
+```
+🐢 Brute Force: Generate all n! permutations → TOO SLOW
+         ↓
+💡 "Can we be greedy? Place strategically?"
+         ↓
+🎯 Greedy: Doesn't work — placements are interdependent → WRONG
+         ↓
+💡 "Build incrementally, prune when invalid, backtrack!"
+         ↓
+✅ Backtracking: Early pruning → OPTIMAL
+```

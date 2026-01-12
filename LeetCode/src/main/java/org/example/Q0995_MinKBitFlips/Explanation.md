@@ -35,13 +35,16 @@ for (int i = 0; i <= n - k; i++) {
 - Total: **O(n × k)**
 - n = 10⁵, k = 10⁵ → 10¹⁰ operations! TLE
 
+> 💭 **Actually flipping k bits each time is expensive. What if we just TRACKED which positions have been flipped, instead of actually doing it?**
+
 ---
 
 ## Solution 2: Track Flips But Still Slow ❌
 
-### Approach
+### The Natural Thought
 "What if I track number of flips affecting each position instead of actually flipping?"
 
+### Approach
 ```java
 int[] flips = new int[n];
 for (int i = 0; i < n; i++) {
@@ -55,9 +58,17 @@ for (int i = 0; i < n; i++) {
 - Computing sum for each position is O(k)
 - Still O(n × k) overall
 
+> 💭 **Summing a range is O(k). But wait — we don't need the ACTUAL count, just whether it's ODD or EVEN (parity)! That's much simpler to track.**
+
 ---
 
 ## Solution 3: Greedy + Sliding Window with XOR ✅ (Optimal)
+
+### The Connection 🔗
+Let's trace our thinking:
+- **Brute Force** was slow because: actually flipping k bits = O(k) work each time
+- **Tracking flips** was still slow because: summing range of flips = O(k)
+- **Key insight**: We only care about PARITY (odd/even flips), not the count!
 
 ### The Key Insight 💡
 
@@ -315,11 +326,11 @@ Example: nums = [1,1,0], k = 2
 
 ## Complexity Analysis
 
-| Solution | Time | Space | Correct? |
-|----------|------|-------|----------|
-| Brute Force | O(n × k) | O(1) | ✅ TLE |
-| Track All Flips | O(n × k) | O(n) | ✅ TLE |
-| **XOR Sliding Window** | O(n) | O(n) | ✅ Optimal |
+| Solution | Time | Space | Correct? | Why? |
+|----------|------|-------|----------|------|
+| Brute Force | O(n × k) | O(1) | ✅ TLE | Actually flips k bits |
+| Track All Flips | O(n × k) | O(n) | ✅ TLE | Sums range each time |
+| **XOR Sliding Window** | O(n) | O(n) | ✅ **Optimal** | O(1) parity tracking |
 
 ---
 
@@ -330,3 +341,19 @@ Example: nums = [1,1,0], k = 2
 3. **Greedy works** — If current bit is 0, we MUST flip here (no choice)
 4. **isFlipped array** — Tracks where we started flips
 5. **Condition `flipped == nums[i]`** — Means effective value is 0
+
+---
+
+## The Journey (TL;DR)
+
+```
+🐢 Brute Force: Actually flip k bits → TOO SLOW (O(n×k))
+         ↓
+💡 "Just track the flips, don't do them!"
+         ↓
+🔢 Track Flips: Sum range each time → STILL SLOW (O(n×k))
+         ↓
+💡 "We only need parity! XOR handles that in O(1)."
+         ↓
+✅ XOR Sliding Window: Toggle parity → OPTIMAL (O(n))
+```

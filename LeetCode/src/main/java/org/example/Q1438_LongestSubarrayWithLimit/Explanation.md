@@ -32,13 +32,16 @@ for (int i = 0; i < n; i++) {
 - **O(n²)** time
 - n = 10⁵ → 10¹⁰ operations!
 
+> 💭 **Checking all subarrays is O(n²). What if we used a sliding window? The challenge is efficiently tracking min/max in the window.**
+
 ---
 
 ## Solution 2: Sliding Window + TreeMap ❌ (Works but Slower)
 
-### Approach
-Use TreeMap to track element frequencies. Get min/max in O(log n).
+### The Natural Thought
+"Use TreeMap to track element frequencies. Get min/max in O(log n)!"
 
+### Approach
 ```java
 TreeMap<Integer, Integer> map = new TreeMap<>();
 // firstKey() = min, lastKey() = max
@@ -49,9 +52,17 @@ TreeMap<Integer, Integer> map = new TreeMap<>();
 - Total = **O(n log n)**
 - Can do better!
 
+> 💭 **TreeMap works but O(log n) per operation adds up. Is there a data structure that gives O(1) min/max in a sliding window?**
+
 ---
 
 ## Solution 3: Sliding Window + Monotonic Deques ✅ (Optimal)
+
+### The Connection 🔗
+Let's trace our thinking:
+- **Brute Force** was slow because: checking all subarrays = O(n²)
+- **TreeMap** was better but still slow because: O(log n) per insert/remove
+- **What we need**: O(1) min/max queries → **Monotonic Deques!**
 
 ### The Key Insight 💡
 We only need **max** and **min** of current window:
@@ -226,11 +237,11 @@ When window shrinks:
 
 ## Complexity Analysis
 
-| Solution | Time | Space | Correct? |
-|----------|------|-------|----------|
-| Brute Force | O(n²) | O(1) | ✅ TLE |
-| TreeMap | O(n log n) | O(n) | ✅ Works |
-| **Monotonic Deques** | O(n) | O(n) | ✅ Optimal |
+| Solution | Time | Space | Correct? | Why? |
+|----------|------|-------|----------|------|
+| Brute Force | O(n²) | O(1) | ✅ TLE | Check all subarrays |
+| TreeMap | O(n log n) | O(n) | ✅ Works | O(log n) per op |
+| **Monotonic Deques** | O(n) | O(n) | ✅ **Optimal** | O(1) amortized |
 
 ---
 
@@ -241,3 +252,19 @@ When window shrinks:
 3. **Monotonic increasing deque** → front = min
 4. **Each element removed at most once** → O(n) total
 5. **Shrink from front** only when leaving element matches front
+
+---
+
+## The Journey (TL;DR)
+
+```
+🐢 Brute Force: Check all subarrays → TOO SLOW (O(n²))
+         ↓
+💡 "Sliding window! But how to track min/max?"
+         ↓
+🌳 TreeMap: O(log n) per operation → WORKS but slow (O(n log n))
+         ↓
+💡 "Monotonic deques give O(1) min/max!"
+         ↓
+✅ Monotonic Deques: Amortized O(1) → OPTIMAL (O(n))
+```

@@ -10,17 +10,67 @@ You have a string `s` and a pattern `p`. Check if the pattern matches the **enti
 ---
 
 ## Solution 1: Brute Force Recursion ❌ (Too Slow)
+
+### Approach
+Try all possible ways to match. When you see `*`, either:
+- Use it zero times (skip the char+star)
+- Use it one or more times (consume a character)
+
+### Why It's Bad
 Exponential paths: **O(2^(m+n))** — TLE!
 
+Every `*` creates a branch in the recursion tree.
+
+> 💭 **Recursion explores the same subproblems over and over. What if we remembered results we've already computed?**
+
+---
+
 ## Solution 2: Greedy ❌ (Wrong)
-Greedy fails on `s="aab", p="a*ab"` — consumes too many 'a's!
+
+### The Natural Thought
+"Process left to right. When we see `*`, be greedy — match as many characters as possible!"
+
+### Example Where It FAILS ❌
+
+```
+s = "aab", p = "a*ab"
+
+Greedy approach:
+- a* matches "aa" (greedy, take all a's)
+- Now we need to match "b" with "ab"
+- 'a' ≠ 'b' ❌ FAIL!
+
+But the correct match is:
+- a* matches "a" (just one)
+- a matches "a"
+- b matches "b"
+- ✅ Should return TRUE!
+```
+
+### Why It Fails 🤯
+Greedy consumes too many characters! `*` needs to consider **all possibilities**: zero, one, or many matches.
+
+> 💭 **Greedy makes local decisions that may be globally wrong. We need to consider ALL possibilities. That means DP — but how do we structure the table?**
 
 ---
 
 ## Solution 3: Dynamic Programming ✅ (Optimal)
 
+### The Connection 🔗
+Let's trace our thinking:
+- **Brute Force Recursion** was slow because: recomputes same subproblems (O(2^(m+n)))
+- **Greedy** was wrong because: makes irrevocable choices that may be globally wrong
+- **What we need**: consider all possibilities + remember results → **DP!**
+
+### The Key Insight 💡
+Define: `dp[i][j]` = Does `s[0..i-1]` match `p[0..j-1]`?
+
+The magic is handling `*` — it creates THREE possibilities:
+1. Match zero characters (skip the `x*`)
+2. Match exactly one character 
+3. Match multiple characters (keep consuming)
+
 ### The DP Table
-`dp[i][j]` = Does `s[0..i-1]` match `p[0..j-1]`?
 
 **Note:** 
 - `dp[0][...]` = empty string `""`
@@ -316,11 +366,11 @@ Option 3: dp[i][j+1] — "Use multiple x's"
 
 ## Complexity Analysis
 
-| Solution | Time | Space | Correct? |
-|----------|------|-------|----------|
-| Brute Force | O(2^(m+n)) | O(m+n) | ✅ But TLE |
-| Greedy | O(m+n) | O(1) | ❌ Wrong |
-| **DP** | O(m×n) | O(m×n) | ✅ Optimal |
+| Solution | Time | Space | Correct? | Why? |
+|----------|------|-------|----------|------|
+| Brute Force | O(2^(m+n)) | O(m+n) | ✅ But TLE | Exponential branches |
+| Greedy | O(m+n) | O(1) | ❌ Wrong | Makes locally wrong choices |
+| **DP** | O(m×n) | O(m×n) | ✅ **Optimal** | Considers all paths efficiently |
 
 ---
 
@@ -330,3 +380,19 @@ Option 3: dp[i][j+1] — "Use multiple x's"
 2. **First row**: Special loop handles patterns like `a*b*` matching empty
 3. **'*' has three options**: zero, one, or multiple — exactly as code shows!
 4. **Order matters**: Check in order: `.` match, exact match, then `*`
+
+---
+
+## The Journey (TL;DR)
+
+```
+🐢 Brute Force Recursion: Try all paths → TOO SLOW (O(2^(m+n)))
+         ↓
+💡 "Can we be greedy? Just match as many as possible?"
+         ↓
+❌ Greedy: Local decisions are globally wrong → WRONG
+         ↓
+💡 "We need to consider ALL possibilities AND remember results..."
+         ↓
+✅ Dynamic Programming: Fill table systematically → OPTIMAL (O(m×n))
+```

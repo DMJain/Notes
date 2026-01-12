@@ -22,12 +22,14 @@ Try every possible path. Pick the minimum.
 - That's **95 TRILLION** paths to check!
 - Time Limit Exceeded guaranteed
 
+> 💭 **Exploring all paths is exponential. But we don't need to check EVERY path... what if we just picked the closest occurrence of each letter?**
+
 ---
 
 ## Solution 2: Greedy ❌ (Wrong Answer)
 
-### Approach
-Simple idea: **"Always go to the NEAREST occurrence of the next letter!"**
+### The Natural Thought
+"Always go to the NEAREST occurrence of the next letter!"
 
 ### Example Where Greedy WORKS ✅
 
@@ -175,18 +177,26 @@ Going to a slightly farther 'b' (position 7) put us RIGHT NEXT to 'x'!
 
 **Greedy only looks at the CURRENT step. It can't see the FUTURE!**
 
+> 💭 **Greedy is shortsighted — it makes locally optimal choices that are globally suboptimal. We need to consider ALL paths and pick the best. But that's exponential... unless we use memoization!**
+
 ---
 
 ## Solution 3: DP with Memoization ✅ (Optimal)
 
-### What is it?
+### The Connection 🔗
+Let's trace our thinking:
+- **Brute Force** was slow because: exponential paths to explore
+- **Greedy** was wrong because: ignores future costs, makes locally optimal but globally suboptimal choices
+- **What we need**: explore all paths + remember results to avoid redundant work → **DP!**
+
+### The Key Insight 💡
 Instead of just picking the nearest (greedy), we **try ALL options** and pick the best.
 
 But wait — isn't that brute force? 🤔
 
 **The trick:** We use **memoization** (caching). Many paths lead to the same position, so we save the answer and reuse it!
 
-### Why Does It Solve Greedy's Problem?
+### Why DP Solves Greedy's Problem
 
 ```
 Greedy:                    DP:
@@ -242,23 +252,19 @@ Positions reminder:
 **Now DP adds up each complete path:**
 
 ```
-Path 1: a(0) → b(1) → x(6) = 1 + 3 + 5 = 9 ❌
-         └─┬─┘   └─┬─┘
-         stay   dist=1   dist=4
-         
-         Wait, let me recalculate:
+Path 1: a(0) → b(1) → x(6)
          a(0): cost = 1
          b(1): dist from 0 to 1 = 1, cost = 1+1 = 2
          x(6): dist from 1 to 6 = 4, cost = 4+1 = 5
          TOTAL = 1 + 2 + 5 = 8
 
-Path 2: a(0) → b(4) → x(6) = 1 + ? + ?
+Path 2: a(0) → b(4) → x(6)
          a(0): cost = 1
          b(4): dist from 0 to 4 = 4, cost = 4+1 = 5
          x(6): dist from 4 to 6 = 2, cost = 2+1 = 3
          TOTAL = 1 + 5 + 3 = 9
 
-Path 3: a(0) → b(7) → x(6) = 1 + ? + ?
+Path 3: a(0) → b(7) → x(6)
          a(0): cost = 1
          b(7): dist from 0 to 7 = 2, cost = 2+1 = 3
          x(6): dist from 7 to 6 = 1, cost = 1+1 = 2
@@ -340,11 +346,11 @@ dp[3][6] = "min cost to spell key[3:] from position 6"
 
 ## Complexity Analysis
 
-| Solution | Time | Space | Correct? |
-|----------|------|-------|----------|
-| Brute Force | O(m^k) | O(k) | ✅ But TLE |
-| Greedy | O(k × r) | O(r) | ❌ Wrong |
-| **DP + Memo** | O(k × r²) | O(k × r) | ✅ Optimal |
+| Solution | Time | Space | Correct? | Why? |
+|----------|------|-------|----------|------|
+| Brute Force | O(m^k) | O(k) | ✅ But TLE | Explores all paths |
+| Greedy | O(k × r) | O(r) | ❌ Wrong | Ignores future costs |
+| **DP + Memo** | O(k × r²) | O(k × r) | ✅ **Optimal** | Explores + caches |
 
 k = key length, r = ring length, m = max occurrences of any char
 
@@ -356,3 +362,19 @@ k = key length, r = ring length, m = max occurrences of any char
 2. **DP = explores all paths** — finds the global minimum
 3. **Memoization = saves work** — same position? Reuse the answer!
 4. **Circular distance** = min(|a-b|, n-|a-b|) where n = ring length
+
+---
+
+## The Journey (TL;DR)
+
+```
+🐢 Brute Force: Try all paths → TOO SLOW (exponential)
+         ↓
+💡 "Just pick the nearest letter each time?"
+         ↓
+🎯 Greedy: Nearest now → WRONG (ignores future)
+         ↓
+💡 "We need to see ALL paths but avoid redundant work..."
+         ↓
+✅ DP + Memoization: Explore all + cache → OPTIMAL
+```

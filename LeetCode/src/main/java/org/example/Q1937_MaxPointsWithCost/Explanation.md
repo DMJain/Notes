@@ -33,9 +33,17 @@ dp[r][c] = points[r][c] + max(dp[r-1][k] - abs(c - k))
 - Constraints: Rows × Cols ≤ 10^5.
 - If grid is 1 × 100,000 → 10^10 operations! **TLE**.
 
+> 💭 **For each cell, we're checking ALL previous cells. The `abs(c - k)` makes it tricky. Can we break this into cases?**
+
 ---
 
 ## Solution 2: Optimized DP with Left/Right Passes ✅ (Optimal)
+
+### The Connection 🔗
+Let's trace our thinking:
+- **Brute Force** was slow because: checking all previous columns = O(Cols²)
+- **Key insight**: The `abs(c - k)` creates two cases — coming from left vs coming from right!
+- **What we need**: precompute best value from left and best from right separately
 
 ### The Key Insight 💡
 The penalty `abs(c - k)` makes the equation tricky. Let's break the absolute value!
@@ -174,10 +182,10 @@ The left/right passes efficiently calculate this "decaying max" for ALL cells si
 
 ## Complexity Analysis
 
-| Solution | Time | Space | Correct? |
-|----------|------|-------|----------|
-| Brute Force | O(M × N²) | O(N) | ✅ TLE |
-| **Left/Right Pass** | O(M × N) | O(N) | ✅ Optimal |
+| Solution | Time | Space | Correct? | Why? |
+|----------|------|-------|----------|------|
+| Brute Force | O(M × N²) | O(N) | ✅ TLE | Check all prev cols |
+| **Left/Right Pass** | O(M × N) | O(N) | ✅ **Optimal** | 3 linear passes per row |
 
 - **M** = Rows, **N** = Cols
 - We do 3 passes (Left, Right, Final) per row → Linear time!
@@ -186,7 +194,21 @@ The left/right passes efficiently calculate this "decaying max" for ALL cells si
 
 ## Key Takeaways
 
-1. **Absolute Difference** usually implies two cases: `x - y` and `y - x`.
-2. **Break the dependency**: Separate `dp[k]` and `k` terms.
-3. **Prefix/Suffix Max**: A common technique to optimize "best previous" queries.
-4. **Space Optimization**: We only need the previous row's DP array.
+1. **Absolute Difference** usually implies two cases: `x - y` and `y - x`
+2. **Break the dependency**: Separate `dp[k]` and `k` terms
+3. **Prefix/Suffix Max**: A common technique to optimize "best previous" queries
+4. **Space Optimization**: We only need the previous row's DP array
+
+---
+
+## The Journey (TL;DR)
+
+```
+🐢 Brute Force: Check all previous columns → TOO SLOW (O(M × N²))
+         ↓
+💡 "The abs() creates two cases: left vs right!"
+         ↓
+📊 Left/Right Passes: Precompute best from each direction
+         ↓
+✅ Optimized DP: Linear per row → OPTIMAL (O(M × N))
+```

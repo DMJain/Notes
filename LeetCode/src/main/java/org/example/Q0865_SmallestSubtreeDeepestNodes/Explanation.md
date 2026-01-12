@@ -39,9 +39,17 @@ Find the **Lowest Common Ancestor (LCA)** of all the **deepest nodes** in the tr
 - Need to pass depth information around or recalculate it.
 - **O(N)** time, but 2 passes.
 
+> 💭 **Two passes work, but can we do it in one pass? What if we calculated height AND found the LCA simultaneously?**
+
 ---
 
 ## Solution 2: One Pass DFS with Pair ✅ (Optimal)
+
+### The Connection 🔗
+Let's trace our thinking:
+- **Two Pass** works but is inefficient because: traverses tree twice
+- **What we need**: calculate depth AND find LCA in one traversal
+- **Key insight**: Return BOTH depth and LCA from each subtree!
 
 ### The Key Insight 💡
 We can calculate **height** and find the **LCA** simultaneously!
@@ -63,6 +71,16 @@ Return a `Pair<Depth, Node>` from each node:
    - If `leftDepth == rightDepth`: Deepest nodes are on **BOTH** sides!
      - **Current node IS the LCA** (split point).
      - Current Depth is `leftDepth + 1`.
+
+### Why This Works
+
+```
+Two Pass:                  One Pass:
+    ↓                          ↓
+Find max depth            Return (depth, LCA) pair
+Then find LCA             Update both as we go up
+2 traversals              1 traversal
+```
 
 ### Step-by-Step Walkthrough
 
@@ -135,12 +153,35 @@ Return a `Pair<Depth, Node>` from each node:
 
 ---
 
+## The Core Logic
+
+```
+At each node:
+┌─────────────────────────────────────────────────┐
+│                                                 │
+│   leftDepth > rightDepth?                       │
+│         ↓                                       │
+│   Deepest on LEFT → pass up leftLCA             │
+│                                                 │
+│   rightDepth > leftDepth?                       │
+│         ↓                                       │
+│   Deepest on RIGHT → pass up rightLCA           │
+│                                                 │
+│   leftDepth == rightDepth?                      │
+│         ↓                                       │
+│   Deepest on BOTH → I AM the LCA!               │
+│                                                 │
+└─────────────────────────────────────────────────┘
+```
+
+---
+
 ## Complexity Analysis
 
-| Solution | Time | Space | Correct? |
-|----------|------|-------|----------|
-| Two Pass | O(N) | O(H) | ✅ Works |
-| **One Pass DFS** | O(N) | O(H) | ✅ Optimal |
+| Solution | Time | Space | Correct? | Why? |
+|----------|------|-------|----------|------|
+| Two Pass | O(N) | O(H) | ✅ Works | 2 traversals |
+| **One Pass DFS** | O(N) | O(H) | ✅ **Optimal** | 1 traversal |
 
 - **Time**: Visit every node once.
 - **Space**: Recursion stack height (H).
@@ -152,3 +193,15 @@ Return a `Pair<Depth, Node>` from each node:
 1. **LCA Logic**: If deepest nodes are on both sides, current node is LCA. If only on one side, pass that side's LCA up.
 2. **Bottom-Up DFS**: Calculate depth and LCA on the way back up from recursion.
 3. **Pair Return**: Returning multiple values (Depth + Node) simplifies state management.
+
+---
+
+## The Journey (TL;DR)
+
+```
+🐢 Two Pass: Find depth, then find LCA → WORKS but 2 passes
+         ↓
+💡 "Can we calculate both at once?"
+         ↓
+✅ One Pass: Return (depth, LCA) pair → OPTIMAL (1 traversal)
+```
