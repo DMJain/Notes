@@ -30,17 +30,54 @@ for (r1...r2)
 - **O((NM)³)** complexity.
 - With N=200, this is hopelessly slow.
 
-> 💭 **Checking every possible rectangle is O(n⁴) for boundaries + O(n²) to verify. Way too slow. But what if we could reuse work from previous rows? Like... building up heights?**
+> 💭 **Checking every possible rectangle is O(n⁴) for boundaries + O(n²) to verify. Way too slow. What if we precomputed some information? Like... how many consecutive 1s are there at each cell?**
 
 ---
 
-## Solution 2: Histogram Approach ✅ (Optimal)
+## Solution 2: DP with Width at Each Cell ❌ (Better but Still Slow)
+
+### The Natural Thought
+"For each cell, track how many consecutive 1s are to the LEFT. Then for each cell, try extending upward to find rectangles."
+
+### Approach
+```java
+// Step 1: Build width array
+// width[i][j] = number of consecutive 1s ending at (i,j) going left
+
+// Step 2: For each cell (i,j), extend upward
+// Find the minimum width going up to calculate rectangle area
+```
+
+### Step-by-Step Concept
+
+```
+Matrix:            Width Array:
+1 0 1 0 0          1 0 1 0 0
+1 0 1 1 1    →     1 0 1 2 3
+1 1 1 1 1          1 2 3 4 5
+1 0 0 1 0          1 0 0 1 0
+```
+
+For cell (2,4) with width = 5:
+- Go up to row 1: width = min(5, 3) = 3, area = 3 × 2 = 6
+- Go up to row 0: width = min(3, 0) = 0, stop!
+
+### Why It's Not Optimal
+- For each cell, we extend upward → O(N) per cell
+- Total: **O(N² × M)** — better than brute force but still too slow!
+
+> 💭 **We're doing O(N) work per cell to extend upward. That's the same problem as 'largest rectangle in histogram'! What if we treated each row as a histogram base and used a stack to solve it in O(M)?**
+
+---
+
+## Solution 3: Histogram + Monotonic Stack ✅ (Optimal)
 
 ### The Connection 🔗
 Let's trace our thinking:
 - **Brute Force** was slow because: checking all rectangles independently = O((NM)³)
-- **Key observation**: Each row can be treated as the "ground" of a histogram
-- **What we need**: Solve "largest rectangle in histogram" for each row!
+- **DP with Width** was better but: extending upward for each cell = O(N²×M)
+- **Key observation**: Each row can be treated as the BASE of a histogram!
+- **What we need**: Solve "largest rectangle in histogram" for each row in O(M)!
 
 ### The Key Insight 💡
 We can convert this 2D problem into a **series of 1D problems**!
@@ -66,11 +103,11 @@ Think of each row as the "ground". How high are the continuous `1`s rising from 
 
 ### Why This Works
 ```
-Brute Force:                    Histogram:
-     ↓                              ↓
-"Check all rectangles"         "Build heights row by row"
-O((NM)³) operations            Solve 1D problem per row
-                               O(N × M) total
+DP with Width:                  Histogram + Stack:
+     ↓                               ↓
+"Extend upward per cell"       "Build heights row by row"
+O(N) per cell                  Solve histogram per row
+O(N²×M) total                  O(N × M) total
 ```
 
 ### The Sub-Problem: Largest Rectangle in Histogram
@@ -190,7 +227,8 @@ Step 6: Sentinel 0, pop all
 | Solution | Time | Space | Correct? | Why? |
 |----------|------|-------|----------|------|
 | Brute Force | O((NM)³) | O(1) | ✅ TLE | Check all rectangles |
-| **Histogram (Stack)** | O(N × M) | O(M) | ✅ **Optimal** | Each cell processed twice max |
+| DP with Width | O(N²×M) | O(NM) | ✅ But slow | O(N) extension per cell |
+| **Histogram + Stack** | O(N × M) | O(M) | ✅ **Optimal** | Each cell processed twice max |
 
 - **Time**: We iterate every cell once to update heights. The Stack processes each element at most twice (push/pop).
 - **Space**: Height array O(M). Stack O(M).
@@ -210,11 +248,11 @@ Step 6: Sentinel 0, pop all
 ```
 🐢 Brute Force: Check all rectangles → TOO SLOW (O((NM)³))
          ↓
-💡 "What if we reuse work from previous rows?"
+💡 "Precompute consecutive 1s, extend upward?"
          ↓
-📊 Histogram: Each row = ground, heights build up
+📊 DP with Width: Better but O(N) per cell → STILL SLOW (O(N²×M))
          ↓
-💡 "Now it's 'largest rectangle in histogram' — use monotonic stack!"
+💡 "Each row is a histogram! Use monotonic stack for O(M)!"
          ↓
 ✅ Histogram + Stack: O(N × M) → OPTIMAL
 ```
