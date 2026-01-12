@@ -103,6 +103,7 @@
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
 | 17 | [Letter Combinations](./LeetCode/src/main/java/org/example/Q0017_LetterCombinations) | All letter combos from phone digits | Backtrack: choose→explore→unchoose for each digit |
+| 22 | [Generate Parentheses](./LeetCode/src/main/java/org/example/Q0022_GenerateParentheses) | All valid parenthesis combos | Back track: open < n, close < open |
 | 526 | [Beautiful Arrangement](./LeetCode/src/main/java/org/example/Q0526_BeautifulArrangement) | Count permutations where i%perm[i]==0 or vice versa | Backtrack, try each unused num at each pos |
 
 </details>
@@ -136,6 +137,7 @@
 | 15 | [3Sum](./LeetCode/src/main/java/org/example/Q0015_ThreeSum) | 🟡 Medium | Sort, fix 1, two-ptr rest, skip dupes |
 | 17 | [Letter Combinations](./LeetCode/src/main/java/org/example/Q0017_LetterCombinations) | 🟡 Medium | Backtrack: choose→explore→unchoose |
 | 20 | [Valid Parentheses](./LeetCode/src/main/java/org/example/Q0020_ValidParentheses) | 🟢 Easy | Stack: push open, pop matching close |
+| 22 | [Generate Parentheses](./LeetCode/src/main/java/org/example/Q0022_GenerateParentheses) | 🟡 Medium | Backtrack: open < n, close < open |
 | 85 | [Maximal Rectangle](./LeetCode/src/main/java/org/example/Q0085_MaximalRectangle) | 🔴 Hard | Histogram per row + Monotonic Stack |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | 🔴 Hard | DP(pos, idx), try all matching chars |
 | 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | 🟢 Easy | Different strings? Longer wins |
@@ -411,9 +413,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 4 solved
-- [x] Medium: 11 solved
+- [x] Medium: 12 solved
 - [x] Hard: 6 solved
-- **Total**: 21 problems
+- **Total**: 22 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
