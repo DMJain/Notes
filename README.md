@@ -135,6 +135,15 @@
 
 </details>
 
+<details>
+<summary><b>Design</b></summary>
+
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 535 | [Encode Decode TinyURL](./LeetCode/src/main/java/org/example/Q0535_EncodeDecodeTinyURL) | URL shortener design | Counter + Base62, dual HashMaps |
+
+</details>
+
 ### Problems by Number
 
 | # | Problem | Difficulty | Q-Card 💡 |
@@ -154,6 +163,7 @@
 | 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | 🟡 Medium | Check each if subseq of any other |
 | 524 | [Longest Word in Dictionary](./LeetCode/src/main/java/org/example/Q0524_LongestWordInDictionary) | 🟡 Medium | 2-ptr subseq check, longest/lex-smallest |
 | 526 | [Beautiful Arrangement](./LeetCode/src/main/java/org/example/Q0526_BeautifulArrangement) | 🟡 Medium | Backtrack: try valid nums at each pos |
+| 535 | [Encode Decode TinyURL](./LeetCode/src/main/java/org/example/Q0535_EncodeDecodeTinyURL) | 🟡 Medium | Counter + Base62, dual HashMaps |
 | 712 | [Min ASCII Delete Sum](./LeetCode/src/main/java/org/example/Q0712_MinimumDeleteSum) | 🟡 Medium | LCS variation: Total - 2*LCS_ASCII |
 | 865 | [Smallest Subtree with Deepest Nodes](./LeetCode/src/main/java/org/example/Q0865_SmallestSubtreeDeepestNodes) | 🟡 Medium | DFS return (depth, node), compare L/R depths |
 | 992 | [Subarrays with K Distinct](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | 🔴 Hard | `atMost(K) - atMost(K-1)` |
@@ -423,9 +433,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 4 solved
-- [x] Medium: 12 solved
+- [x] Medium: 13 solved
 - [x] Hard: 7 solved
-- **Total**: 23 problems
+- **Total**: 24 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
