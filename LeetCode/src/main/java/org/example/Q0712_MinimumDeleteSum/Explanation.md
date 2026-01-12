@@ -1,5 +1,7 @@
 # Minimum ASCII Delete Sum for Two Strings - Explanation
 
+> **Prerequisites**: This problem is a variation of [Longest Common Subsequence (Q1143)](https://leetcode.com/problems/longest-common-subsequence/). If you understand LCS, this problem becomes straightforward — we're just maximizing ASCII sum instead of length.
+
 ## Problem in Simple Words
 You have two strings, `s1` and `s2`. You want to make them **equal** by deleting characters.
 Each deletion costs the **ASCII value** of the deleted character.
@@ -144,6 +146,12 @@ Track deletions           Track what we KEEP
 Complex base cases        Simple LCS formula
                           Just subtract at end!
 ```
+
+---
+
+## Honorable Mention: Edit Distance Variation
+
+> 💡 **Related Problem**: This is similar to [Q72 Edit Distance](https://leetcode.com/problems/edit-distance/), but with weighted deletions only (no insertions/substitutions). Edit Distance uses the same DP structure with different transition rules. If you master one, the others become easier!
 
 ---
 

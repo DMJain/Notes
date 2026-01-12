@@ -1,6 +1,9 @@
 # Generate Parentheses - Explanation
 
+> **Related Problems**: This uses the same backtracking pattern as [Q0017 Letter Combinations](../Q0017_LetterCombinations/Explanation.md). The key skill is knowing when to prune invalid paths.
+
 ## Problem in Simple Words
+
 Generate all valid combinations of `n` pairs of parentheses.
 Valid means every open bracket has a matching close bracket and they are properly nested.
 

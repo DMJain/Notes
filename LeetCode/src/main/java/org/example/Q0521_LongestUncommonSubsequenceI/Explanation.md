@@ -1,6 +1,9 @@
 # Longest Uncommon Subsequence I - Explanation
 
+> **Related Problems**: This is the simpler version of [Q0522 Longest Uncommon Subsequence II](../Q0522_LongestUncommonSubsequenceII/Explanation.md). Solve this "brain teaser" first, then move to Q522 which requires actual implementation.
+
 ## Problem in Simple Words
+
 Given two strings, find the **longest subsequence** that exists in **exactly one** of them (not both).
 
 **What is a subsequence?**

@@ -1,6 +1,9 @@
 # Minimum Number of K Consecutive Bit Flips - Explanation
 
+> **Honorable Mention**: *Queue-based approach* stores flip positions in a queue and removes expired ones. Same O(n) complexity, but uses deque instead of XOR + array. Some find it more intuitive!
+
 ## Problem in Simple Words
+
 You have a binary array (0s and 1s). You can **flip k consecutive bits** (0→1, 1→0).
 Find the **minimum flips** to make ALL bits = 1. Return -1 if impossible.
 

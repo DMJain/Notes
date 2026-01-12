@@ -1,6 +1,11 @@
 # Regular Expression Matching - Explanation
 
+> **Prerequisites**: This is similar to [Q0044 Wildcard Matching](https://leetcode.com/problems/wildcard-matching/). Both involve pattern matching with special characters, solved via DP.
+
+> **Honorable Mention**: *Recursion + Memoization* is equally valid! Same time complexity as bottom-up DP, often easier to understand. The DP approach here is bottom-up, but top-down with memo works just as well.
+
 ## Problem in Simple Words
+
 You have a string `s` and a pattern `p`. Check if the pattern matches the **entire** string.
 
 **Special characters in pattern:**

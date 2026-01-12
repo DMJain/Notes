@@ -1,6 +1,9 @@
 # Median of Two Sorted Arrays - Explanation
 
+> **Note**: If the problem didn't require O(log(m+n)) time, the merge-based O(m+n) approach would be perfectly valid. The O(log) constraint is what makes this problem hard!
+
 ## Problem in Simple Words
+
 You have **two sorted lists**. Find the **median** (middle value) as if they were merged into one big sorted list.
 
 **Catch:** You must do it in **O(log(m+n))** time — no actual merging allowed!

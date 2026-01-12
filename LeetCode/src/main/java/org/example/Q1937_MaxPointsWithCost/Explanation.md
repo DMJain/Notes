@@ -1,6 +1,9 @@
 # Maximum Number of Points with Cost - Explanation
 
+> **Prerequisites**: This uses a classic DP optimization: breaking an O(n²) transition into O(n) using left/right prefix scans. Similar pattern appears in [Q0042 Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) and [Q0135 Candy](https://leetcode.com/problems/candy/).
+
 ## Problem in Simple Words
+
 You have a grid of points. You need to pick **one cell from each row** to maximize your total score.
 
 **The Catch:**

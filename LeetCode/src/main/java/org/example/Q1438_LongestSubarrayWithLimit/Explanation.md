@@ -1,5 +1,7 @@
 # Longest Continuous Subarray With Absolute Diff ≤ Limit - Explanation
 
+> **Prerequisites**: Understanding **Monotonic Stack/Deque** is essential. This pattern also appears in [Q239 Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/). If you can solve "max in sliding window" in O(1), this problem becomes a natural extension.
+
 ## Problem in Simple Words
 Find the **longest subarray** where `max - min ≤ limit`.
 
@@ -232,6 +234,12 @@ When window shrinks:
   - Only remove from front IF the leaving element IS the front
   - Otherwise it was already removed when a bigger element came
 ```
+
+---
+
+## Honorable Mention: Multiset (C++) / TreeMap
+
+> 💡 **TreeMap/Multiset approach**: In languages with balanced BST (C++ multiset, Java TreeMap), you can use `firstKey()`/`lastKey()` for O(log n) min/max. This gives O(n log n) total — perfectly acceptable! Choose Monotonic Deques when you need O(n), but TreeMap is simpler to code and often fast enough.
 
 ---
 

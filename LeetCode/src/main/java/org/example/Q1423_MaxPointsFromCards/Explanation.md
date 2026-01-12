@@ -1,5 +1,7 @@
 # Maximum Points You Can Obtain from Cards - Explanation
 
+> **Prerequisites**: Understanding sliding window technique helps here. This is also related to **prefix sum** problems — if you're comfortable with computing sums of subarrays efficiently, this problem becomes intuitive.
+
 ## Problem in Simple Words
 You have a row of cards, each with points. You can only pick from the **left end** or **right end**. Pick exactly **k cards** to maximize your total points.
 
@@ -182,20 +184,9 @@ SLIDE:  [ . | . | . | 4 | 5 | 6 | 1 ]
 
 ---
 
-## Alternative View: Minimize the Middle Window
+## Honorable Mention: Minimize the Middle Window
 
-Another way to think about it:
-
-```
-If we pick k cards from ends, we LEAVE (n-k) cards in the middle.
-
-Total sum = Sum of all cards (constant)
-Our score = Total sum - Sum of middle window
-
-To MAXIMIZE our score → MINIMIZE the middle window!
-```
-
-This is the "inverse sliding window" approach — same complexity, different perspective.
+> 💡 **Inverse approach**: If we pick k cards from ends, we LEAVE (n-k) cards in the middle. Since `Total sum = Our score + Middle window sum`, to MAXIMIZE our score → MINIMIZE the middle window! Find the minimum sum subarray of length (n-k) and subtract from total. Same complexity, different perspective.
 
 ---
 
@@ -205,6 +196,7 @@ This is the "inverse sliding window" approach — same complexity, different per
 |----------|------|-------|----------|------|
 | Brute Force (recalc sums) | O(k²) | O(1) | ✅ But slow | Recalc each sum |
 | Recursion (no memo) | O(2^k) | O(k) | ✅ But TLE | Exponential branching |
+| Recursion + Memo | O(k) | O(k) | ✅ Works | Memoizes states |
 | **Sliding Window** | O(k) | O(1) | ✅ **Optimal** | O(1) swap per step |
 
 ---

@@ -1,6 +1,9 @@
 # Longest Uncommon Subsequence II - Explanation
 
+> **Prerequisites**: This extends [Q0521 Longest Uncommon Subsequence I](../Q0521_LongestUncommonSubsequenceI/Explanation.md). Q521 is a "brain teaser" — this one requires actual implementation with the `isSubsequence` helper.
+
 ## Problem in Simple Words
+
 You have a list of strings. Find the **longest string** that is **NOT a subsequence** of any other string.
 
 **What is a subsequence?**

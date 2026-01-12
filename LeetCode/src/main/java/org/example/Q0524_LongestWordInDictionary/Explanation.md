@@ -1,6 +1,9 @@
 # Longest Word in Dictionary through Deleting - Explanation
 
+> **Honorable Mention**: *Trie approach* is valid for multiple queries against the same string `s`. Build a Trie of dictionary words, then traverse with `s`. Overkill for single query, but shows up in follow-ups!
+
 ## Problem in Simple Words
+
 Given a string `s` and a dictionary of words, find the **longest word** from the dictionary that can be formed by **deleting some characters** from `s` (without reordering).
 
 If there's a tie, pick the **lexicographically smallest** one.

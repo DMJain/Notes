@@ -1,5 +1,7 @@
 # Subarrays with K Different Integers - Explanation
 
+> **Prerequisites**: This problem uses a clever counting trick. If you're familiar with sliding window patterns for "at most K" problems (like [Q0003 Longest Substring Without Repeating Characters](../Q0003_LongestSubstringWithoutRepeatingCharacters/Explanation.md)), you'll find this easier to grasp.
+
 ## Problem in Simple Words
 Count all **contiguous subarrays** that have **exactly k different numbers**.
 
@@ -33,7 +35,7 @@ for (int i = 0; i < n; i++) {
 
 ---
 
-## Solution 2: Sliding Window (At Most K) (Valid Alternative)
+## Solution 2: Sliding Window (At Most K) ✅ (Valid Alternative)
 
 ### The Natural Thought
 "The formula `exactly(k) = atMost(k) - atMost(k-1)` would work!"
@@ -52,19 +54,29 @@ atMost(1) = 5 subarrays
 exactly(2) = 12 - 5 = 7 ✅
 ```
 
-This is a valid O(n) approach, but our solution uses a **different technique**!
+### Why This Works
+```
+                 ┌──────── atMost(k) subarrays ────────┐
+                 │                                      │
+0 distinct       1 distinct   ... k-1 distinct  k distinct
+└───────────── atMost(k-1) ──────────────┘
+                                                   ↑
+                                        exactly(k) = difference!
+```
 
-> 💭 **The "at most" trick works, but let's try another approach: track how many valid starting positions we can shrink to while keeping exactly k distinct.**
+This is a valid O(n) approach!
+
+> 💭 **The "at most" trick works! But let's also explore another approach: track how many valid starting positions we can shrink to while keeping exactly k distinct.**
 
 ---
 
-## Solution 3: Sliding Window with Prefix Counting ✅ (Optimal)
+## Solution 3: Sliding Window with Prefix Counting ✅ (Optimal — Single Pass)
 
 ### The Connection 🔗
 Let's trace our thinking:
 - **Brute Force** was slow because: O(n³) checking all subarrays
-- **At Most trick** works, but we can also count directly with prefix counting
-- **Key insight**: When we have exactly k distinct, multiple left positions may be valid!
+- **At Most trick** works and is O(n), but requires two passes
+- **Key insight**: When we have exactly k distinct, multiple left positions may be valid — count them in one pass!
 
 ### The Key Insight 💡
 
@@ -247,12 +259,18 @@ res += 3
 
 ---
 
+## Honorable Mention: Two Pass "At Most K" Approach
+
+> 💡 **Both approaches are O(n) optimal!** The "at most K" trick (`exactly(k) = atMost(k) - atMost(k-1)`) is often simpler to implement since it reuses a standard sliding window template. The prefix counting approach is more clever but slightly trickier. Pick whichever feels more natural to you!
+
+---
+
 ## Complexity Analysis
 
 | Solution | Time | Space | Correct? | Why? |
 |----------|------|-------|----------|------|
 | Brute Force | O(n³) | O(n) | ✅ But TLE | Check all subarrays |
-| atMost(k) - atMost(k-1) | O(n) | O(n) | ✅ Alternative | Two pass approach |
+| atMost(k) - atMost(k-1) | O(n) | O(n) | ✅ **Optimal** | Two pass approach |
 | **Prefix Counting** | O(n) | O(n) | ✅ **Optimal** | Single pass |
 
 ---
@@ -274,9 +292,9 @@ res += 3
          ↓
 💡 "Sliding window! But how to count exactly k?"
          ↓
-🔢 At Most Trick: atMost(k) - atMost(k-1) → WORKS (O(n))
+🔢 At Most Trick: atMost(k) - atMost(k-1) → WORKS! (O(n), 2 passes)
          ↓
 💡 "Or directly count with prefix positions!"
          ↓
-✅ Prefix Counting: Track shrinkable positions → OPTIMAL (O(n))
+✅ Prefix Counting: Track shrinkable positions → OPTIMAL (O(n), 1 pass)
 ```

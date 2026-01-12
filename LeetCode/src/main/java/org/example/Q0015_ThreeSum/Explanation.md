@@ -1,5 +1,7 @@
 # 3Sum - Explanation
 
+> **Prerequisites**: This is an extension of [Q0001 Two Sum](../Q0001_TwoSum/Explanation.md). Understanding how to find two numbers that sum to a target is essential before tackling 3Sum.
+
 ## Problem in Simple Words
 Find all **triplets** in an array that sum to **zero**. No duplicate triplets allowed!
 
@@ -279,6 +281,12 @@ if (i > 0 && nums[i-1] == nums[i]) continue;
 while (nums[l] == nums[l-1] && l < r) l++;
 // Skip duplicate second elements after finding a triplet
 ```
+
+---
+
+## Honorable Mention: 4Sum, kSum
+
+> 💡 **This pattern generalizes!** For **4Sum** (Q18), fix two elements and use two pointers. For **kSum**, use recursion to reduce to 2Sum. The core insight (sort + two pointers + skip duplicates) remains the same.
 
 ---
 

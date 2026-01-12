@@ -1,5 +1,7 @@
 # Maximal Rectangle - Explanation
 
+> **Prerequisites**: This problem builds on [Q0084 Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/). If you understand how to find the largest rectangle in a 1D histogram using a monotonic stack, this 2D version becomes much more approachable.
+
 ## Problem in Simple Words
 Find the **largest rectangle** made of only `1`s in a binary matrix.
 
@@ -219,6 +221,12 @@ Step 6: Sentinel 0, pop all
         Pop 3: area = 2*3 = 6 ← MAX!
         Pop 1: area = 1*5 = 5
 ```
+
+---
+
+## Honorable Mention: DP with left/right/height arrays
+
+> 💡 **Alternative O(N×M) approach**: For each cell, track three values: `height` (consecutive 1s above), `left` (leftmost column this height can extend to), and `right` (rightmost column). Update these row by row and compute `area = height × (right - left)` for each cell. Same complexity, different perspective — useful if you find the stack approach confusing.
 
 ---
 

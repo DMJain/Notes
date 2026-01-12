@@ -1,6 +1,9 @@
 # Letter Combinations of a Phone Number - Explanation
 
+> **Related Problems**: This backtracking pattern appears in [Q0022 Generate Parentheses](../Q0022_GenerateParentheses/Explanation.md), [Q0039 Combination Sum](https://leetcode.com/problems/combination-sum/), and [Q0046 Permutations](https://leetcode.com/problems/permutations/). Master one, and the others become easy!
+
 ## Problem in Simple Words
+
 Given digits like "23", generate all possible letter combinations from a phone keypad.
 
 ```
