@@ -118,6 +118,15 @@
 </details>
 
 <details>
+<summary><b>Linked Lists</b></summary>
+
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 23 | [Merge K Sorted Lists](./LeetCode/src/main/java/org/example/Q0023_MergeKSortedLists) | Merge k sorted lists into one | D&C or MinHeap: O(N log k) |
+
+</details>
+
+<details>
 <summary><b>Math & Geometry</b></summary>
 
 | # | Problem | Description | Q-Card |
@@ -138,6 +147,7 @@
 | 17 | [Letter Combinations](./LeetCode/src/main/java/org/example/Q0017_LetterCombinations) | 🟡 Medium | Backtrack: choose→explore→unchoose |
 | 20 | [Valid Parentheses](./LeetCode/src/main/java/org/example/Q0020_ValidParentheses) | 🟢 Easy | Stack: push open, pop matching close |
 | 22 | [Generate Parentheses](./LeetCode/src/main/java/org/example/Q0022_GenerateParentheses) | 🟡 Medium | Backtrack: open < n, close < open |
+| 23 | [Merge K Sorted Lists](./LeetCode/src/main/java/org/example/Q0023_MergeKSortedLists) | 🔴 Hard | D&C or MinHeap: O(N log k) |
 | 85 | [Maximal Rectangle](./LeetCode/src/main/java/org/example/Q0085_MaximalRectangle) | 🔴 Hard | Histogram per row + Monotonic Stack |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | 🔴 Hard | DP(pos, idx), try all matching chars |
 | 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | 🟢 Easy | Different strings? Longer wins |
@@ -414,8 +424,8 @@ This is a personal learning repository. If you find any issues or have suggestio
 ### LeetCode
 - [x] Easy: 4 solved
 - [x] Medium: 12 solved
-- [x] Hard: 6 solved
-- **Total**: 22 problems
+- [x] Hard: 7 solved
+- **Total**: 23 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
