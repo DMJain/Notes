@@ -71,6 +71,7 @@
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
 | 4 | [Median of Two Sorted Arrays](./LeetCode/src/main/java/org/example/Q0004_MedianOfTwoSortedArray) | Find median of 2 sorted arrays | Binary search on smaller array, partition both |
+| 3453 | [Separate Squares I](./LeetCode/src/main/java/org/example/Q3453_SeparateSquaresI) | Min Y for equal area split | Monotonic area → Binary Search on Y |
 
 </details>
 
@@ -182,6 +183,7 @@
 | 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Total - min window of (n-k) |
 | 1438 | [Longest Subarray With Limit](./LeetCode/src/main/java/org/example/Q1438_LongestSubarrayWithLimit) | 🟡 Medium | Monotonic deques for max/min in window |
 | 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | 🟡 Medium | DP with left/right pass optimization |
+| 3453 | [Separate Squares I](./LeetCode/src/main/java/org/example/Q3453_SeparateSquaresI) | 🟡 Medium | Monotonic area → Binary Search on Y |
 
 ### Explanation Structure
 
@@ -443,9 +445,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 4 solved
-- [x] Medium: 14 solved
+- [x] Medium: 15 solved
 - [x] Hard: 7 solved
-- **Total**: 25 problems
+- **Total**: 26 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
