@@ -154,6 +154,15 @@
 
 </details>
 
+<details>
+<summary><b>Sweep Line</b></summary>
+
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 3454 | [Separate Squares II](./LeetCode/src/main/java/org/example/Q3454_SeparateSquaresII) | Min Y for equal area (overlaps=union) | Sweep line events (y, type), merge intervals |
+
+</details>
+
 ### Problems by Number
 
 | # | Problem | Difficulty | Q-Card 💡 |
@@ -184,6 +193,7 @@
 | 1438 | [Longest Subarray With Limit](./LeetCode/src/main/java/org/example/Q1438_LongestSubarrayWithLimit) | 🟡 Medium | Monotonic deques for max/min in window |
 | 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | 🟡 Medium | DP with left/right pass optimization |
 | 3453 | [Separate Squares I](./LeetCode/src/main/java/org/example/Q3453_SeparateSquaresI) | 🟡 Medium | Monotonic area → Binary Search on Y |
+| 3454 | [Separate Squares II](./LeetCode/src/main/java/org/example/Q3454_SeparateSquaresII) | 🔴 Hard | Sweep line (y-events) + Interval merging |
 
 ### Explanation Structure
 
@@ -446,8 +456,8 @@ This is a personal learning repository. If you find any issues or have suggestio
 ### LeetCode
 - [x] Easy: 4 solved
 - [x] Medium: 15 solved
-- [x] Hard: 7 solved
-- **Total**: 26 problems
+- [x] Hard: 8 solved
+- **Total**: 27 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
