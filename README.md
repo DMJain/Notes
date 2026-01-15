@@ -104,6 +104,7 @@
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
 | 1007 | [Min Domino Rotations](./LeetCode/src/main/java/org/example/Q1007_MinimumDominoRotations) | Equal row by swapping top/bot | Check tops[0] & bottoms[0] as targets |
+| 2943 | [Maximize Square Hole Area](./LeetCode/src/main/java/org/example/Q2943_MaximizeSquareHoleArea) | Max square hole from removing bars | Sort bars, find max consecutive bars |
 
 </details>
 
@@ -192,6 +193,7 @@
 | 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Total - min window of (n-k) |
 | 1438 | [Longest Subarray With Limit](./LeetCode/src/main/java/org/example/Q1438_LongestSubarrayWithLimit) | 🟡 Medium | Monotonic deques for max/min in window |
 | 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | 🟡 Medium | DP with left/right pass optimization |
+| 2943 | [Maximize Square Hole Area](./LeetCode/src/main/java/org/example/Q2943_MaximizeSquareHoleArea) | 🟡 Medium | Sort bars, find max consecutive bars |
 | 3453 | [Separate Squares I](./LeetCode/src/main/java/org/example/Q3453_SeparateSquaresI) | 🟡 Medium | Monotonic area → Binary Search on Y |
 | 3454 | [Separate Squares II](./LeetCode/src/main/java/org/example/Q3454_SeparateSquaresII) | 🔴 Hard | Sweep line (y-events) + Interval merging |
 
@@ -455,9 +457,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 4 solved
-- [x] Medium: 15 solved
+- [x] Medium: 16 solved
 - [x] Hard: 8 solved
-- **Total**: 27 problems
+- **Total**: 28 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)

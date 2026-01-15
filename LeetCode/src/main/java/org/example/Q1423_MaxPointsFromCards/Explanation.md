@@ -64,10 +64,38 @@ At each step, we branch into 2 choices.
 Total nodes = 2^50000 = ASTRONOMICAL!
 ```
 
+### Why Recursion Explodes: The Tree
+
+```
+k=4 example (simplified):
+
+Level 0:              [L, R]
+                     /      \
+Level 1:      [L-1, R]      [L, R-1]
+              /    \        /      \
+Level 2:  [L-2,R] [L-1,R-1] [L-1,R-1] [L,R-2]
+           /  \    /  \      /  \      /  \
+Level 3: ...  ...  ...  ...  ...  ...  ...  ... (8 nodes)
+           
+Level 4: 16 nodes
+
+Pattern: Level i has 2^i nodes
+Total nodes = 2^0 + 2^1 + 2^2 + ... + 2^k
+            = 2^(k+1) - 1
+            ≈ 2^k
+
+For k=50000: 2^50000 ≈ 10^15000 (more atoms than in universe!)
+```
+
 ### Why It Fails 🤯
 **Exponential branching** — Each step doubles the possibilities.
 
 Without memoization, same states are recalculated millions of times.
+
+**Even WITH memoization:** 
+- There are only k+1 UNIQUE states: (remaining=0), (remaining=1), ..., (remaining=k)
+- But the tree has 2^k nodes — massive redundancy!
+- Better to just directly iterate the k+1 combinations!
 
 > 💭 **Recursion branches exponentially. But wait — there are only k+1 combinations (0 left + k right, 1 left + k-1 right, ...). Can we just iterate through them?**
 

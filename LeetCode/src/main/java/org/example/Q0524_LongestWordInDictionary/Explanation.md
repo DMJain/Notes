@@ -79,6 +79,45 @@ Sorting takes O(n × m × log n) where:
 We can avoid sorting entirely!
 ```
 
+### Example: Why Check isSubsequence Carefully ❌/✅
+
+```
+s = "abpcplea"
+
+Check "apple":
+a b p c p l e a
+↓              
+a → found at index 0
+  ↓            
+  p (skip b) → found at index 2
+    ↓          
+    p → found at index 4
+      ↓        
+      l → found at index 5
+        ↓      
+        e → found at index 6
+          
+Result: "apple" IS a subsequence of "abpcplea" ✅
+
+Check "apply":
+a b p c p l e a
+↓              
+a → found
+  ↓            
+  p → found
+    ↓          
+    p → found
+      ↓        
+      l → found
+        ↓      
+        y → NOT FOUND! (no 'y' after 'l')
+        
+Result: "apply" is NOT a subsequence ❌
+
+The isSubsequence check is O(|s| + |word|) — linear!
+We do this for each word, so total is O(n × (|s| + m))
+```
+
 > 💭 **Sorting guarantees we find the best answer first, but it's O(n log n) extra work. What if we just tracked the best answer as we go? Skip words that can't beat the current best!**
 
 ---

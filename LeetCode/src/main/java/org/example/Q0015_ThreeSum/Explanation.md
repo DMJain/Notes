@@ -57,11 +57,46 @@ for (int i = 0; i < n; i++) {
 }
 ```
 
+### Example Where Duplicates Get Messy ❌
+
+```
+Input: nums = [-1, 0, 1, 2, -1, -4]
+
+HashMap approach finds:
+1. i=0 (-1), j=2 (1): complement=0, found at index 1 → [-1, 0, 1] ✅
+2. i=0 (-1), j=4 (-1): complement=2, found at index 3 → [-1, -1, 2] ✅
+3. i=1 (0), j=2 (1): complement=-1, found at index 0 → [0, 1, -1] ← DUPLICATE!
+4. i=1 (0), j=4 (-1): complement=1, found at index 2 → [0, -1, 1] ← DUPLICATE!
+5. i=2 (1), j=4 (-1): complement=0, found at index 1 → [1, -1, 0] ← DUPLICATE!
+
+Problem: Same triplet appears in different orders!
+- [-1, 0, 1] = [0, 1, -1] = [1, -1, 0] (same triplet, different order)
+
+To fix: Need to sort each triplet and use Set<List<Integer>>
+But this adds complexity and is error-prone!
+```
+
 ### Why It's Not Ideal
 - **O(n²)** time — good!
-- But **handling duplicates is tricky**
-- Need extra logic (sorting triplets, using a Set) to avoid `[-1,0,1]` and `[-1,0,1]` appearing twice
-- Gets messy with edge cases
+- But **duplicate handling requires**:
+  1. Sorting each found triplet: O(3 log 3) per triplet
+  2. Using Set<List<Integer>> to deduplicate
+  3. Careful index management to avoid using same element twice
+- Gets messy with edge cases (what if array has multiple zeros?)
+
+### Why Sorting Would Be Better
+
+```
+Unsorted: [-1, 0, 1, 2, -1, -4]
+         ↓
+Sorted:   [-4, -1, -1, 0, 1, 2]
+
+Now duplicates are ADJACENT!
+Skip duplicate first elements: i=1 → nums[1]==nums[2]? -1==-1? YES, skip!
+Skip duplicate second elements: j → similar logic
+
+Clean and deterministic!
+```
 
 > 💭 **The HashMap approach works but duplicate handling is painful. What if the array was SORTED? Then duplicates would be ADJACENT and easy to skip. Plus, a sorted array lets us use two pointers instead of HashMap...**
 

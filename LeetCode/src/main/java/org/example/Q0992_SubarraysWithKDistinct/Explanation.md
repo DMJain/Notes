@@ -64,6 +64,32 @@ exactly(2) = 12 - 5 = 7 ✅
                                         exactly(k) = difference!
 ```
 
+### Why the Math Works: Concrete Proof
+
+```
+Example: nums = [1,2,1,2,3], k = 2
+
+atMost(2) = subarrays with ≤ 2 distinct:
+  [1], [2], [1], [2], [3]           ← 1 distinct (5 subarrays)
+  [1,2], [2,1], [1,2], [2,3]        ← 2 distinct (4 subarrays)  
+  [1,2,1], [2,1,2]                  ← 2 distinct (2 subarrays)
+  [1,2,1,2]                         ← 2 distinct (1 subarray)
+  Total = 5 + 4 + 2 + 1 = 12
+
+atMost(1) = subarrays with ≤ 1 distinct:
+  [1], [2], [1], [2], [3]           ← exactly 1 distinct
+  Total = 5
+
+exactly(2) = atMost(2) - atMost(1)
+           = 12 - 5
+           = 7 ✅
+
+Why it works:
+- atMost(k) includes: {0, 1, 2, ..., k distinct}
+- atMost(k-1) includes: {0, 1, 2, ..., k-1 distinct}
+- Subtraction removes {0, 1, ..., k-1}, leaving ONLY {k distinct}!
+```
+
 This is a valid O(n) approach!
 
 > 💭 **The "at most" trick works! But let's also explore another approach: track how many valid starting positions we can shrink to while keeping exactly k distinct.**

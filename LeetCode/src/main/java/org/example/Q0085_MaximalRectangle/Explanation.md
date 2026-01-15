@@ -64,11 +64,49 @@ For cell (2,4) with width = 5:
 - Go up to row 1: width = min(5, 3) = 3, area = 3 × 2 = 6
 - Go up to row 0: width = min(3, 0) = 0, stop!
 
-### Why It's Not Optimal
-- For each cell, we extend upward → O(N) per cell
-- Total: **O(N² × M)** — better than brute force but still too slow!
+### Example: Why O(N²×M) is Too Slow ❌
 
-> 💭 **We're doing O(N) work per cell to extend upward. That's the same problem as 'largest rectangle in histogram'! What if we treated each row as a histogram base and used a stack to solve it in O(M)?**
+```
+Matrix (4 rows × 5 cols):
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
+
+Width array:
+1 0 1 0 0
+1 0 1 2 3
+1 2 3 4 5
+1 0 0 1 0
+
+For EACH cell, we extend upward:
+
+Cell (0,0): width=1, extend 0 rows → 1 operation
+Cell (0,2): width=1, extend 0 rows → 1 operation
+...
+Cell (1,3): width=2, extend UP 1 row → 2 operations
+Cell (1,4): width=3, extend UP 1 row → 2 operations
+...
+Cell (2,2): width=3, extend UP 2 rows → 3 operations  ← O(N) work!
+Cell (2,3): width=4, extend UP 2 rows → 3 operations
+Cell (2,4): width=5, extend UP 2 rows → 3 operations  ← This is the problem!
+...
+
+Total operations:
+- We process N×M cells
+- For EACH cell at row i: we extend UP i rows (worst case N)
+- Total: O(N × M × N) = O(N²M)
+
+With N=200, M=200: 200² × 200 = 8 million operations
+```
+
+### Why It's Not Optimal
+- For **each cell**, we extend upward → **O(N) per cell**
+- Total: **O(N² × M)** — better than brute force but still too slow!
+- **Redundant work**: We're solving the "max rectangle in histogram" problem separately for each cell
+- What if we could solve it ONCE per row instead of once per cell?
+
+> 💭 **We're doing O(N) work per cell to extend upward. Wait... extending upward with minimum width is exactly the "largest rectangle in histogram" problem! What if we treated each ROW as the base of a histogram? We'd only solve it N times (once per row), not N×M times (once per cell)!**
 
 ---
 
