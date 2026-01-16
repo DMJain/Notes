@@ -27,6 +27,33 @@ Generate **all** strings of length `2n` composed of `(` and `)`. Then check if e
 - Most strings are invalid like `))))((((` 
 - We're doing a lot of wasted work generating garbage!
 
+### How Much Garbage? ❌
+
+```
+Valid strings follow Catalan number: C(n) = (2n)! / ((n+1)! × n!)
+
+n=1:  Valid = 1,    Total = 2^2 = 4      → 75% garbage
+n=2:  Valid = 2,    Total = 2^4 = 16     → 87.5% garbage
+n=3:  Valid = 5,    Total = 2^6 = 64     → 92% garbage
+n=8:  Valid = 1430, Total = 2^16 = 65536 → 98% garbage!
+
+For n=8: We generate 65,536 strings, check all of them, 
+        but only 1,430 are valid (2.2% success rate)
+        That's 64,106 wasted generations!
+```
+
+### Example of Invalid Strings Generated
+
+```
+n=2: Generate all 16 strings of length 4:
+  "((((" ❌  "))))" ❌  "(()"  ❌  "(())" ✅
+  "())(" ❌  "()))" ❌  "()((" ❌  "()()" ✅
+  ")((" ❌   ")()" ❌   ")(((" ❌  ")(()" ❌
+  ")()" ❌   ")())" ❌  "))((" ❌  "))()" ❌
+
+Only 2 valid out of 16! 14 wasted!
+```
+
 > 💭 **We're generating ALL strings then filtering — super wasteful. Most are invalid! What if we only generated VALID strings from the start? We just need to follow some rules...**
 
 ---

@@ -28,10 +28,46 @@ for (char c1 : map.get('2')) {      // a, b, c
 }
 ```
 
+### Example: Why Hardcoded Loops Fail ❌
+
+```java
+// For digits = "23" (2 digits):
+for (char c1 : map.get('2')) {
+    for (char c2 : map.get('3')) {
+        result.add("" + c1 + c2);
+    }
+}
+
+// For digits = "234" (3 digits):
+for (char c1 : map.get('2')) {
+    for (char c2 : map.get('3')) {
+        for (char c3 : map.get('4')) {
+            result.add("" + c1 + c2 + c3);
+        }
+    }
+}
+
+// For digits = "2345" (4 digits):
+for (char c1 : map.get('2')) {
+    for (char c2 : map.get('3')) {
+        for (char c3 : map.get('4')) {
+            for (char c4 : map.get('5')) {
+                result.add("" + c1 + c2 + c3 + c4);
+            }
+        }
+    }
+}
+
+Problem: DIFFERENT CODE for each input length!
+- 10 digits? Need 10 nested loops!
+- Imagine writing that mess...
+- Not scalable, unmaintainable
+```
+
 ### Why It's Bad
-- Need different code for different number of digits!
-- 2 digits = 2 loops, 3 digits = 3 loops, etc.
-- **Not flexible at all**
+- Need **different code for different number of digits!**
+- 2 digits = 2 loops, 3 digits = 3 loops, 10 digits = 10 loops
+- **Code duplication** and **not flexible at all**
 
 > 💭 **The number of loops depends on input size — that's a code smell! We need a way to handle ANY number of digits without hardcoding loops. What if we built combinations iteratively?**
 

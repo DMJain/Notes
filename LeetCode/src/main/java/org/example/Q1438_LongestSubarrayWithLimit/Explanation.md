@@ -49,6 +49,38 @@ TreeMap<Integer, Integer> map = new TreeMap<>();
 // firstKey() = min, lastKey() = max
 ```
 
+### Example: TreeMap Operation Count ❌
+
+```
+Input: nums = [1, 3, 5, 7, 9], limit = 2
+Process each element:
+
+Element 1: insert(1) → O(log 1) = 0
+Element 3: insert(3) → O(log 2) = 1
+           max-min check → O(1)
+Element 5: insert(5) → O(log 3) ≈ 1.5
+           max-min = 5-1 = 4 > 2 → remove(1) → O(log 3) ≈ 1.5
+Element 7: insert(7) → O(log n)
+           remove operations...
+...
+
+Total operations: n × O(log n) = O(n log n)
+For n=100,000: ~100,000 × 17 = 1.7M operations
+```
+
+**Monotonic Deque approach:**
+```
+Each element is added/removed AT MOST ONCE:
+- Added when we reach it
+- Removed from back (when better element comes)
+- Removed from front (when window shrinks)
+
+Total operations: ≤ 2n = O(n)
+For n=100,000: ≤ 200,000 operations
+
+8.5× faster!
+```
+
 ### Why It's Not Ideal
 - Each insert/remove = **O(log n)**
 - Total = **O(n log n)**

@@ -46,6 +46,33 @@ Generate all possible common subsequences, find the one with maximum ASCII sum.
 - Slightly more complex initialization
 - Works, but there's an elegant alternative!
 
+### Example: Base Case Complexity ❌
+
+```
+Direct DP requires careful base case handling:
+
+Base case 1: s1 is empty, s2 = "abc"
+dp[0][j] = sum of all chars in s2[0..j]
+dp[0][1] = 'a' = 97
+dp[0][2] = 'a' + 'b' = 97 + 98 = 195
+dp[0][3] = 'a' + 'b' + 'c' = 97 + 98 + 99 = 294
+
+Base case 2: s2 is empty, s1 = "xyz"
+dp[i][0] = sum of all chars in s1[0..i]
+dp[1][0] = 'x' = 120
+dp[2][0] = 'x' + 'y' = 120 + 121 = 241
+...
+
+Then fill the table with complex transitions!
+```
+
+**LCS Variation approach:**
+```
+Base case: dp[0][j] = 0, dp[i][0] = 0  ← Simple!
+No ASCII addition needed for base cases.
+Just subtract at the end: Total - 2*Common
+```
+
 > 💭 **Minimizing deletions is the same as MAXIMIZING what we keep. If we find the maximum common subsequence sum, we can compute the answer by subtraction!**
 
 ---

@@ -26,6 +26,47 @@ Actually simulate the movement.
 - Functional, but unnecessary loop overhead.
 - We can calculate the distance mathematically in O(1).
 
+### Example: Simulation vs Math ❌
+
+```
+Move from (0, 0) to (3, 2):
+
+Simulation approach:
+  Step 1: (0,0) → (1,1)  diagonal ↗
+  Step 2: (1,1) → (2,2)  diagonal ↗
+  Step 3: (2,2) → (3,2)  horizontal →
+  Total: 3 steps counted via loop
+
+Math approach:
+  dx = |3-0| = 3
+  dy = |2-0| = 2
+  time = max(3, 2) = 3
+  Done! No loop!
+
+Why simulation wastes time:
+  For (0, 0) → (1000, 800):
+    Simulation: 1000 loop iterations
+    Math: 3 operations (subtract, abs, max)
+```
+
+### Why Diagonal Moves are Key
+
+```
+Visual: (0,0) → (3,2)
+
+Y
+2  . . . E       E = End (3,2)
+1  . ↗ ↗ →       ↗ = diagonal (covers X and Y)
+0  S . . .       → = horizontal (only X)
+   0 1 2 3  X    S = Start (0,0)
+
+Diagonal moves: 2 (each covers +1 X, +1 Y)
+Horizontal move: 1 (covers remaining +1 X)
+Total: max(dx=3, dy=2) = 3
+
+The axis with LARGER distance determines total time!
+```
+
 > 💭 **Why simulate when we can just calculate? The answer is purely mathematical!**
 
 ---

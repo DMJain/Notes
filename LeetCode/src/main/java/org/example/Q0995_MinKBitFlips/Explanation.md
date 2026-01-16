@@ -57,6 +57,40 @@ for (int i = 0; i < n; i++) {
 }
 ```
 
+### Example: Why O(k) Summing is Bad ❌
+
+```
+Input: nums = [0,0,0,...,0] (length 100,000), k = 50,000
+
+At position i=60,000:
+  Need to sum: flips[10,001] + flips[10,002] + ... + flips[60,000]
+  That's 50,000 additions! Just for ONE position!
+
+Total work across all positions:
+  Position 0 to k-1: sum 1, 2, 3, ..., k elements
+  Position k onwards: sum k elements each
+  
+  Total: O(k²) + O((n-k) × k) = O(n × k)
+  
+For n=100,000, k=50,000:
+  100,000 × 50,000 = 5 BILLION operations!
+```
+
+**Why parity/XOR is better:**
+```
+Don't need SUM, just need PARITY (odd/even):
+  flip once:  0 → 1 ✅
+  flip twice: 0 → 1 → 0 ✅
+  flip 3 times: 0 → 1 → 0 → 1 ✅
+  
+  Pattern: odd flips = 1, even flips = 0
+  
+XOR is O(1) update, O(1) check!
+Total: O(n) instead of O(nk)
+
+5 billion → 100,000 operations (50,000× faster!)
+```
+
 ### Why It's Still Bad
 - Computing sum for each position is O(k)
 - Still O(n × k) overall
