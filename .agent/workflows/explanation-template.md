@@ -152,20 +152,22 @@ Let's trace our thinking:
 - **Prerequisites**: Concepts OR LeetCode problems that MUST be understood first
   - **Concepts**: e.g., "Understanding of coordinate geometry", "Binary search basics", "Graph traversal (BFS/DFS)"
   - **LeetCode Problems**: e.g., 3Sum requires understanding 2Sum
-  - Format: `[LeetCode XXX - Problem Name](https://leetcode.com/problems/problem-slug/)`
+  - Format for LeetCode link: `[LeetCode XXX - Problem Name](https://leetcode.com/problems/problem-slug/)`
+  - **If problem exists in repo**: Provide BOTH LeetCode link AND local link: `[LeetCode XXX](https://...) | [Local](../QXXXX_ProblemName/Explanation.md)`
 - **Related Problems**: Link to LeetCode problems with SAME PATTERN or TECHNIQUE
   - Examples: Other backtracking problems, other sliding window problems, other interval intersection problems
   - Format: `[LeetCode XXX - Problem Name](https://leetcode.com/problems/problem-slug/) (brief description)`
+  - **If problem exists in repo**: Provide BOTH links: `[LeetCode XXX](https://...) | [Local](../QXXXX_ProblemName/Explanation.md) (brief description)`
   
 **Example:**
 ```markdown
 > **Prerequisites**: 
 > - Understanding of coordinate geometry and rectangle boundaries
-> - [LeetCode 1 - Two Sum](https://leetcode.com/problems/two-sum/)
+> - [LeetCode 1 - Two Sum](https://leetcode.com/problems/two-sum/) | [Local](../Q0001_TwoSum/Explanation.md)
 
 > **Related Problems**: 
 > - [LeetCode 836 - Rectangle Overlap](https://leetcode.com/problems/rectangle-overlap/) (checking intersection)
-> - [LeetCode 221 - Maximal Square](https://leetcode.com/problems/maximal-square/) (finding max square)
+> - [LeetCode 221 - Maximal Square](https://leetcode.com/problems/maximal-square/) | [Local](../Q0221_MaximalSquare/Explanation.md) (finding max square)
 ```
 
 
