@@ -7,10 +7,14 @@ description: How to write proper Explanation.md for LeetCode problems following 
 ## Core Principles
 
 1. **Connected Flow**: Each solution naturally leads to the next through thought bubbles
-2. **Show WHY**: Always explain WHY an approach fails, not just that it's slow
-3. **Concrete Examples**: Use specific inputs, step-by-step traces, operation counts
-4. **Visual First**: ASCII diagrams > walls of text
-5. **Complete Journey**: Brute Force → Intermediate(s) → Optimal with all connections
+2. **Show WHY**: Always explain WHY an approach fails, not just that it's slow with example
+3. **Show WHY NOT**: Why not always obvious natural instinct don't work
+4. **Concrete Examples**: Use specific inputs, step-by-step traces, operation counts
+5. **Visual First**: ASCII diagrams > walls of text
+6. **Complete Journey**: Brute Force → Intermediate(s) → Optimal with all connections
+7. **Donkey-level clarrity**: Explain like the reader has zero context
+8. **ASCII visuals**: State changes, poniter movements, data structure, detail step-by-step visuals
+
 
 ---
 
@@ -24,9 +28,6 @@ description: How to write proper Explanation.md for LeetCode problems following 
 
 > **Related Problems**: Link to similar pattern problems
 > E.g., "Same pattern as [Q0022 Generate Parentheses](../Q0022_GenerateParentheses/Explanation.md)"
-
-> **Honorable Mention**: Alternative valid approaches that work but aren't optimal
-> E.g., "*TreeMap approach* is valid O(n log n) but Monotonic Deque is O(n)"
 
 ## Problem in Simple Words
 [One-liner explanation + concrete example with answer]
@@ -77,6 +78,9 @@ Got: Z ← WRONG!
 
 > 💭 **Another thought bubble connecting to optimal. "OK that doesn't work because X. What if we Y?"**
 
+> **Honorable Mention(s)**: Alternative valid approache(s) that work but aren't optimal
+> E.g., "*TreeMap approach* is valid O(n log n) but Monotonic Deque is O(n)"
+
 ---
 
 ## Solution N: Optimal ✅
@@ -91,13 +95,13 @@ Let's trace our thinking:
 [Core insight that makes this work]
 
 ### The Algorithm
-[Step-by-step algorithm]
+[Step-by-step detail algorithm]
 
 ### Step-by-Step Walkthrough
 [Detailed trace with specific input]
 
 ### Visual Diagram
-[ASCII art showing how it works]
+[ASCII art showing in detail how it solution works step by step]
 
 ---
 
@@ -139,13 +143,35 @@ Let's trace our thinking:
 ## Critical Rules for Each Section
 
 ### 1. Prerequisites/Related (Top)
-- Link if problem DEPENDS on another (e.g., 3Sum depends on 2Sum)
-- Link if same PATTERN (e.g., backtracking problems link to each other)
-- Add Honorable Mention if there's a valid alternative approach
+**MUST RESEARCH BEFORE WRITING:**
+- Use `search_web` tool with query: `"leetcode [problem number] [problem name] similar problems related"`
+- Search on domain `leetcode.com` to find genuinely related problems
+- DO NOT guess related problems from the repository structure alone
+
+**What to include:**
+- **Prerequisites**: Concepts OR LeetCode problems that MUST be understood first
+  - **Concepts**: e.g., "Understanding of coordinate geometry", "Binary search basics", "Graph traversal (BFS/DFS)"
+  - **LeetCode Problems**: e.g., 3Sum requires understanding 2Sum
+  - Format: `[LeetCode XXX - Problem Name](https://leetcode.com/problems/problem-slug/)`
+- **Related Problems**: Link to LeetCode problems with SAME PATTERN or TECHNIQUE
+  - Examples: Other backtracking problems, other sliding window problems, other interval intersection problems
+  - Format: `[LeetCode XXX - Problem Name](https://leetcode.com/problems/problem-slug/) (brief description)`
+  
+**Example:**
+```markdown
+> **Prerequisites**: 
+> - Understanding of coordinate geometry and rectangle boundaries
+> - [LeetCode 1 - Two Sum](https://leetcode.com/problems/two-sum/)
+
+> **Related Problems**: 
+> - [LeetCode 836 - Rectangle Overlap](https://leetcode.com/problems/rectangle-overlap/) (checking intersection)
+> - [LeetCode 221 - Maximal Square](https://leetcode.com/problems/maximal-square/) (finding max square)
+```
+
 
 ### 2. Problem in Simple Words
-- One sentence max
-- Include concrete example with answer
+- Two sentence max
+- Include concrete example with answer not abstract description
 - NO algorithm details here
 
 ### 3. Brute Force Solution ❌
@@ -170,6 +196,7 @@ Let's trace our thinking:
   WHY: [root cause]
   ```
 - Why It Fails explanation
+- Add Honorable Mention if there's a valid alternative approach
 
 ### 5. Optimal Solution ✅
 **MUST HAVE:**
@@ -204,6 +231,10 @@ Let's trace our thinking:
 | Index problem | Show indices getting lost |
 
 ### 8. Visual Diagrams
+**Must Have:**
+- Step-by-step detail visuals
+- Visuals for data strcuture, pointer, movement and State changes
+
 **When to include:**
 - Tree/graph traversal
 - Two pointers movement
@@ -220,6 +251,7 @@ Use ASCII art:
   └───┴───┴───┘
 
 Use arrows: →, ←, ↑, ↓, ↗, ↘
+Use lines: -, |, \, /
 Use boxes for emphasis: [X]
 Use emoji sparingly: ✅, ❌, 💡
 ```

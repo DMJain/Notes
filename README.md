@@ -144,6 +144,7 @@
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
 | 1266 | [Min Time Visiting All Points](./LeetCode/src/main/java/org/example/Q1266_MinTimeVisitingAllPoints) | Min time to visit points (Chebyshev) | Max(abs(dx), abs(dy)) as diag = 1 sec |
+| 3047 | [Largest Square in Two Rects](./LeetCode/src/main/java/org/example/Q3047_FindLargestAreaOfSquareInsideTwoRectangles) | Max square in intersection of any pair | Check all N² pairs, intersect is [maxL, minR] |
 
 </details>
 
@@ -196,6 +197,7 @@
 | 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | 🟡 Medium | DP with left/right pass optimization |
 | 2943 | [Maximize Square Hole Area](./LeetCode/src/main/java/org/example/Q2943_MaximizeSquareHoleArea) | 🟡 Medium | Sort bars, find max consecutive bars |
 | 2975 | [Maximum Square Area](./LeetCode/src/main/java/org/example/Q2975_MaximizeSquareArea) | 🟡 Medium | All gaps: HashSet(H-gaps) ∩ V-gaps |
+| 3047 | [Largest Square in Two Rects](./LeetCode/src/main/java/org/example/Q3047_FindLargestAreaOfSquareInsideTwoRectangles) | 🟡 Medium | Check all N² pairs, intersect is [maxL, minR] |
 | 3453 | [Separate Squares I](./LeetCode/src/main/java/org/example/Q3453_SeparateSquaresI) | 🟡 Medium | Monotonic area → Binary Search on Y |
 | 3454 | [Separate Squares II](./LeetCode/src/main/java/org/example/Q3454_SeparateSquaresII) | 🔴 Hard | Sweep line (y-events) + Interval merging |
 
@@ -459,9 +461,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 4 solved
-- [x] Medium: 17 solved
+- [x] Medium: 18 solved
 - [x] Hard: 8 solved
-- **Total**: 29 problems
+- **Total**: 30 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
