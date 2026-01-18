@@ -4,17 +4,29 @@ description: How to write proper Explanation.md for LeetCode problems following 
 
 # LeetCode Explanation.md Writing Guide
 
+## Score-Driven Workflow
+
+```
+- Divide task into sub-tasks, score each (0.0-1.0)
+- Retry if score < 0.8
+- Join sub-tasks, score final result
+- Fix if final score < 0.8
+```
+
+**Phases**: Research → Brute Force → Intermediate(s) → Optimal → Polish
+
+---
+
 ## Core Principles
 
-1. **Connected Flow**: Each solution naturally leads to the next through thought bubbles
-2. **Show WHY**: Always explain WHY an approach fails, not just that it's slow with example
-3. **Show WHY NOT**: Why not always obvious natural instinct don't work
-4. **Concrete Examples**: Use specific inputs, step-by-step traces, operation counts
+1. **Connected Flow**: Each solution leads to next via thought bubbles
+2. **Show WHY**: Explain WHY approach not works with concrete example. can be slow, or wrong.
+3. **Show WHY NOT**: Why not always intuitive/ common optimsation approaches don't work
+4. **Concrete Examples**: Specific inputs, step-by-step traces, operation counts
 5. **Visual First**: ASCII diagrams > walls of text
 6. **Complete Journey**: Brute Force → Intermediate(s) → Optimal with all connections
-7. **Donkey-level clarrity**: Explain like the reader has zero context
-8. **ASCII visuals**: State changes, poniter movements, data structure, detail step-by-step visuals
-
+7. **Donkey-level clarity**: Explain like reader has Zero-context
+8. **ASCII visuals**: State changes, pointer movements, data structures, detail step-by-step visuals.
 
 ---
 
@@ -23,24 +35,20 @@ description: How to write proper Explanation.md for LeetCode problems following 
 ```markdown
 # Problem Name - Explanation
 
-> **Prerequisites**: Link to foundational problems if applicable
-> E.g., "This is an extension of [Q0001 Two Sum](../Q0001_TwoSum/Explanation.md)"
-
-> **Related Problems**: Link to similar pattern problems
-> E.g., "Same pattern as [Q0022 Generate Parentheses](../Q0022_GenerateParentheses/Explanation.md)"
+> **Prerequisites**: Foundational concepts/problems
+> **Related Problems**: Link to similar pattern problems web and if alredy added to rep(research via search_web)
 
 ## Problem in Simple Words
-[One-liner explanation + concrete example with answer]
+[≤2 sentences + concrete example with answer]
 
 ---
 
-## Solution 1: Brute Force ❌ (Why Bad)
-
+## Solution 1: Brute Force ❌
 ### Approach
-[Code snippet or pseudocode]
+[Code/pseudocode]
 
 ### Why It's Bad
-[General statement: O(n³), too slow, etc.]
+[Complexity + CONCRETE failure: "For n=50000: 2.5 billion ops!"]
 
 ### Example Where It's SLOW/FAILS ❌
 [CONCRETE example with numbers showing the problem]
@@ -50,36 +58,47 @@ Work: X operations
 For n=50000: Y billion operations!
 ```
 
+### Complexity Analysis
+
+| Solution | Time | Space | Correct? | Why? |
+|----------|------|-------|----------|------|
+| Brute Force | O(...) | O(...) | ✅ TLE | [reason] |
+| Intuitive | O(...) | O(...) | ❌ Wrong | [reason] |
+| **Optimal** | O(...) | O(...) | ✅ **Optimal** | [reason] |
+
 > 💭 **Thought connecting to next solution. Always end with "What if we...?"**
 
 ---
 
-## Solution 2 to N-1: Intuitive Solitions which could be Slow or Wrong ❌ (Why Not Ideal) [there can be one or more solutions some correct intermediate but not optimal or Intution solution first comes to ming but are wrong]
+## Solution 2 to N-1: Intermediate ❌
+### The Natural Thought
+[What someone tries after brute force, Intuitive Solitions which could be Slow or Wrong] (Why Not Ideal) (there can be one or more solutions some correct intermediate but not optimal or Intution solution first comes to ming but are wrong)
 
 ### The Natural Thought
-"First thing someone would try after brute force"
+"Things someone would try to optimse the solution with some obvious or most used context"
 
 ### Approach
-[Code or pseudocode]
+[Code/pseudocode]
 
 ### Example Where It FAILS ❌
-[CONCRETE example showing WHERE it breaks]
-```
-Input: [test case]
-Step 1: ...
-Step 2: ...
-Step 3: BREAKS because X
-Expected: Y
-Got: Z ← WRONG!
-```
+Input: [test] → Step 1 → Step 2 → BREAKS
+Expected: Y | Got: Z ← WRONG!
 
 ### Why It Fails 🤯
 [Root cause explanation]
 
-> 💭 **Another thought bubble connecting to optimal. "OK that doesn't work because X. What if we Y?"**
+### Complexity Analysis
 
-> **Honorable Mention(s)**: Alternative valid approache(s) that work but aren't optimal
-> E.g., "*TreeMap approach* is valid O(n log n) but Monotonic Deque is O(n)"
+| Solution | Time | Space | Correct? | Why? |
+|----------|------|-------|----------|------|
+| Brute Force | O(...) | O(...) | ✅ TLE | [reason] |
+| Intuitive | O(...) | O(...) | ❌ Wrong | [reason] |
+| **Optimal** | O(...) | O(...) | ✅ **Optimal** | [reason] |
+
+
+> 💭 **Another thought bubble connecting to next obvious solution. "OK that doesn't work because X. What if we Y?"**
+
+> **Honorable Mention**: Valid but not optimal alternatives
 
 ---
 
@@ -92,34 +111,33 @@ Let's trace our thinking:
 - **What we need**: [the insight that leads to optimal] → **Solution Name!**
 
 ### The Key Insight 💡
-[Core insight that makes this work]
+[Core insight that makes this work]]
 
 ### The Algorithm
-[Step-by-step detail algorithm]
+[Step-by-step in detail]
 
 ### Step-by-Step Walkthrough
-[Detailed trace with specific input]
+[Detailed Trace with specific input]
 
 ### Visual Diagram
 [ASCII art showing in detail how it solution works step by step]
 
 ---
 
-## Complexity Analysis
+## Complexity Analysis (Optimal)
 
-| Solution | Time | Space | Correct? | Why? |
-|----------|------|-------|----------|------|
-| Brute Force | O(...) | O(...) | ✅ TLE | [reason] |
-| Intuitive | O(...) | O(...) | ❌ Wrong | [reason] |
-| **Optimal** | O(...) | O(...) | ✅ **Optimal** | [reason] |
+| Solution | Time | Space | Status | Why |
+|----------|------|-------|--------|-----|
+| Brute | O(...) | O(...) | ✅ TLE | reason |
+| Intuitive | O(...) | O(...) | ❌ Wrong | reason |
+| **Optimal** | O(...) | O(...) | ✅ | reason |
 
 ---
 
 ## Key Takeaways
-
 1. [Pattern/technique learned]
 2. [When to use this approach]
-3. [Common pitfall to avoid]
+3. [Common Pitfall to avoid]
 
 ---
 
@@ -130,7 +148,7 @@ Let's trace our thinking:
          ↓
 💡 "Thought that leads to next..."
          ↓
-❌ Approach 2 → STILL BAD (reason)
+❌ Approach(s) 2 to N-1 till optimal → STILL BAD (reason)
          ↓
 💡 "Better thought..."
          ↓
@@ -140,43 +158,26 @@ Let's trace our thinking:
 
 ---
 
-## Critical Rules for Each Section
+## Critical Rules For Each Solution
 
-### 1. Prerequisites/Related (Top)
-**MUST RESEARCH BEFORE WRITING:**
-- Use `search_web` tool with query: `"leetcode [problem number] [problem name] similar problems related"`
+### Prerequisites/Related
+- Use `search_web`: "leetcode [number] [name] similar problems"
 - Search on domain `leetcode.com` to find genuinely related problems
-- DO NOT guess related problems from the repository structure alone
 
 **What to include:**
-- **Prerequisites**: Concepts OR LeetCode problems that MUST be understood first
+- **Prerequisites**: Concepts AND LeetCode problems that MUST be understood first
   - **Concepts**: e.g., "Understanding of coordinate geometry", "Binary search basics", "Graph traversal (BFS/DFS)"
-  - **LeetCode Problems**: e.g., 3Sum requires understanding 2Sum
-  - Format for LeetCode link: `[LeetCode XXX - Problem Name](https://leetcode.com/problems/problem-slug/)`
-  - **If problem exists in repo**: Provide BOTH LeetCode link AND local link: `[LeetCode XXX](https://...) | [Local](../QXXXX_ProblemName/Explanation.md)`
 - **Related Problems**: Link to LeetCode problems with SAME PATTERN or TECHNIQUE
   - Examples: Other backtracking problems, other sliding window problems, other interval intersection problems
   - Format: `[LeetCode XXX - Problem Name](https://leetcode.com/problems/problem-slug/) (brief description)`
-  - **If problem exists in repo**: Provide BOTH links: `[LeetCode XXX](https://...) | [Local](../QXXXX_ProblemName/Explanation.md) (brief description)`
-  
-**Example:**
-```markdown
-> **Prerequisites**: 
-> - Understanding of coordinate geometry and rectangle boundaries
-> - [LeetCode 1 - Two Sum](https://leetcode.com/problems/two-sum/) | [Local](../Q0001_TwoSum/Explanation.md)
+  - **If problem exists in repo**: Provide BOTH links: `[LeetCode XXX](https://...) | [Local](../QXXXX_ProblemName/Explanation.md) (brief description)
 
-> **Related Problems**: 
-> - [LeetCode 836 - Rectangle Overlap](https://leetcode.com/problems/rectangle-overlap/) (checking intersection)
-> - [LeetCode 221 - Maximal Square](https://leetcode.com/problems/maximal-square/) | [Local](../Q0221_MaximalSquare/Explanation.md) (finding max square)
-```
-
-
-### 2. Problem in Simple Words
-- Two sentence max
+### Problem in Simple Words
+- Three sentence max
 - Include concrete example with answer not abstract description
 - NO algorithm details here
 
-### 3. Brute Force Solution ❌
+### Brute Force Solution ❌
 **MUST HAVE:**
 - Pseudocode or code snippet
 - Why it's bad (complexity)
@@ -186,7 +187,7 @@ Let's trace our thinking:
   Operations = 50000² = 2.5 billion!
   ```
 
-### 4. Intermediate Solution(s) ❌
+### Intermediate Solution(s) ❌
 **MUST HAVE:**
 - "The Natural Thought" - what would someone try next?
 - Approach code
@@ -200,7 +201,7 @@ Let's trace our thinking:
 - Why It Fails explanation
 - Add Honorable Mention if there's a valid alternative approach
 
-### 5. Optimal Solution ✅
+### Optimal Solution ✅
 **MUST HAVE:**
 - "The Connection 🔗" - trace the journey explicitly
 - "The Key Insight 💡" - the AHA moment
@@ -208,64 +209,39 @@ Let's trace our thinking:
 - Step-by-step walkthrough with real input
 - Visual ASCII diagram
 
-### 6. Thought Bubbles 💭
-**MUST:**
-- End EVERY non-optimal solution with a thought bubble
-- Thought must CONNECT to next solution
-- Always phrase as a QUESTION: "What if we...?"
-- Never just state the next solution
+### Thought Bubbles 💭
+**MUST HAVE:**
+- End EVERY non-optimal with thought bubble
+- MUST be a QUESTION: "What if we...?"
+- ✅ Good: "HashMap is O(1) but loses indices. What structure preserves order?"
+- ❌ Bad: "Use a HashMap."
 
-**Good:**
-> 💭 **Sorting destroys indices, but we still need O(1) lookup. What data structure gives O(1) lookup without changing positions?**
+### Failure Examples (REQUIRED)
+| Type | Show |
+|------|------|
+| TLE | Operation count for large n |
+| Wrong Answer | Input → Expected → Got → WHY |
+| Edge Case | Specific case that breaks |
 
-**Bad:**
-> 💭 **Use a HashMap.**
-
-### 7. Failure Examples
-**Types of failures to show:**
-
-| Problem Type | Show This Failure |
-|--------------|-------------------|
-| Wrong Answer | Concrete input where approach gives wrong output |
-| TLE (slow) | Operation count for large n |
-| Edge Case | Specific edge case that breaks approach |
-| Duplicate handling | Show duplicates appearing |
-| Index problem | Show indices getting lost |
-
-### 8. Visual Diagrams
-**Must Have:**
-- Step-by-step detail visuals
-- Visuals for data strcuture, pointer, movement and State changes
-
-**When to include:**
-- Tree/graph traversal
-- Two pointers movement
-- Sliding window
-- DP table progression
-- Stack/queue operations
-- Before/after state
-
-**Format:**
+### Visual Diagrams
+Include for: tree/graph traversal, two pointers, sliding window, DP tables, stack/queue ops, before/after state
 ```
-Use ASCII art:
+ASCII format:   
   ┌───┬───┬───┐
   │ 1 │ 2 │ 3 │
   └───┴───┴───┘
-
-Use arrows: →, ←, ↑, ↓, ↗, ↘
-Use lines: -, |, \, /
-Use boxes for emphasis: [X]
-Use emoji sparingly: ✅, ❌, 💡
+Arrows: → ← ↑ ↓  |  Emoji: ✅ ❌ 💡
+lines: -, |, \, /
 ```
 
-### 9. Complexity Table
+### Complexity Table
 **Always include:**
 - ALL solutions discussed (not just optimal)
 - Mark wrong solutions as ❌ Wrong, not ✅ TLE
 - Bold the **Optimal** row
 - Short "Why" column
 
-### 10. The Journey (TL;DR)
+### The Journey (TL;DR)
 **Format:**
 ```
 🐢 First attempt → 3-word reason
@@ -275,60 +251,41 @@ Use emoji sparingly: ✅, ❌, 💡
 ❌/✅ → Result
 ```
 
----
-
-## Quantification Standards
-
-**Always quantify these:**
-
-| What | How |
-|------|-----|
-| Time complexity | "For n=50000: 2.5 billion ops" |
-| Space | "Stores 600² = 360,000 elements" |
-| Comparisons | "8.5× slower than optimal" |
-| Waste | "98% garbage generated" |
-| Speedup | "50,000× faster with XOR" |
+### Always Quantify
+- Time Complexity: "For n=50000: 2.5 billion ops"
+- Space: "Stores 360,000 elements"
+- Comparisons: "8.5× slower than optimal"
+- Waste: "98% garbage generated"
+- Speedup: "50,000× faster with XOR"
 
 ---
 
-## Checklist Before Finishing
+## Final Checklist (Score ≥ 0.9 required)
 
-- [ ] Has Prerequisites/Related at top?
-- [ ] Brute force has CONCRETE failure example?
-- [ ] Every ❌ solution has thought bubble?
+- [ ] Prerequisites/Related researched and linked
+- [ ] Brute force has CONCRETE failure example with numbers
+- [ ] Every ❌ solution has thought bubble (as QUESTION)
 - [ ] Thought bubbles ASK questions, not state answers?
-- [ ] Optimal has "The Connection 🔗"?
-- [ ] Has step-by-step walkthrough with real input?
-- [ ] Has ASCII diagram where helpful?
-- [ ] Complexity table includes ALL solutions?
-- [ ] Has "The Journey" TL;DR at end?
+- [ ] Optimal has "The Connection 🔗" tracing journey
+- [ ] Step-by-step walkthrough with real input
+- [ ] ASCII diagrams where helpful
+- [ ] Complexity table includes ALL solutions
+- [ ] "The Journey" TL;DR present (< 10 lines)
 - [ ] Numbers are quantified (not just "slow")?
+- [ ] Donkey-level clarity achieved
 
 ---
 
 ## Common Mistakes to Avoid
 
-1. ❌ Jumping straight to optimal without brute force
-2. ❌ Saying "it's slow" without showing HOW slow
-3. ❌ Thought bubbles that state the answer instead of asking
-4. ❌ Missing "The Connection" in optimal solution
-5. ❌ No concrete failure examples
-6. ❌ Walls of text without visuals
-7. ❌ TL;DR that's too long (should be <10 lines)
-8. ❌ Missing complexity table
-9. ❌ Not explaining WHY an approach fails
+- ❌ Jumping straight to optimal without brute force (if brute force is present)
+- ❌ Saying "it's slow" without showing HOW slow
+- ❌ Thought bubbles that state the answer instead of asking
+- ❌ Missing "The Connection" in optimal solution
+- ❌ No concrete failure examples
+- ❌ Walls of text without visuals
+- ❌ TL;DR that's too long (should be <10 lines)
+- ❌ Missing complexity table
+- ❌ Not explaining WHY an approach fails
 
 ---
-
-## Example: Proper Thought Bubble Flow
-
-```
-Solution 1: Brute Force O(n²)
-> 💭 **We're checking every pair. Can we avoid redundant checks with some data structure?**
-
-Solution 2: HashMap O(n) but loses indices
-> 💭 **HashMap is fast but sorting destroyed our indices. What if we hash the VALUES, not positions?**
-
-Solution 3: HashMap with original indices ✅
-"The Connection" explains the journey clearly.
-```

@@ -6,6 +6,7 @@ import java.util.List;
 // DP + Memoization: For each key char, find min rotation from all matching ring positions
 public class FreedomTrail {
 
+    @SuppressWarnings("unchecked")
     public int findRotateSteps(String ring, String key) { // @viz:input
         char[] r = ring.toCharArray();
         List<Integer>[] positions = new List[26]; // @viz:var(positions) // positions[i] = indices of char 'a'+i

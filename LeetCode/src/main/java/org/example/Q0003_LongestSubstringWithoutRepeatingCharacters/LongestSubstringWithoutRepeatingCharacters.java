@@ -7,14 +7,12 @@ public class LongestSubstringWithoutRepeatingCharacters {
     public static int lengthOfLongestSubstring(String s) { // @viz:input
         HashSet<Character> set = new HashSet<>(); // Tracks unique chars in current window
         int ans = 0; // @viz:var(ans) // Stores maximum length found
-        int p1 = 0; // @viz:var(p1) // Window length counter
         int p2 = 0; // @viz:var(p2) // Left pointer of sliding window
 
         for (int i = 0; i < s.length(); i++) { // @viz:loop(i,s) // i = right pointer of window
             char ch = s.charAt(i); // @viz:var(ch)
             if (!set.contains(ch)) {
                 // Unique char found: expand window
-                p1++;
                 set.add(ch);
                 // Update max length: current window size = right - left + 1
                 ans = Math.max(ans, i - p2 + 1);
