@@ -34,7 +34,7 @@
 ### Problems by Topic
 
 <details>
-<summary><b>Arrays & Hashing</b></summary>
+<summary><b>Arrays & Hashing (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -44,7 +44,7 @@
 </details>
 
 <details>
-<summary><b>Stack</b></summary>
+<summary><b>Stack (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -54,7 +54,7 @@
 </details>
 
 <details>
-<summary><b>Strings & Substrings</b></summary>
+<summary><b>Strings & Substrings (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -66,7 +66,7 @@
 </details>
 
 <details>
-<summary><b>Binary Search</b></summary>
+<summary><b>Binary Search (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -76,7 +76,7 @@
 </details>
 
 <details>
-<summary><b>Dynamic Programming</b></summary>
+<summary><b>Dynamic Programming (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -88,7 +88,7 @@
 </details>
 
 <details>
-<summary><b>Sliding Window</b></summary>
+<summary><b>Sliding Window (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -100,7 +100,7 @@
 </details>
 
 <details>
-<summary><b>Greedy</b></summary>
+<summary><b>Greedy (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -111,7 +111,7 @@
 </details>
 
 <details>
-<summary><b>Backtracking</b></summary>
+<summary><b>Backtracking (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -122,7 +122,7 @@
 </details>
 
 <details>
-<summary><b>Trees & Graphs</b></summary>
+<summary><b>Trees & Graphs (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -131,7 +131,7 @@
 </details>
 
 <details>
-<summary><b>Linked Lists</b></summary>
+<summary><b>Linked Lists (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -140,7 +140,7 @@
 </details>
 
 <details>
-<summary><b>Math & Geometry</b></summary>
+<summary><b>Math & Geometry (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -150,7 +150,7 @@
 </details>
 
 <details>
-<summary><b>Matrix & Prefix Sum</b></summary>
+<summary><b>Matrix & Prefix Sum (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -159,7 +159,7 @@
 </details>
 
 <details>
-<summary><b>Design</b></summary>
+<summary><b>Design (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -168,7 +168,7 @@
 </details>
 
 <details>
-<summary><b>Sweep Line</b></summary>
+<summary><b>Sweep Line (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
@@ -176,8 +176,9 @@
 
 </details>
 
+### Problems by Number
 <details>
-<summary><b>Problems by Number</b></summary>
+<summary><b>Click to expand</b></summary>
 
 | # | Problem | Difficulty | Q-Card 💡 |
 |---|---------|------------|-----------|
