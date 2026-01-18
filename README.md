@@ -82,6 +82,7 @@
 |---|---------|-------------|--------|
 | 10 | [Regular Expression Matching](./LeetCode/src/main/java/org/example/Q0010_RegularExpressionMatching) | Match string with `.` and `*` | 2D DP: `*` = zero or more of prev char |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | Min rotations to spell word on ring | DP on (ring pos, key idx), try all char positions |
+| 1895 | [Largest Magic Square](./LeetCode/src/main/java/org/example/Q1895_LargestMagicSquare) | Largest k×k magic square in grid | Prefix sums for rows/cols, check all squares |
 | 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | Max points from grid with penalty | DP with left/right pass optimization |
 
 </details>
@@ -149,6 +150,15 @@
 </details>
 
 <details>
+<summary><b>Matrix & Prefix Sum</b></summary>
+
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 1895 | [Largest Magic Square](./LeetCode/src/main/java/org/example/Q1895_LargestMagicSquare) | Largest k×k magic square in grid | Prefix sums for rows/cols, check all squares |
+
+</details>
+
+<details>
 <summary><b>Design</b></summary>
 
 | # | Problem | Description | Q-Card |
@@ -166,7 +176,8 @@
 
 </details>
 
-### Problems by Number
+<details>
+<summary><b>Problems by Number</b></summary>
 
 | # | Problem | Difficulty | Q-Card 💡 |
 |---|---------|------------|-----------|
@@ -194,12 +205,15 @@
 | 1266 | [Min Time Visiting All Points](./LeetCode/src/main/java/org/example/Q1266_MinTimeVisitingAllPoints) | 🟢 Easy | Max(abs(dx), abs(dy)) |
 | 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Total - min window of (n-k) |
 | 1438 | [Longest Subarray With Limit](./LeetCode/src/main/java/org/example/Q1438_LongestSubarrayWithLimit) | 🟡 Medium | Monotonic deques for max/min in window |
+| 1895 | [Largest Magic Square](./LeetCode/src/main/java/org/example/Q1895_LargestMagicSquare) | 🟡 Medium | Prefix sums for rows/cols, check all squares |
 | 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | 🟡 Medium | DP with left/right pass optimization |
 | 2943 | [Maximize Square Hole Area](./LeetCode/src/main/java/org/example/Q2943_MaximizeSquareHoleArea) | 🟡 Medium | Sort bars, find max consecutive bars |
 | 2975 | [Maximum Square Area](./LeetCode/src/main/java/org/example/Q2975_MaximizeSquareArea) | 🟡 Medium | All gaps: HashSet(H-gaps) ∩ V-gaps |
 | 3047 | [Largest Square in Two Rects](./LeetCode/src/main/java/org/example/Q3047_FindLargestAreaOfSquareInsideTwoRectangles) | 🟡 Medium | Check all N² pairs, intersect is [maxL, minR] |
 | 3453 | [Separate Squares I](./LeetCode/src/main/java/org/example/Q3453_SeparateSquaresI) | 🟡 Medium | Monotonic area → Binary Search on Y |
 | 3454 | [Separate Squares II](./LeetCode/src/main/java/org/example/Q3454_SeparateSquaresII) | 🔴 Hard | Sweep line (y-events) + Interval merging |
+
+</details>
 
 ### Explanation Structure
 
@@ -307,6 +321,13 @@ The LLD section covers core OOP concepts with hands-on code examples:
 | 🐍 **Python** | [LLD Python/](./LLD%20Python) | ✅ Complete |
 
 Each language implementation covers the same concepts with language-specific nuances and best practices.
+
+### Java Advanced Concepts
+
+| Chapter | Topic | Description |
+|---------|-------|-------------|
+| **c2** | [Lambdas](./LLD/src/main/java/org/example/p3_Java_Advance_Concept/c2_lambdas) | Functional interfaces, Lambda syntax, Method references |
+| **c3** | [Streams](./LLD/src/main/java/org/example/p3_Java_Advance_Concept/c3_streams) | Stream API, Operations, Collectors, Parallel streams |
 
 ---
 
@@ -461,12 +482,13 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 4 solved
-- [x] Medium: 18 solved
+- [x] Medium: 19 solved
 - [x] Hard: 8 solved
-- **Total**: 30 problems
+- **Total**: 31 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
+- [x] Java Advanced Concepts (Lambdas, Streams)
 - [ ] Design Patterns (Coming Soon)
 - [ ] SOLID Principles (Coming Soon)
 
