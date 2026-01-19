@@ -633,4 +633,4 @@ c2_threads_in_java/
 ---
 
 ## Next Chapter
-→ [c3: Thread Synchronization](../c3_synchronization/SynchronizationNotes.md) — Solving race conditions with locks
+→ [c3: Executors](../c3_executors/ExecutorsNotes.md) — Thread pools and the Executor Framework
