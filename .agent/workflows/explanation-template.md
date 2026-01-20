@@ -27,6 +27,11 @@ description: How to write proper Explanation.md for LeetCode problems following 
 6. **Complete Journey**: Brute Force → Intermediate(s) → Optimal with all connections
 7. **Donkey-level clarity**: Explain like reader has Zero-context
 8. **ASCII visuals**: State changes, pointer movements, data structures, detail step-by-step visuals.
+9. **Check LeetCode Editorial**: LeetCode provides an Editorial for each question containing explanations of brute force and some optimal solutions. 
+   - **Always read** the Editorial during the Research phase
+   - **Use as reference only** — not always the best brute force or most optimal solution
+   - **Implement selectively** — only include Editorial approaches if they make sense for the user's learning journey to reach the optimal solution
+   - **Don't blindly copy** — our goal is a Connected Flow that guides the reader naturally
 
 ---
 
@@ -273,6 +278,8 @@ lines: -, |, \, /
 - [ ] "The Journey" TL;DR present (< 10 lines)
 - [ ] Numbers are quantified (not just "slow")?
 - [ ] Donkey-level clarity achieved
+- [ ] LeetCode Editorial reviewed during Research phase
+- [ ] Editorial approaches included ONLY if they fit the Connected Flow journey
 
 ---
 
