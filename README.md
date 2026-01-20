@@ -168,6 +168,15 @@
 </details>
 
 <details>
+<summary><b>Bit Manipulation (click to expand)</b></summary>
+
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 3314 | [Construct Min Bitwise Array I](./LeetCode/src/main/java/org/example/Q3314_ConstructTheMinimumBitwiseArrayI) | Find min x where x OR (x+1) = n | Odd: clear rightmost bit of trailing 1s |
+
+</details>
+
+<details>
 <summary><b>Sweep Line (click to expand)</b></summary>
 
 | # | Problem | Description | Q-Card |
@@ -211,6 +220,7 @@
 | 2943 | [Maximize Square Hole Area](./LeetCode/src/main/java/org/example/Q2943_MaximizeSquareHoleArea) | 🟡 Medium | Sort bars, find max consecutive bars |
 | 2975 | [Maximum Square Area](./LeetCode/src/main/java/org/example/Q2975_MaximizeSquareArea) | 🟡 Medium | All gaps: HashSet(H-gaps) ∩ V-gaps |
 | 3047 | [Largest Square in Two Rects](./LeetCode/src/main/java/org/example/Q3047_FindLargestAreaOfSquareInsideTwoRectangles) | 🟡 Medium | Check all N² pairs, intersect is [maxL, minR] |
+| 3314 | [Construct Min Bitwise Array I](./LeetCode/src/main/java/org/example/Q3314_ConstructTheMinimumBitwiseArrayI) | 🟢 Easy | Odd: clear rightmost bit of trailing 1s |
 | 3453 | [Separate Squares I](./LeetCode/src/main/java/org/example/Q3453_SeparateSquaresI) | 🟡 Medium | Monotonic area → Binary Search on Y |
 | 3454 | [Separate Squares II](./LeetCode/src/main/java/org/example/Q3454_SeparateSquaresII) | 🔴 Hard | Sweep line (y-events) + Interval merging |
 
@@ -482,10 +492,10 @@ This is a personal learning repository. If you find any issues or have suggestio
 ## Progress Tracker
 
 ### LeetCode
-- [x] Easy: 4 solved
+- [x] Easy: 5 solved
 - [x] Medium: 19 solved
 - [x] Hard: 8 solved
-- **Total**: 31 problems
+- **Total**: 32 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)

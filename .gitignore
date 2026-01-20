@@ -8,7 +8,6 @@
 .idea/
 *.iml
 .vscode/
-.agent/
 
 # OS
 .DS_Store
