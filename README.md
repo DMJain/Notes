@@ -155,6 +155,7 @@
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
 | 1895 | [Largest Magic Square](./LeetCode/src/main/java/org/example/Q1895_LargestMagicSquare) | Largest k×k magic square in grid | Prefix sums for rows/cols, check all squares |
+| 1292 | [Max Side Length with Sum <= Threshold](./LeetCode/src/main/java/org/example/Q1292_MaximumSideLengthOfASquareWithSumLessThanOrEqualToThreshold) | Max square with sum <= K | Prefix Sums + Binary Search maxLen |
 
 </details>
 
@@ -212,6 +213,7 @@
 | 992 | [Subarrays with K Distinct](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | 🔴 Hard | `atMost(K) - atMost(K-1)` |
 | 995 | [Min K Bit Flips](./LeetCode/src/main/java/org/example/Q0995_MinKBitFlips) | 🔴 Hard | Greedy flip 0s, track with queue/diff |
 | 1007 | [Min Domino Rotations](./LeetCode/src/main/java/org/example/Q1007_MinimumDominoRotations) | 🟡 Medium | Check tops[0] & bottoms[0] as targets |
+| 1292 | [Max Side Length with Sum <= Threshold](./LeetCode/src/main/java/org/example/Q1292_MaximumSideLengthOfASquareWithSumLessThanOrEqualToThreshold) | 🟡 Medium | Prefix Sums + Binary Search maxLen |
 | 1266 | [Min Time Visiting All Points](./LeetCode/src/main/java/org/example/Q1266_MinTimeVisitingAllPoints) | 🟢 Easy | Max(abs(dx), abs(dy)) |
 | 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Total - min window of (n-k) |
 | 1438 | [Longest Subarray With Limit](./LeetCode/src/main/java/org/example/Q1438_LongestSubarrayWithLimit) | 🟡 Medium | Monotonic deques for max/min in window |
@@ -493,9 +495,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 5 solved
-- [x] Medium: 19 solved
+- [x] Medium: 20 solved
 - [x] Hard: 8 solved
-- **Total**: 32 problems
+- **Total**: 33 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
