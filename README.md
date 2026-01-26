@@ -40,6 +40,7 @@
 |---|---------|-------------|--------|
 | 1 | [Two Sum](./LeetCode/src/main/java/org/example/Q0001_TwoSum) | Find 2 nums that add to target | Store num→idx in map, check if complement exists |
 | 15 | [3Sum](./LeetCode/src/main/java/org/example/Q0015_ThreeSum) | Find triplets summing to 0 | Sort + fix one, two-pointer for rest, skip dupes |
+| 1200 | [Minimum Absolute Difference](./LeetCode/src/main/java/org/example/Q1200_MinimumAbsoluteDifference) | Find pairs with min absolute difference | Sort array → check adjacent differences |
 
 </details>
 
@@ -213,6 +214,7 @@
 | 992 | [Subarrays with K Distinct](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | 🔴 Hard | `atMost(K) - atMost(K-1)` |
 | 995 | [Min K Bit Flips](./LeetCode/src/main/java/org/example/Q0995_MinKBitFlips) | 🔴 Hard | Greedy flip 0s, track with queue/diff |
 | 1007 | [Min Domino Rotations](./LeetCode/src/main/java/org/example/Q1007_MinimumDominoRotations) | 🟡 Medium | Check tops[0] & bottoms[0] as targets |
+| 1200 | [Minimum Absolute Difference](./LeetCode/src/main/java/org/example/Q1200_MinimumAbsoluteDifference) | 🟢 Easy | Sort + Single Pass to find min diff |
 | 1292 | [Max Side Length with Sum <= Threshold](./LeetCode/src/main/java/org/example/Q1292_MaximumSideLengthOfASquareWithSumLessThanOrEqualToThreshold) | 🟡 Medium | Prefix Sums + Binary Search maxLen |
 | 1266 | [Min Time Visiting All Points](./LeetCode/src/main/java/org/example/Q1266_MinTimeVisitingAllPoints) | 🟢 Easy | Max(abs(dx), abs(dy)) |
 | 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Total - min window of (n-k) |
@@ -494,10 +496,10 @@ This is a personal learning repository. If you find any issues or have suggestio
 ## Progress Tracker
 
 ### LeetCode
-- [x] Easy: 5 solved
+- [x] Easy: 6 solved
 - [x] Medium: 20 solved
 - [x] Hard: 8 solved
-- **Total**: 33 problems
+- **Total**: 34 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
