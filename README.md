@@ -128,6 +128,7 @@
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
 | 865 | [Smallest Subtree with Deepest Nodes](./LeetCode/src/main/java/org/example/Q0865_SmallestSubtreeDeepestNodes) | LCA of all deepest nodes | DFS returns (depth, node), if L==R curr is LCA |
+| 3650 | [Min Cost Path with Edge Reversals](./LeetCode/src/main/java/org/example/Q3650_MinimumCostPathWithEdgeReversals) | Min cost with optional edge reversal | Add reverse edges (2× cost), run Dijkstra |
 
 </details>
 
@@ -227,6 +228,8 @@
 | 3314 | [Construct Min Bitwise Array I](./LeetCode/src/main/java/org/example/Q3314_ConstructTheMinimumBitwiseArrayI) | 🟢 Easy | Odd: clear rightmost bit of trailing 1s |
 | 3453 | [Separate Squares I](./LeetCode/src/main/java/org/example/Q3453_SeparateSquaresI) | 🟡 Medium | Monotonic area → Binary Search on Y |
 | 3454 | [Separate Squares II](./LeetCode/src/main/java/org/example/Q3454_SeparateSquaresII) | 🔴 Hard | Sweep line (y-events) + Interval merging |
+| 3510 | [Min Pair Removal to Sort Array II](./LeetCode/src/main/java/org/example/Q3510_MinimumPairRemovalToSortArrayII) | 🔴 Hard | Heap + LinkedList for min pair sums |
+| 3650 | [Min Cost Path with Edge Reversals](./LeetCode/src/main/java/org/example/Q3650_MinimumCostPathWithEdgeReversals) | 🟡 Medium | Add reverse edges (2×), run Dijkstra |
 
 </details>
 
@@ -497,9 +500,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 6 solved
-- [x] Medium: 20 solved
+- [x] Medium: 21 solved
 - [x] Hard: 8 solved
-- **Total**: 34 problems
+- **Total**: 35 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
