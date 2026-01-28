@@ -85,6 +85,7 @@
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | Min rotations to spell word on ring | DP on (ring pos, key idx), try all char positions |
 | 1895 | [Largest Magic Square](./LeetCode/src/main/java/org/example/Q1895_LargestMagicSquare) | Largest k×k magic square in grid | Prefix sums for rows/cols, check all squares |
 | 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | Max points from grid with penalty | DP with left/right pass optimization |
+| 3651 | [Min Cost Path with Teleportations](./LeetCode/src/main/java/org/example/Q3651_MinimumCostPathWithTeleportations) | Grid path with k free teleports | 1D DP + Suffix Minimum for O(1) teleport |
 
 </details>
 
@@ -129,6 +130,7 @@
 |---|---------|-------------|--------|
 | 865 | [Smallest Subtree with Deepest Nodes](./LeetCode/src/main/java/org/example/Q0865_SmallestSubtreeDeepestNodes) | LCA of all deepest nodes | DFS returns (depth, node), if L==R curr is LCA |
 | 3650 | [Min Cost Path with Edge Reversals](./LeetCode/src/main/java/org/example/Q3650_MinimumCostPathWithEdgeReversals) | Min cost with optional edge reversal | Add reverse edges (2× cost), run Dijkstra |
+| 3651 | [Min Cost Path with Teleportations](./LeetCode/src/main/java/org/example/Q3651_MinimumCostPathWithTeleportations) | Grid path with k free teleports | 1D DP + Suffix Min by cell value |
 
 </details>
 
@@ -230,6 +232,7 @@
 | 3454 | [Separate Squares II](./LeetCode/src/main/java/org/example/Q3454_SeparateSquaresII) | 🔴 Hard | Sweep line (y-events) + Interval merging |
 | 3510 | [Min Pair Removal to Sort Array II](./LeetCode/src/main/java/org/example/Q3510_MinimumPairRemovalToSortArrayII) | 🔴 Hard | Heap + LinkedList for min pair sums |
 | 3650 | [Min Cost Path with Edge Reversals](./LeetCode/src/main/java/org/example/Q3650_MinimumCostPathWithEdgeReversals) | 🟡 Medium | Add reverse edges (2×), run Dijkstra |
+| 3651 | [Min Cost Path with Teleportations](./LeetCode/src/main/java/org/example/Q3651_MinimumCostPathWithTeleportations) | 🔴 Hard | 1D DP + Suffix Min, k teleport layers |
 
 </details>
 
@@ -501,8 +504,8 @@ This is a personal learning repository. If you find any issues or have suggestio
 ### LeetCode
 - [x] Easy: 6 solved
 - [x] Medium: 21 solved
-- [x] Hard: 8 solved
-- **Total**: 35 problems
+- [x] Hard: 9 solved
+- **Total**: 36 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
