@@ -98,6 +98,17 @@
 | 995 | [Min K Bit Flips](./LeetCode/src/main/java/org/example/Q0995_MinKBitFlips) | Min flips to make all 1s | Greedy flip at each 0, track flips with queue |
 | 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | Pick k cards from ends for max sum | Find min window of (n-k), answer = total - min |
 | 1438 | [Longest Subarray With Limit](./LeetCode/src/main/java/org/example/Q1438_LongestSubarrayWithLimit) | Longest subarray where max-min ≤ limit | 2 monotonic deques: maxq (dec), minq (inc) |
+| 1984 | [Min Diff Between K Scores](./LeetCode/src/main/java/org/example/Q1984_MinimumDifferenceBetweenHighestAndLowestOfKScores) | Min diff in k consecutive elements | Sort + sliding window of size k |
+
+</details>
+
+<details>
+<summary><b>Two Pointers (click to expand)</b></summary>
+
+| # | Problem | Description | Q-Card |
+|---|---------|-------------|--------|
+| 1877 | [Minimize Max Pair Sum](./LeetCode/src/main/java/org/example/Q1877_MinimizeMaximumPairSumInArray) | Min the max pair sum | Sort, pair smallest with largest |
+| 1984 | [Min Diff Between K Scores](./LeetCode/src/main/java/org/example/Q1984_MinimumDifferenceBetweenHighestAndLowestOfKScores) | Min diff in k consecutive elements | Sort + sliding window of size k |
 
 </details>
 
@@ -107,6 +118,7 @@
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
 | 1007 | [Min Domino Rotations](./LeetCode/src/main/java/org/example/Q1007_MinimumDominoRotations) | Equal row by swapping top/bot | Check tops[0] & bottoms[0] as targets |
+| 1877 | [Minimize Max Pair Sum](./LeetCode/src/main/java/org/example/Q1877_MinimizeMaximumPairSumInArray) | Min the max pair sum | Sort, pair smallest with largest |
 | 2943 | [Maximize Square Hole Area](./LeetCode/src/main/java/org/example/Q2943_MaximizeSquareHoleArea) | Max square hole from removing bars | Sort bars, find max consecutive bars |
 | 2975 | [Maximum Square Area](./LeetCode/src/main/java/org/example/Q2975_MaximizeSquareArea) | Max square from removing fences | All gaps: HashSet(H-gaps) ∩ V-gaps |
 
@@ -222,8 +234,10 @@
 | 1266 | [Min Time Visiting All Points](./LeetCode/src/main/java/org/example/Q1266_MinTimeVisitingAllPoints) | 🟢 Easy | Max(abs(dx), abs(dy)) |
 | 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Total - min window of (n-k) |
 | 1438 | [Longest Subarray With Limit](./LeetCode/src/main/java/org/example/Q1438_LongestSubarrayWithLimit) | 🟡 Medium | Monotonic deques for max/min in window |
+| 1877 | [Minimize Max Pair Sum](./LeetCode/src/main/java/org/example/Q1877_MinimizeMaximumPairSumInArray) | 🟡 Medium | Sort, pair smallest with largest |
 | 1895 | [Largest Magic Square](./LeetCode/src/main/java/org/example/Q1895_LargestMagicSquare) | 🟡 Medium | Prefix sums for rows/cols, check all squares |
 | 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | 🟡 Medium | DP with left/right pass optimization |
+| 1984 | [Min Diff Between K Scores](./LeetCode/src/main/java/org/example/Q1984_MinimumDifferenceBetweenHighestAndLowestOfKScores) | 🟢 Easy | Sort + sliding window of size k |
 | 2943 | [Maximize Square Hole Area](./LeetCode/src/main/java/org/example/Q2943_MaximizeSquareHoleArea) | 🟡 Medium | Sort bars, find max consecutive bars |
 | 2975 | [Maximum Square Area](./LeetCode/src/main/java/org/example/Q2975_MaximizeSquareArea) | 🟡 Medium | All gaps: HashSet(H-gaps) ∩ V-gaps |
 | 3047 | [Largest Square in Two Rects](./LeetCode/src/main/java/org/example/Q3047_FindLargestAreaOfSquareInsideTwoRectangles) | 🟡 Medium | Check all N² pairs, intersect is [maxL, minR] |
@@ -343,12 +357,39 @@ The LLD section covers core OOP concepts with hands-on code examples:
 
 Each language implementation covers the same concepts with language-specific nuances and best practices.
 
+### Concurrency
+
+| Chapter | Topic | Description |
+|---------|-------|-------------|
+| **c1** | [Introduction](./LLD/src/main/java/org/example/p2_Concurrency/c1_introduction_to_concurrency) | Processes, Threads, Parallelism vs Concurrency |
+| **c2** | [Threads in Java](./LLD/src/main/java/org/example/p2_Concurrency/c2_threads_in_java) | Thread creation, Lifecycle, Runnable interface |
+| **c3** | [Executors](./LLD/src/main/java/org/example/p2_Concurrency/c3_executors) | Thread pools, ExecutorService, Types of executors |
+| **c4** | [Callables](./LLD/src/main/java/org/example/p2_Concurrency/c4_callables) | Callable interface, Future, Exception handling |
+| **c5** | [Synchronization Problem](./LLD/src/main/java/org/example/p2_Concurrency/c5_synchronization_problem) | Race conditions, Critical sections |
+| **c6** | [Mutex Locks](./LLD/src/main/java/org/example/p2_Concurrency/c6_mutex_locks) | ReentrantLock, Lock interface, tryLock |
+| **c7** | [Synchronized Keyword](./LLD/src/main/java/org/example/p2_Concurrency/c7_synchronized_keyword) | Method & block synchronization, Intrinsic locks |
+| **c8** | [Atomic Datatypes](./LLD/src/main/java/org/example/p2_Concurrency/c8_atomic_datatypes) | AtomicInteger, AtomicReference, CAS operations |
+| **c9** | [Volatile Keyword](./LLD/src/main/java/org/example/p2_Concurrency/c9_volatile_keyword) | Memory visibility, Happens-before |
+| **c10** | [Concurrent Collections](./LLD/src/main/java/org/example/p2_Concurrency/c10_concurrent_collections) | ConcurrentHashMap, CopyOnWriteArrayList |
+| **c11** | [Semaphores](./LLD/src/main/java/org/example/p2_Concurrency/c11_semaphores) | Counting semaphores, Resource limiting |
+| **c12** | [Producer Consumer](./LLD/src/main/java/org/example/p2_Concurrency/c12_producer_consumer) | BlockingQueue, Wait-notify pattern |
+| **c13** | [Deadlocks](./LLD/src/main/java/org/example/p2_Concurrency/c13_deadlocks) | Detection, Prevention, Resource ordering |
+| **c14** | [Wait Notify](./LLD/src/main/java/org/example/p2_Concurrency/c14_wait_notify) | Object.wait(), notify(), notifyAll() |
+
 ### Java Advanced Concepts
 
 | Chapter | Topic | Description |
 |---------|-------|-------------|
+| **c1** | [Generics](./LLD/src/main/java/org/example/p3_Java_Advance_Concept/c1_generics) | Type parameters, Bounded types, Wildcards |
 | **c2** | [Lambdas](./LLD/src/main/java/org/example/p3_Java_Advance_Concept/c2_lambdas) | Functional interfaces, Lambda syntax, Method references |
 | **c3** | [Streams](./LLD/src/main/java/org/example/p3_Java_Advance_Concept/c3_streams) | Stream API, Operations, Collectors, Parallel streams |
+| **c4** | [Collection Framework](./LLD/src/main/java/org/example/p3_Java_Advance_Concept/c4_collection_framework) | Collection hierarchy, Common interfaces |
+| **c5** | [List Interface](./LLD/src/main/java/org/example/p3_Java_Advance_Concept/c5_list_interface) | ArrayList, LinkedList, Vector, Stack |
+| **c6** | [Set Interface](./LLD/src/main/java/org/example/p3_Java_Advance_Concept/c6_set_interface) | HashSet, LinkedHashSet, TreeSet |
+| **c7** | [Queue Interface](./LLD/src/main/java/org/example/p3_Java_Advance_Concept/c7_queue_interface) | PriorityQueue, Deque, ArrayDeque |
+| **c8** | [Map Interface](./LLD/src/main/java/org/example/p3_Java_Advance_Concept/c8_map_interface) | HashMap, LinkedHashMap, TreeMap |
+| **c9** | [Iterators](./LLD/src/main/java/org/example/p3_Java_Advance_Concept/c9_iterators) | Iterator, ListIterator, fail-fast vs fail-safe |
+| **c10** | [Custom Objects](./LLD/src/main/java/org/example/p3_Java_Advance_Concept/c10_custom_objects) | equals(), hashCode(), Comparable, Comparator |
 
 ---
 
@@ -502,14 +543,15 @@ This is a personal learning repository. If you find any issues or have suggestio
 ## Progress Tracker
 
 ### LeetCode
-- [x] Easy: 6 solved
-- [x] Medium: 21 solved
+- [x] Easy: 7 solved
+- [x] Medium: 22 solved
 - [x] Hard: 9 solved
-- **Total**: 36 problems
+- **Total**: 38 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
-- [x] Java Advanced Concepts (Lambdas, Streams)
+- [x] Concurrency (14 chapters)
+- [x] Java Advanced Concepts (10 chapters: Generics, Lambdas, Streams, Collections)
 - [ ] Design Patterns (Coming Soon)
 - [ ] SOLID Principles (Coming Soon)
 
