@@ -142,6 +142,7 @@
 |---|---------|-------------|--------|
 | 865 | [Smallest Subtree with Deepest Nodes](./LeetCode/src/main/java/org/example/Q0865_SmallestSubtreeDeepestNodes) | LCA of all deepest nodes | DFS returns (depth, node), if L==R curr is LCA |
 | 2976 | [Min Cost to Convert String I](./LeetCode/src/main/java/org/example/Q2976_MinimumCostToConvertStringI) | Min cost to convert string chars | Floyd-Warshall on 26-node graph, O(26³+n) |
+| 2977 | [Min Cost to Convert String II](./LeetCode/src/main/java/org/example/Q2977_MinimumCostToConvertStringII) | Min cost for substring transforms | Trie + Floyd-Warshall + DP, O(n×L + K³) |
 | 3650 | [Min Cost Path with Edge Reversals](./LeetCode/src/main/java/org/example/Q3650_MinimumCostPathWithEdgeReversals) | Min cost with optional edge reversal | Add reverse edges (2× cost), run Dijkstra |
 | 3651 | [Min Cost Path with Teleportations](./LeetCode/src/main/java/org/example/Q3651_MinimumCostPathWithTeleportations) | Grid path with k free teleports | 1D DP + Suffix Min by cell value |
 
@@ -247,6 +248,7 @@
 | 3454 | [Separate Squares II](./LeetCode/src/main/java/org/example/Q3454_SeparateSquaresII) | 🔴 Hard | Sweep line (y-events) + Interval merging |
 | 3510 | [Min Pair Removal to Sort Array II](./LeetCode/src/main/java/org/example/Q3510_MinimumPairRemovalToSortArrayII) | 🔴 Hard | Heap + LinkedList for min pair sums |
 | 2976 | [Min Cost to Convert String I](./LeetCode/src/main/java/org/example/Q2976_MinimumCostToConvertStringI) | 🟡 Medium | Floyd-Warshall on 26-node graph |
+| 2977 | [Min Cost to Convert String II](./LeetCode/src/main/java/org/example/Q2977_MinimumCostToConvertStringII) | 🔴 Hard | Trie + Floyd-Warshall + DP |
 | 3650 | [Min Cost Path with Edge Reversals](./LeetCode/src/main/java/org/example/Q3650_MinimumCostPathWithEdgeReversals) | 🟡 Medium | Add reverse edges (2×), run Dijkstra |
 | 3651 | [Min Cost Path with Teleportations](./LeetCode/src/main/java/org/example/Q3651_MinimumCostPathWithTeleportations) | 🔴 Hard | 1D DP + Suffix Min, k teleport layers |
 
@@ -547,8 +549,8 @@ This is a personal learning repository. If you find any issues or have suggestio
 ### LeetCode
 - [x] Easy: 7 solved
 - [x] Medium: 23 solved
-- [x] Hard: 9 solved
-- **Total**: 39 problems
+- [x] Hard: 10 solved
+- **Total**: 40 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
