@@ -41,6 +41,7 @@
 | 1 | [Two Sum](./LeetCode/src/main/java/org/example/Q0001_TwoSum) | Find 2 nums that add to target | Store num→idx in map, check if complement exists |
 | 15 | [3Sum](./LeetCode/src/main/java/org/example/Q0015_ThreeSum) | Find triplets summing to 0 | Sort + fix one, two-pointer for rest, skip dupes |
 | 1200 | [Minimum Absolute Difference](./LeetCode/src/main/java/org/example/Q1200_MinimumAbsoluteDifference) | Find pairs with min absolute difference | Sort array → check adjacent differences |
+| 1752 | [Check if Array Is Sorted and Rotated](./LeetCode/src/main/java/org/example/Q1752_CheckIfArrayIsSortedAndRotated) | Is array a rotated sorted array? | Count break points ≤ 1, check wrap-around |
 
 </details>
 
@@ -238,6 +239,7 @@
 | 1438 | [Longest Subarray With Limit](./LeetCode/src/main/java/org/example/Q1438_LongestSubarrayWithLimit) | 🟡 Medium | Monotonic deques for max/min in window |
 | 1877 | [Minimize Max Pair Sum](./LeetCode/src/main/java/org/example/Q1877_MinimizeMaximumPairSumInArray) | 🟡 Medium | Sort, pair smallest with largest |
 | 1895 | [Largest Magic Square](./LeetCode/src/main/java/org/example/Q1895_LargestMagicSquare) | 🟡 Medium | Prefix sums for rows/cols, check all squares |
+| 1752 | [Check if Array Is Sorted and Rotated](./LeetCode/src/main/java/org/example/Q1752_CheckIfArrayIsSortedAndRotated) | 🟢 Easy | Count break points ≤ 1, check wrap-around |
 | 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | 🟡 Medium | DP with left/right pass optimization |
 | 1984 | [Min Diff Between K Scores](./LeetCode/src/main/java/org/example/Q1984_MinimumDifferenceBetweenHighestAndLowestOfKScores) | 🟢 Easy | Sort + sliding window of size k |
 | 2943 | [Maximize Square Hole Area](./LeetCode/src/main/java/org/example/Q2943_MaximizeSquareHoleArea) | 🟡 Medium | Sort bars, find max consecutive bars |
@@ -547,10 +549,10 @@ This is a personal learning repository. If you find any issues or have suggestio
 ## Progress Tracker
 
 ### LeetCode
-- [x] Easy: 7 solved
+- [x] Easy: 8 solved
 - [x] Medium: 23 solved
 - [x] Hard: 10 solved
-- **Total**: 40 problems
+- **Total**: 41 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
