@@ -141,6 +141,7 @@
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
+| 110 | [Balanced Binary Tree](./LeetCode/src/main/java/org/example/Q0110_BalancedBinaryTree) | Is tree height-balanced? | Bottom-up DFS, -1 sentinel for short-circuit |
 | 865 | [Smallest Subtree with Deepest Nodes](./LeetCode/src/main/java/org/example/Q0865_SmallestSubtreeDeepestNodes) | LCA of all deepest nodes | DFS returns (depth, node), if L==R curr is LCA |
 | 2976 | [Min Cost to Convert String I](./LeetCode/src/main/java/org/example/Q2976_MinimumCostToConvertStringI) | Min cost to convert string chars | Floyd-Warshall on 26-node graph, O(26³+n) |
 | 2977 | [Min Cost to Convert String II](./LeetCode/src/main/java/org/example/Q2977_MinimumCostToConvertStringII) | Min cost for substring transforms | Trie + Floyd-Warshall + DP, O(n×L + K³) |
@@ -221,6 +222,7 @@
 | 22 | [Generate Parentheses](./LeetCode/src/main/java/org/example/Q0022_GenerateParentheses) | 🟡 Medium | Backtrack: open < n, close < open |
 | 23 | [Merge K Sorted Lists](./LeetCode/src/main/java/org/example/Q0023_MergeKSortedLists) | 🔴 Hard | D&C or MinHeap: O(N log k) |
 | 85 | [Maximal Rectangle](./LeetCode/src/main/java/org/example/Q0085_MaximalRectangle) | 🔴 Hard | Histogram per row + Monotonic Stack |
+| 110 | [Balanced Binary Tree](./LeetCode/src/main/java/org/example/Q0110_BalancedBinaryTree) | 🟢 Easy | Bottom-up DFS, -1 sentinel short-circuit |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | 🔴 Hard | DP(pos, idx), try all matching chars |
 | 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | 🟢 Easy | Different strings? Longer wins |
 | 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | 🟡 Medium | Check each if subseq of any other |
@@ -549,10 +551,10 @@ This is a personal learning repository. If you find any issues or have suggestio
 ## Progress Tracker
 
 ### LeetCode
-- [x] Easy: 8 solved
+- [x] Easy: 9 solved
 - [x] Medium: 23 solved
 - [x] Hard: 10 solved
-- **Total**: 41 problems
+- **Total**: 42 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
