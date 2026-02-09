@@ -142,6 +142,7 @@
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
 | 110 | [Balanced Binary Tree](./LeetCode/src/main/java/org/example/Q0110_BalancedBinaryTree) | Is tree height-balanced? | Bottom-up DFS, -1 sentinel for short-circuit |
+| 1382 | [Balance a Binary Search Tree](./LeetCode/src/main/java/org/example/Q1382_BalanceABinarySearchTree) | Convert unbalanced BST to balanced | In-order → sorted list → pick mid as root |
 | 865 | [Smallest Subtree with Deepest Nodes](./LeetCode/src/main/java/org/example/Q0865_SmallestSubtreeDeepestNodes) | LCA of all deepest nodes | DFS returns (depth, node), if L==R curr is LCA |
 | 2976 | [Min Cost to Convert String I](./LeetCode/src/main/java/org/example/Q2976_MinimumCostToConvertStringI) | Min cost to convert string chars | Floyd-Warshall on 26-node graph, O(26³+n) |
 | 2977 | [Min Cost to Convert String II](./LeetCode/src/main/java/org/example/Q2977_MinimumCostToConvertStringII) | Min cost for substring transforms | Trie + Floyd-Warshall + DP, O(n×L + K³) |
@@ -237,6 +238,7 @@
 | 1200 | [Minimum Absolute Difference](./LeetCode/src/main/java/org/example/Q1200_MinimumAbsoluteDifference) | 🟢 Easy | Sort + Single Pass to find min diff |
 | 1292 | [Max Side Length with Sum <= Threshold](./LeetCode/src/main/java/org/example/Q1292_MaximumSideLengthOfASquareWithSumLessThanOrEqualToThreshold) | 🟡 Medium | Prefix Sums + Binary Search maxLen |
 | 1266 | [Min Time Visiting All Points](./LeetCode/src/main/java/org/example/Q1266_MinTimeVisitingAllPoints) | 🟢 Easy | Max(abs(dx), abs(dy)) |
+| 1382 | [Balance a Binary Search Tree](./LeetCode/src/main/java/org/example/Q1382_BalanceABinarySearchTree) | 🟡 Medium | In-order + Divide & Conquer rebuild |
 | 1423 | [Max Points from Cards](./LeetCode/src/main/java/org/example/Q1423_MaxPointsFromCards) | 🟡 Medium | Total - min window of (n-k) |
 | 1438 | [Longest Subarray With Limit](./LeetCode/src/main/java/org/example/Q1438_LongestSubarrayWithLimit) | 🟡 Medium | Monotonic deques for max/min in window |
 | 1877 | [Minimize Max Pair Sum](./LeetCode/src/main/java/org/example/Q1877_MinimizeMaximumPairSumInArray) | 🟡 Medium | Sort, pair smallest with largest |
@@ -552,9 +554,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 9 solved
-- [x] Medium: 23 solved
+- [x] Medium: 24 solved
 - [x] Hard: 10 solved
-- **Total**: 42 problems
+- **Total**: 43 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
