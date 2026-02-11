@@ -42,6 +42,7 @@
 | 15 | [3Sum](./LeetCode/src/main/java/org/example/Q0015_ThreeSum) | Find triplets summing to 0 | Sort + fix one, two-pointer for rest, skip dupes |
 | 1200 | [Minimum Absolute Difference](./LeetCode/src/main/java/org/example/Q1200_MinimumAbsoluteDifference) | Find pairs with min absolute difference | Sort array → check adjacent differences |
 | 1752 | [Check if Array Is Sorted and Rotated](./LeetCode/src/main/java/org/example/Q1752_CheckIfArrayIsSortedAndRotated) | Is array a rotated sorted array? | Count break points ≤ 1, check wrap-around |
+| 3719 | [Longest Balanced Subarray I](./LeetCode/src/main/java/org/example/Q3719_LongestBalancedSubarrayI) | Longest subarray: distinct evens = distinct odds | O(n²) diff trick: +1 even, -1 odd, diff==0 |
 
 </details>
 
@@ -257,6 +258,7 @@
 | 2977 | [Min Cost to Convert String II](./LeetCode/src/main/java/org/example/Q2977_MinimumCostToConvertStringII) | 🔴 Hard | Trie + Floyd-Warshall + DP |
 | 3650 | [Min Cost Path with Edge Reversals](./LeetCode/src/main/java/org/example/Q3650_MinimumCostPathWithEdgeReversals) | 🟡 Medium | Add reverse edges (2×), run Dijkstra |
 | 3651 | [Min Cost Path with Teleportations](./LeetCode/src/main/java/org/example/Q3651_MinimumCostPathWithTeleportations) | 🔴 Hard | 1D DP + Suffix Min, k teleport layers |
+| 3719 | [Longest Balanced Subarray I](./LeetCode/src/main/java/org/example/Q3719_LongestBalancedSubarrayI) | 🟡 Medium | O(n²) diff trick: distinct even-odd balance |
 
 </details>
 
@@ -554,9 +556,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 9 solved
-- [x] Medium: 24 solved
+- [x] Medium: 25 solved
 - [x] Hard: 10 solved
-- **Total**: 43 problems
+- **Total**: 44 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
