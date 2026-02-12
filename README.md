@@ -65,6 +65,7 @@
 | 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | Longest seq not in both strings | If strings differ → longer one wins |
 | 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | Longest seq not subseq of others | Sort by len, check if subseq of any other |
 | 524 | [Longest Word in Dictionary](./LeetCode/src/main/java/org/example/Q0524_LongestWordInDictionary) | Longest dict word from deleting chars | Two-pointer subseq check, pick longest/smallest |
+| 3713 | [Longest Balanced Substring I](./LeetCode/src/main/java/org/example/Q3713_LongestBalancedSubstringI) | Longest substring: all chars same freq | O(n²) uniq==cntMax: all chars at max freq? |
 
 </details>
 
@@ -258,6 +259,7 @@
 | 2977 | [Min Cost to Convert String II](./LeetCode/src/main/java/org/example/Q2977_MinimumCostToConvertStringII) | 🔴 Hard | Trie + Floyd-Warshall + DP |
 | 3650 | [Min Cost Path with Edge Reversals](./LeetCode/src/main/java/org/example/Q3650_MinimumCostPathWithEdgeReversals) | 🟡 Medium | Add reverse edges (2×), run Dijkstra |
 | 3651 | [Min Cost Path with Teleportations](./LeetCode/src/main/java/org/example/Q3651_MinimumCostPathWithTeleportations) | 🔴 Hard | 1D DP + Suffix Min, k teleport layers |
+| 3713 | [Longest Balanced Substring I](./LeetCode/src/main/java/org/example/Q3713_LongestBalancedSubstringI) | 🟡 Medium | O(n²) uniq==cntMax: all chars at max freq? |
 | 3719 | [Longest Balanced Subarray I](./LeetCode/src/main/java/org/example/Q3719_LongestBalancedSubarrayI) | 🟡 Medium | O(n²) diff trick: distinct even-odd balance |
 
 </details>
@@ -556,9 +558,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 9 solved
-- [x] Medium: 25 solved
+- [x] Medium: 26 solved
 - [x] Hard: 10 solved
-- **Total**: 44 problems
+- **Total**: 45 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
