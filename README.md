@@ -87,6 +87,7 @@
 |---|---------|-------------|--------|
 | 10 | [Regular Expression Matching](./LeetCode/src/main/java/org/example/Q0010_RegularExpressionMatching) | Match string with `.` and `*` | 2D DP: `*` = zero or more of prev char |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | Min rotations to spell word on ring | DP on (ring pos, key idx), try all char positions |
+| 799 | [Champagne Tower](./LeetCode/src/main/java/org/example/Q0799_ChampagneTower) | How full is glass (i,j) after pouring? | Simulate top→bottom, cap at 1.0, split excess 50/50 |
 | 1895 | [Largest Magic Square](./LeetCode/src/main/java/org/example/Q1895_LargestMagicSquare) | Largest k×k magic square in grid | Prefix sums for rows/cols, check all squares |
 | 1937 | [Max Points with Cost](./LeetCode/src/main/java/org/example/Q1937_MaxPointsWithCost) | Max points from grid with penalty | DP with left/right pass optimization |
 | 3651 | [Min Cost Path with Teleportations](./LeetCode/src/main/java/org/example/Q3651_MinimumCostPathWithTeleportations) | Grid path with k free teleports | 1D DP + Suffix Minimum for O(1) teleport |
@@ -234,6 +235,8 @@
 | 526 | [Beautiful Arrangement](./LeetCode/src/main/java/org/example/Q0526_BeautifulArrangement) | 🟡 Medium | Backtrack: try valid nums at each pos |
 | 535 | [Encode Decode TinyURL](./LeetCode/src/main/java/org/example/Q0535_EncodeDecodeTinyURL) | 🟡 Medium | Counter + Base62, dual HashMaps |
 | 712 | [Min ASCII Delete Sum](./LeetCode/src/main/java/org/example/Q0712_MinimumDeleteSum) | 🟡 Medium | LCS variation: Total - 2*LCS_ASCII |
+| 744 | [Find Smallest Letter Greater Than Target](./LeetCode/src/main/java/org/example/Q0744_FindSmallestLetterGreaterThanTarget) | 🟢 Easy | Binary search for first letter > target |
+| 799 | [Champagne Tower](./LeetCode/src/main/java/org/example/Q0799_ChampagneTower) | 🟡 Medium | Simulate pour: cap 1.0, overflow 50/50 down |
 | 865 | [Smallest Subtree with Deepest Nodes](./LeetCode/src/main/java/org/example/Q0865_SmallestSubtreeDeepestNodes) | 🟡 Medium | DFS return (depth, node), compare L/R depths |
 | 992 | [Subarrays with K Distinct](./LeetCode/src/main/java/org/example/Q0992_SubarraysWithKDistinct) | 🔴 Hard | `atMost(K) - atMost(K-1)` |
 | 995 | [Min K Bit Flips](./LeetCode/src/main/java/org/example/Q0995_MinKBitFlips) | 🔴 Hard | Greedy flip 0s, track with queue/diff |
@@ -560,9 +563,9 @@ This is a personal learning repository. If you find any issues or have suggestio
 
 ### LeetCode
 - [x] Easy: 9 solved
-- [x] Medium: 27 solved
+- [x] Medium: 28 solved
 - [x] Hard: 10 solved
-- **Total**: 46 problems
+- **Total**: 47 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
