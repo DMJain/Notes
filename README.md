@@ -64,6 +64,7 @@
 | 3 | [Longest Substring Without Repeating](./LeetCode/src/main/java/org/example/Q0003_LongestSubstringWithoutRepeatingCharacters) | Max substring with unique chars | Sliding window + set, shrink on duplicate |
 | 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | Longest seq not in both strings | If strings differ → longer one wins |
 | 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | Longest seq not subseq of others | Sort by len, check if subseq of any other |
+| 67 | [Add Binary](./LeetCode/src/main/java/org/example/Q0067_AddBinary) | Sum two binary strings | Two pointers R→L, carry = t/2, digit = t%2 |
 | 524 | [Longest Word in Dictionary](./LeetCode/src/main/java/org/example/Q0524_LongestWordInDictionary) | Longest dict word from deleting chars | Two-pointer subseq check, pick longest/smallest |
 | 3713 | [Longest Balanced Substring I](./LeetCode/src/main/java/org/example/Q3713_LongestBalancedSubstringI) | Longest substring: all chars same freq | O(n²) uniq==cntMax: all chars at max freq? |
 | 3714 | [Longest Balanced Substring II](./LeetCode/src/main/java/org/example/Q3714_LongestBalancedSubstringII) | Same as 3713, n≤10⁵ needs O(n) | Decompose 3 chars into 7 subsets, diff+HashMap |
@@ -169,6 +170,7 @@
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
+| 67 | [Add Binary](./LeetCode/src/main/java/org/example/Q0067_AddBinary) | Sum two binary strings | Two pointers R→L, carry = t/2, digit = t%2 |
 | 1266 | [Min Time Visiting All Points](./LeetCode/src/main/java/org/example/Q1266_MinTimeVisitingAllPoints) | Min time to visit points (Chebyshev) | Max(abs(dx), abs(dy)) as diag = 1 sec |
 | 3047 | [Largest Square in Two Rects](./LeetCode/src/main/java/org/example/Q3047_FindLargestAreaOfSquareInsideTwoRectangles) | Max square in intersection of any pair | Check all N² pairs, intersect is [maxL, minR] |
 
@@ -226,6 +228,7 @@
 | 20 | [Valid Parentheses](./LeetCode/src/main/java/org/example/Q0020_ValidParentheses) | 🟢 Easy | Stack: push open, pop matching close |
 | 22 | [Generate Parentheses](./LeetCode/src/main/java/org/example/Q0022_GenerateParentheses) | 🟡 Medium | Backtrack: open < n, close < open |
 | 23 | [Merge K Sorted Lists](./LeetCode/src/main/java/org/example/Q0023_MergeKSortedLists) | 🔴 Hard | D&C or MinHeap: O(N log k) |
+| 67 | [Add Binary](./LeetCode/src/main/java/org/example/Q0067_AddBinary) | 🟢 Easy | Two pointers R→L, carry = t/2, digit = t%2 |
 | 85 | [Maximal Rectangle](./LeetCode/src/main/java/org/example/Q0085_MaximalRectangle) | 🔴 Hard | Histogram per row + Monotonic Stack |
 | 110 | [Balanced Binary Tree](./LeetCode/src/main/java/org/example/Q0110_BalancedBinaryTree) | 🟢 Easy | Bottom-up DFS, -1 sentinel short-circuit |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | 🔴 Hard | DP(pos, idx), try all matching chars |
@@ -562,10 +565,10 @@ This is a personal learning repository. If you find any issues or have suggestio
 ## Progress Tracker
 
 ### LeetCode
-- [x] Easy: 9 solved
+- [x] Easy: 10 solved
 - [x] Medium: 28 solved
 - [x] Hard: 10 solved
-- **Total**: 47 problems
+- **Total**: 48 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
