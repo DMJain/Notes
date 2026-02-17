@@ -137,6 +137,7 @@
 |---|---------|-------------|--------|
 | 17 | [Letter Combinations](./LeetCode/src/main/java/org/example/Q0017_LetterCombinations) | All letter combos from phone digits | Backtrack: choose→explore→unchoose for each digit |
 | 22 | [Generate Parentheses](./LeetCode/src/main/java/org/example/Q0022_GenerateParentheses) | All valid parenthesis combos | Back track: open < n, close < open |
+| 401 | [Binary Watch](./LeetCode/src/main/java/org/example/Q0401_BinaryWatch) | All times with k LEDs on | Gosper's hack: iterate k-bit subsets of 10 LEDs |
 | 526 | [Beautiful Arrangement](./LeetCode/src/main/java/org/example/Q0526_BeautifulArrangement) | Count permutations where i%perm[i]==0 or vice versa | Backtrack, try each unused num at each pos |
 
 </details>
@@ -201,6 +202,7 @@
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
 | 190 | [Reverse Bits](./LeetCode/src/main/java/org/example/Q0190_ReverseBits) | Reverse 32-bit integer's bits | Loop: extract LSB of n, push into rev via shift+OR |
+| 401 | [Binary Watch](./LeetCode/src/main/java/org/example/Q0401_BinaryWatch) | All times with k LEDs on | Gosper's hack: enumerate all k-bit subsets of 10 bits |
 | 3314 | [Construct Min Bitwise Array I](./LeetCode/src/main/java/org/example/Q3314_ConstructTheMinimumBitwiseArrayI) | Find min x where x OR (x+1) = n | Odd: clear rightmost bit of trailing 1s |
 
 </details>
@@ -233,6 +235,7 @@
 | 85 | [Maximal Rectangle](./LeetCode/src/main/java/org/example/Q0085_MaximalRectangle) | 🔴 Hard | Histogram per row + Monotonic Stack |
 | 110 | [Balanced Binary Tree](./LeetCode/src/main/java/org/example/Q0110_BalancedBinaryTree) | 🟢 Easy | Bottom-up DFS, -1 sentinel short-circuit |
 | 190 | [Reverse Bits](./LeetCode/src/main/java/org/example/Q0190_ReverseBits) | 🟢 Easy | Extract LSB → shift left → OR into rev, 32× |
+| 401 | [Binary Watch](./LeetCode/src/main/java/org/example/Q0401_BinaryWatch) | 🟢 Easy | Gosper's hack: k-bit subsets of 10 LEDs |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | 🔴 Hard | DP(pos, idx), try all matching chars |
 | 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | 🟢 Easy | Different strings? Longer wins |
 | 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | 🟡 Medium | Check each if subseq of any other |
@@ -567,10 +570,10 @@ This is a personal learning repository. If you find any issues or have suggestio
 ## Progress Tracker
 
 ### LeetCode
-- [x] Easy: 11 solved
+- [x] Easy: 12 solved
 - [x] Medium: 28 solved
 - [x] Hard: 10 solved
-- **Total**: 49 problems
+- **Total**: 50 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
