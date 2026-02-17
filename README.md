@@ -200,6 +200,7 @@
 
 | # | Problem | Description | Q-Card |
 |---|---------|-------------|--------|
+| 190 | [Reverse Bits](./LeetCode/src/main/java/org/example/Q0190_ReverseBits) | Reverse 32-bit integer's bits | Loop: extract LSB of n, push into rev via shift+OR |
 | 3314 | [Construct Min Bitwise Array I](./LeetCode/src/main/java/org/example/Q3314_ConstructTheMinimumBitwiseArrayI) | Find min x where x OR (x+1) = n | Odd: clear rightmost bit of trailing 1s |
 
 </details>
@@ -231,6 +232,7 @@
 | 67 | [Add Binary](./LeetCode/src/main/java/org/example/Q0067_AddBinary) | 🟢 Easy | Two pointers R→L, carry = t/2, digit = t%2 |
 | 85 | [Maximal Rectangle](./LeetCode/src/main/java/org/example/Q0085_MaximalRectangle) | 🔴 Hard | Histogram per row + Monotonic Stack |
 | 110 | [Balanced Binary Tree](./LeetCode/src/main/java/org/example/Q0110_BalancedBinaryTree) | 🟢 Easy | Bottom-up DFS, -1 sentinel short-circuit |
+| 190 | [Reverse Bits](./LeetCode/src/main/java/org/example/Q0190_ReverseBits) | 🟢 Easy | Extract LSB → shift left → OR into rev, 32× |
 | 514 | [Freedom Trail](./LeetCode/src/main/java/org/example/Q0514_FreedomTrail) | 🔴 Hard | DP(pos, idx), try all matching chars |
 | 521 | [Longest Uncommon Subsequence I](./LeetCode/src/main/java/org/example/Q0521_LongestUncommonSubsequenceI) | 🟢 Easy | Different strings? Longer wins |
 | 522 | [Longest Uncommon Subsequence II](./LeetCode/src/main/java/org/example/Q0522_LongestUncommonSubsequenceII) | 🟡 Medium | Check each if subseq of any other |
@@ -565,10 +567,10 @@ This is a personal learning repository. If you find any issues or have suggestio
 ## Progress Tracker
 
 ### LeetCode
-- [x] Easy: 10 solved
+- [x] Easy: 11 solved
 - [x] Medium: 28 solved
 - [x] Hard: 10 solved
-- **Total**: 48 problems
+- **Total**: 49 problems
 
 ### LLD
 - [x] OOP Fundamentals (8 chapters)
